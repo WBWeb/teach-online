@@ -1,6 +1,8 @@
-//courses - list
-function classroomCoursesList() {
-  return gapi.client.classroom.courses.list({})
+//courses.students - list
+function coursesStudentsList(courseId) {
+  return gapi.client.classroom.courses.students.list({
+    "courseId": courseId
+  })
   .then(function(response) {
     // Handle the results here (response.result has the parsed body).
     console.log("Response", response);
@@ -8,9 +10,12 @@ function classroomCoursesList() {
   function(err) { console.error("Execute error", err); });
 }
 
-//courses - get
-function classroomCoursesGet(id) {
-  return gapi.client.classroom.courses.get({"id": id})
+//courses.students - get
+function coursesStudentsGet(courseId,userId) {
+  return gapi.client.classroom.courses.students.get({
+    "courseId": courseId,
+    "userId": userId
+  })
   .then(function(response) {
     // Handle the results here (response.result has the parsed body).
     console.log("Response", response);
@@ -18,9 +23,12 @@ function classroomCoursesGet(id) {
   function(err) { console.error("Execute error", err); });
 }
 
-//courses - delete
-function classroomCoursesDelete(id) {
-  return gapi.client.classroom.courses.delete({"id": id})
+//courses.students - delete
+function coursesStudentsDelete(courseId,userId) {
+  return gapi.client.classroom.courses.students.delete({
+    "courseId": courseId,
+    "userId": userId
+  })
   .then(function(response) {
     // Handle the results here (response.result has the parsed body).
     console.log("Response", response);
@@ -28,23 +36,9 @@ function classroomCoursesDelete(id) {
   function(err) { console.error("Execute error", err); });
 }
 
-//courses - update
-function classroomCoursesUpdate(id,data) {
-  return gapi.client.classroom.courses.update({
-      "id": id,
-      "resource": data
-      }
-    })
-  .then(function(response) {
-    // Handle the results here (response.result has the parsed body).
-    console.log("Response", response);
-  },
-  function(err) { console.error("Execute error", err); });
-}
-
-//courses - create
-function classroomCoursesCreate(data) {
-  return gapi.client.classroom.courses.create({"resource":data})
+//courses.students - create
+function coursesStudentsCreate(data) {
+  return gapi.client.classroom.courses.students.create(data)
   .then(function(response) {
     // Handle the results here (response.result has the parsed body).
     console.log("Response", response);
