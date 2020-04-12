@@ -1,6 +1,6 @@
-//courses student - create
-function coursesStudentCreate(data) {
-    return gapi.client.classroom.courses.students.create(data)
+//courses teacher - create
+function coursesTeacherCreate(data) {
+    return gapi.client.classroom.courses.teachers.create(data)
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
                 console.log("Response", response);
@@ -8,9 +8,9 @@ function coursesStudentCreate(data) {
               function(err) { console.error("Execute error", err); });
   }
 
-//courses student - delete
-function coursesStudentDelete(courseId,userId) {
-    return gapi.client.classroom.courses.students.delete({
+//courses teacher - delete
+function coursesTeacherDelete(courseId,userId) {
+    return gapi.client.classroom.courses.teachers.delete({
       "courseId": courseId,
       "userId": userId
     })
@@ -21,9 +21,9 @@ function coursesStudentDelete(courseId,userId) {
               function(err) { console.error("Execute error", err); });
   }
 
-//courses student - get
-function coursesStudentGet(courseId,userId) {
-    return gapi.client.classroom.courses.students.get({
+//courses teacher - get
+function coursesTeacherGet(courseId,userId) {
+    return gapi.client.classroom.courses.teachers.get({
       "courseId": courseId,
       "userId": userId
     })
@@ -34,9 +34,9 @@ function coursesStudentGet(courseId,userId) {
               function(err) { console.error("Execute error", err); });
   }
 
-//courses student - list
-function coursesStudentList(courseId,pageSize,pageToken) {
-    return gapi.client.classroom.courses.students.list({
+//courses teacher - list
+function execute(courseId,pageSize,pageToken) {
+    return gapi.client.classroom.courses.teachers.list({
       "courseId": courseId,
       "pageSize": pageSize,
       "pageToken": pageToken
