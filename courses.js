@@ -29,21 +29,10 @@ function classroomCoursesDelete(id) {
 }
 
 //courses - update
-function classroomCoursesUpdate(courseState,id,name,ownerId,room,section,description,descriptionHeading,teacherFolderID) {
+function classroomCoursesUpdate(id,data) {
   return gapi.client.classroom.courses.update({
       "id": id,
-      "resource": {
-        "courseState": courseState,
-        "id": id,
-        "name": name,
-        "ownerId": ownerId,
-        "room": room,
-        "description": description,
-        "section": section,
-        "descriptionHeading": descriptionHeading,
-        "teacherFolder": {
-          "id": teacherFolderID
-        }
+      "resource": data
       }
     })
   .then(function(response) {
@@ -54,22 +43,8 @@ function classroomCoursesUpdate(courseState,id,name,ownerId,room,section,descrip
 }
 
 //courses - create
-function classroomCoursesCreate(courseState,id,name,ownerId,room,section,description,descriptionHeading,teacherFolderID) {
-  return gapi.client.classroom.courses.create({
-      "resource": {
-        "courseState": courseState,
-        "id": id,
-        "name": name,
-        "ownerId": ownerId,
-        "room": room,
-        "description": description,
-        "section": section,
-        "descriptionHeading": descriptionHeading,
-        "teacherFolder": {
-          "id": teacherFolderID
-        }
-      }
-    })
+function classroomCoursesCreate(data) {
+  return gapi.client.classroom.courses.create({"resource":data})
   .then(function(response) {
     // Handle the results here (response.result has the parsed body).
     console.log("Response", response);
