@@ -1,6 +1,6 @@
-//courses.announcements - list
-function classroomCoursesAnnouncementsAnnouncementsList(courseId) {
-  return gapi.client.classroom.courses.announcements.list({
+//courses.courseWork - list
+function classroomCoursesCourseWorkList(courseId) {
+  return gapi.client.classroom.courses.courseWork.list({
     "courseId": courseId
   })
   .then(function(response) {
@@ -10,9 +10,9 @@ function classroomCoursesAnnouncementsAnnouncementsList(courseId) {
   function(err) { console.error("Execute error", err); });
 }
 
-//courses.announcements - get
-function classroomCoursesAnnouncementsGet(courseId,id) {
-  return gapi.client.classroom.courses.get({
+//courses.courseWork - get
+function classroomCoursesCourseWorkGet(courseId,id) {
+  return gapi.client.classroom.courses.courseWork.get({
     "courseId": courseId,
     "id": id
   })
@@ -23,9 +23,9 @@ function classroomCoursesAnnouncementsGet(courseId,id) {
   function(err) { console.error("Execute error", err); });
 }
 
-//courses.announcements - delete
-function classroomCoursesAnnouncementsDelete(courseId,id) {
-  return gapi.client.classroom.courses.delete({
+//courses.courseWork - delete
+function classroomCoursesCourseWorkDelete(courseId,id) {
+  return gapi.client.classroom.courses.courseWork.delete({
     "courseId": courseId,
     "id": id
   })
@@ -36,9 +36,9 @@ function classroomCoursesAnnouncementsDelete(courseId,id) {
   function(err) { console.error("Execute error", err); });
 }
 
-//courses.announcements - ModifyAssignees
-function classroomCoursesAnnouncementsModifyAssignees(courseId,id,data) {
-  return gapi.client.classroom.courses.announcements.modifyAssignees({
+//courses.courseWork - ModifyAssignees
+function classroomCoursesCourseWorkModifyAssignees(courseId,id,data) {
+  return gapi.client.classroom.courses.courseWork.modifyAssignees({
       "courseId": courseId,
       "id": id,
       "resource": data
@@ -50,9 +50,9 @@ function classroomCoursesAnnouncementsModifyAssignees(courseId,id,data) {
   function(err) { console.error("Execute error", err); });
 }
 
-//courses.announcements - create
-function classroomCoursesAnnouncementsCreate(courseId,data) {
-  return gapi.client.classroom.courses.create({
+//courses.courseWork - create
+function classroomCoursesCourseWorkCreate(courseId,data) {
+  return gapi.client.classroom.courses.courseWork.create({
     "courseId":courseId,
     "resource":data
   })

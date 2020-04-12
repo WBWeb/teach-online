@@ -1,49 +1,47 @@
-//courses teacher - create
-function coursesTeacherCreate(data) {
-    return gapi.client.classroom.courses.teachers.create(data)
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
+//courses.teachers - list
+function execute(courseId) {
+  return gapi.client.classroom.courses.teachers.list({
+    "courseId": courseId
+  })
+  .then(function(response) {
+    // Handle the results here (response.result has the parsed body).
+    console.log("Response", response);
+  },
+  function(err) { console.error("Execute error", err); });
+}
 
-//courses teacher - delete
-function coursesTeacherDelete(courseId,userId) {
-    return gapi.client.classroom.courses.teachers.delete({
-      "courseId": courseId,
-      "userId": userId
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
+//courses.teachers - get
+function coursesTeachersGet(courseId,userId) {
+  return gapi.client.classroom.courses.teachers.get({
+    "courseId": courseId,
+    "userId": userId
+  })
+  .then(function(response) {
+    // Handle the results here (response.result has the parsed body).
+    console.log("Response", response);
+  },
+  function(err) { console.error("Execute error", err); });
+}
 
-//courses teacher - get
-function coursesTeacherGet(courseId,userId) {
-    return gapi.client.classroom.courses.teachers.get({
-      "courseId": courseId,
-      "userId": userId
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
+//courses.teachers - delete
+function coursesTeachersDelete(courseId,userId) {
+  return gapi.client.classroom.courses.teachers.delete({
+    "courseId": courseId,
+    "userId": userId
+  })
+  .then(function(response) {
+    // Handle the results here (response.result has the parsed body).
+    console.log("Response", response);
+  },
+  function(err) { console.error("Execute error", err); });
+}
 
-//courses teacher - list
-function execute(courseId,pageSize,pageToken) {
-    return gapi.client.classroom.courses.teachers.list({
-      "courseId": courseId,
-      "pageSize": pageSize,
-      "pageToken": pageToken
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
+//courses.teachers - create
+function coursesTeachersCreate(data) {
+  return gapi.client.classroom.courses.teachers.create(data)
+  .then(function(response) {
+    // Handle the results here (response.result has the parsed body).
+    console.log("Response", response);
+  },
+  function(err) { console.error("Execute error", err); });
+}
