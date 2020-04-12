@@ -59,8 +59,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
     <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
-    <script src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()" ></script>
+    <script src="https://apis.google.com/js/api.js"></script>
 
 <script>
 //OAuth2
@@ -128,6 +127,8 @@ function makeApiCall() {
  console.log("Login Success");
  console.log(gapi.auth2.getAuthInstance().currentUser.get());
 }
+
+setTimeout(500, handleClientLoad);
 </script>
 
 <script>
