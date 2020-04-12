@@ -1,5 +1,5 @@
 //courses.announcements - list
-function classroomCoursesAnnouncementsAnnouncementsList(courseId) {
+function classroomCoursesAnnouncementsList(courseId) {
   return gapi.client.classroom.courses.announcements.list({
     "courseId": courseId
   })
