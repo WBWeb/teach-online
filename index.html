@@ -45,7 +45,7 @@
   <body>
     <div class="container">
       <button onclick="authenticate().then(loadClient)">authorize and load</button>
-      <button onclick="execute()">execute</button>
+      <button onclick="classroomCoursesList()">Get List</button>
     </div>
     <div class="modalspin"><!-- Pre-Loader --></div>
   </body>
@@ -71,15 +71,6 @@ function authenticate() {
     return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/classroom/v1/rest")
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
-  }
-  // Make sure the client is loaded and sign-in is complete before calling this method.
-  function execute() {
-    return gapi.client.classroom.courses.get({})
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
   }
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "1034568704034-tatvj4ekhecofh3dmcg7imt9ue52eo9n.apps.googleusercontent.com"}); //Client-ID
@@ -123,6 +114,38 @@ function authenticate() {
     purple: 'rgb(153, 102, 255)',
     grey: 'rgb(201, 203, 207)'
   };
+</script>
+
+
+<script>
+function classroomCoursesList() {
+  return gapi.client.classroom.courses.list({})
+  .then(function(response) {
+    // Handle the results here (response.result has the parsed body).
+    console.log("Response", response);
+  },
+  function(err) { console.error("Execute error", err); });
+}
+
+function classroomCoursesGet(id) {
+  return gapi.client.classroom.courses.get({"id": id})
+  .then(function(response) {
+    // Handle the results here (response.result has the parsed body).
+    console.log("Response", response);
+  },
+  function(err) { console.error("Execute error", err); });
+}
+
+function classroomCoursesDelete(id) {
+  return gapi.client.classroom.courses.delete({"id": id})
+  .then(function(response) {
+    // Handle the results here (response.result has the parsed body).
+    console.log("Response", response);
+  },
+  function(err) { console.error("Execute error", err); });
+}
+
+
 </script>
 
 
