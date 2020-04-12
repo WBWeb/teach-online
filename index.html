@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+      <title>Teach Online</title>
+      <meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Favicon -->
+        <link rel="icon" type="image/png" href="//wbweb.co.in/assets/images/favicon.png">
+
+      <!-- Onpage SEO -->
+        <meta name="title" content="">
+        <meta name="keyword" content="">
+        <meta name="description" content="">
+
+      <!-- Dependencies -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" id="theme-styles">
+
+      <style media="screen">
+        .modalspin {
+          display:    none;
+          position:   fixed;
+          z-index:    1000;
+          top:        0;
+          left:       0;
+          height:     100%;
+          width:      100%;
+          background: rgba( 255, 255, 255, .8 ) url('https://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
+        }
+
+        body {
+          background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        }
+
+        body.loading .modalspin {
+          overflow: hidden;
+        }
+        body.loading .modalspin {
+          display: block;
+        }
+      </style>
+  </head>
+  <body>
+    <div class="container">
+      <button onclick="authenticate().then(loadClient)">authorize and load</button>
+      <button onclick="execute()">execute</button>
+    </div>
+    <div class="modalspin"><!-- Pre-Loader --></div>
+  </body>
+    <!-- Dependencies -->
+    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+
+<script>
+//GoogleOAuth Functions
+function authenticate() {
+    return gapi.auth2.getAuthInstance()
+        .signIn({scope: "profile email openid https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/classroom.courses https://www.googleapis.com/auth/classroom.rosters https://www.googleapis.com/auth/classroom.coursework.students https://www.googleapis.com/auth/classroom.announcements https://www.googleapis.com/auth/classroom.guardianlinks.students https://www.googleapis.com/auth/classroom.push-notifications https://www.googleapis.com/auth/classroom.profile.photos https://www.googleapis.com/auth/classroom.profile.emails https://www.googleapis.com/auth/classroom.topics"})
+        .then(function() { console.log("Sign-in successful"); },
+              function(err) { console.error("Error signing in", err); });
+  }
+  function loadClient() {
+    gapi.client.setApiKey("AIzaSyD-Fr-44tQ9b5sKLCVyuWW6C_2uRLSG2-g"); //API Key
+    return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/classroom/v1/rest")
+        .then(function() { console.log("GAPI client loaded for API"); },
+              function(err) { console.error("Error loading GAPI client for API", err); });
+  }
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  function execute() {
+    return gapi.client.classroom.courses.get({})
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+  gapi.load("client:auth2", function() {
+    gapi.auth2.init({client_id: "1034568704034-tatvj4ekhecofh3dmcg7imt9ue52eo9n.apps.googleusercontent.com"}); //Client-ID
+  });
+
+
+//Swal2Setup
+  const Pop = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn-sm btn btn-success bg-success-dark-gradient',
+      cancelButton: 'btn-sm btn btn-danger bg-danger-dark-gradient',
+    },
+    showClass: {
+      popup: 'animated fadeInDown faster'
+    },
+    hideClass: {
+      popup: 'animated fadeOutUp faster'
+    },
+    buttonsStyling: true
+  });
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top',
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
+
+//ChatJSSetup
+  chartColors = {
+    red: 'rgb(255, 99, 132)',
+    orange: 'rgb(255, 159, 64)',
+    yellow: 'rgb(255, 205, 86)',
+    green: 'rgb(75, 192, 192)',
+    blue: 'rgb(54, 162, 235)',
+    purple: 'rgb(153, 102, 255)',
+    grey: 'rgb(201, 203, 207)'
+  };
+</script>
+
+
+</html>
