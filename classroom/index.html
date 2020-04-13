@@ -29,6 +29,20 @@
         <link rel="stylesheet" type="text/css" href="../vendor/daterangepicker/daterangepicker.css">
         <link rel="stylesheet" type="text/css" href="../css/util.css">
         <link rel="stylesheet" type="text/css" href="../css/main.css">
+
+        <style media="screen">
+        .course-container {
+          width: 100%;
+          background: #fff;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+          -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+          -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+          -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+          -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+        }
+        </style>
   </head>
   <body>
     <div id="app">
@@ -99,8 +113,8 @@
 
       function initDOM() {
         print='<div class="container-login100" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
-          +'<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">'
-            +'<div id="course-container">'
+          +'<div class="card">'
+            +'<div id="course-container" class="course-container p-4" >'
 
             +'</div>'
           +'</div>'
