@@ -339,7 +339,7 @@
             +'<div class="row">'
               +'<div class="col-md-12 text-center">'
                 +'<div class="form-group">'
-                  +'<input type="button" onclick="initclassroomCoursesUpdate()" value="Update" class="btn btn-primary btn-md" >'
+                  +'<input type="button" onclick="initclassroomCoursesUpdate('+courseID+')" value="Update" class="btn btn-primary btn-md" >'
                 +'</div>'
               +'</div>'
             +'</div>';
@@ -349,7 +349,7 @@
         $('#apimodal').modal('show');
       }
 
-      function initclassroomCoursesUpdate() {
+      function initclassroomCoursesUpdate(courseID) {
         classroomCoursesUpdate(courseID,classroomCoursesFormToDataObject());
       }
 
