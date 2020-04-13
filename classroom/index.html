@@ -386,7 +386,8 @@
 
       function initNavDOM() {
         var current = gapi.auth2.getAuthInstance().currentUser.get();
-        print = '<div class="card text-right" style="width=auto;max-height:70px;min-height:70px;border: none;border-radius: 0;/* opacity: 0.5; */box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">'
+        print = '<nav class="navbar sticky-top navbar-light bg-light">'
+        +'<div class="card text-right" style="width=auto;max-height:70px;min-height:70px;border: none;border-radius: 0;/* opacity: 0.5; */box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">'
           +'<div class="row">'
             +'<div class="col-md-3 offset-md-8 text-left justify-content-center">'
                 +'<p style="font-size: 16px;font-weight: 800;margin-top: 15px;">Welcome, '+current.Pt.pW+'</p>'
@@ -395,7 +396,8 @@
               +'<img src="'+current.Pt.QK+'" height="40px" width="40px" style="margin: 10px;border-radius: 50%;">'
             +'</div>'
           +'</div>'
-        +'</div>';
+        +'</div>'
+        +'</nav>';
 
         return print;
       }
