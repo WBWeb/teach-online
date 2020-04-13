@@ -108,7 +108,7 @@
       function initDOM() {
         print='<div class="container-login100" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
                 +'<div id="course-container" class="course-container p-4" >'
-                
+
                 +'</div>'
               +'</div>';
 
@@ -120,18 +120,18 @@
         print='<div class="row">';
           for(i=0; i<courses.length; i++){
             console.log(courses[i]);
-              if (courses[i].state=="ACTIVE") {
+              if (courses[i].courseState=="ACTIVE") {
                 bg='primary';
-              } else if (courses[i].state=="NOT_ASSIGNED") {
+              } else if (courses[i].courseState=="NOT_ASSIGNED") {
                 bg='warning';
               } else {
                 bg='danger';
               }
 
               print+='<div class="col-md-3"><div class="card text-white bg-'+bg+' mb-3" style="max-width: 18rem;">'
-               +'<div class="card-header">'+courses[i].name+' - '+courses[i].section+' - ['+courses[i].enrollmentCode+']</div>'
+               +'<div class="card-header">Code - <b>'+courses[i].enrollmentCode+'</b></div>'
                +'<div class="card-body">'
-               +'<h5 class="card-title">'+courses[i].descriptionHeading+'</h5>'
+               +'<h5 class="card-title">'+courses[i].name+' - '+courses[i].section+'</h5>'
                +'<a href="'+courses[i].alternateLink+'" class="card-text">Classroom Link</a><br>'
               // +'<a href="'+courses[i].teacherFolder.alternateLink+'" class="card-text">Drive Link</a><br>'
                +'<a href="'+courses[i].calendarId+'" class="card-text">Calendar Link</a><br>'

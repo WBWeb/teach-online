@@ -73,6 +73,12 @@ box-shadow: 0 10px 18px 0 #00000054;
     box-shadow: rgba(212, 117, 117, 0.48) -2px 1px 29px 0px;
 }
 
+.bg-white, .btn-white, .badge-white {
+    background: linear-gradient(47deg,#ffffff 0,#ffffff 100%);
+    box-shadow: -1px 1px 18px 0 #00000045;
+    color: black
+}
+
 
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
