@@ -58,17 +58,9 @@ function setSigninStatus(isSignedIn) {
   var user = GoogleAuth.currentUser.get();
   var isAuthorized = user.hasGrantedScopes(SCOPE);
   if (isAuthorized) {
-    console.log(gapi.auth2.getAuthInstance().currentUser.get());
-    $('#sign-in-or-out-button').html('Sign out');
-    $('#revoke-access-button').css('display', 'inline-block');
-    $('#auth-status').html('You are currently signed in and have granted ' +
-        'access to this app.');
     startApp();
   } else {
-    $('#sign-in-or-out-button').html('Sign In/Authorize');
-    $('#revoke-access-button').css('display', 'none');
-    $('#auth-status').html('You have not authorized this app or you are ' +
-        'signed out.');
+    location.href="../";
   }
 }
 
