@@ -183,7 +183,7 @@
           // Handle the results here (response.result has the parsed body).
 
           //get DOM of courses
-          console.log(response); crs=response;
+          console.log(response);
           print=coursesDOM(response.result.courses);
 
           //print courses in page
@@ -250,11 +250,10 @@
                        +'</div>'
                        +'<div class="card-body">'
                          +'<p data-toggle="tooltip" title="View Students"> Students: <span id="'+courses[i].id+'-studentCount">0<span></p>'
-                         +'<p data-toggle="tooltip" title="View Teachers"> Teachers: <span id="'+courses[i].id+'-teacherCount">0<span></p>'
+                         +'<p class="mb-2" data-toggle="tooltip" title="View Teachers"> Teachers: <span id="'+courses[i].id+'-teacherCount">0<span></p>'
                          +'<p data-toggle="tooltip" title="View Announcements"> Announcements: <span id="'+courses[i].id+'-announcementCounr">0<span></p>'
                          +'<p data-toggle="tooltip" title="View Classworks"> Classworks: <span id="'+courses[i].id+'-classworkCount">0<span></p>'
-                         +'<p data-toggle="tooltip" title="View Topics"> Topics: <span id="'+courses[i].id+'-topicsCount">0<span></p>'
-                         +'<br>'
+                         +'<p class="mb-2" data-toggle="tooltip" title="View Topics"> Topics: <span id="'+courses[i].id+'-topicsCount">0<span></p>'
                          +'<p data-toggle="tooltip" title="View Live Classes"> Live Classes: <span id="'+courses[i].id+'-liveclassCount">0<span></p>'
                        +'</div>'
                        +'<div class="card-footer">'
@@ -263,14 +262,55 @@
                            +'<a class="login100-button-a" href="'+courses[i].alternateLink+'" target="_blank" class="card-text" data-toggle="tooltip" title="Open in google Classroom"><i class="fa fa-link"></i></a>'
                            +'<a class="login100-button-a" href="javascript:void(0)" data-toggle="tooltip" title="View Class content in Google Drive"><i class="fa fa-folder"></i></a>'
                            +'<a class="login100-button-a" href="javascript:void(0)" class="card-text" data-toggle="tooltip" onclick="modalAddLiveClass('+"'"+courses[i].id+"'"+')" title="Add/Schedule Live Class"><i class="fa fa-video-camera"></i></a>'
-                           +'<a class="login100-button-a" href="javascript:void(0)" data-toggle="tooltip" title="Invite Teacher/Student" onclick="modalInvite('+"'"+courses[i].id+"'"+')"><i class="fa fa-users"></i></a>'
+                           +'<a class="login100-button-a" href="javascript:void(0)" data-toggle="tooltip" title="Invitations Teacher/Student" onclick="modalInvitation('+"'"+courses[i].id+"'"+')"><i class="fa fa-users"></i></a>'
                          +'</div>'
                        +'</div>'
                       +'</div>'
                     +'</div>';
+                    getCourseDataCounts(courses[i].id);
             }
         return print;
       }
+
+
+      function getCourseDataCounts(courseId) {
+
+        //getStudentsCount in course
+        return gapi.client.classroom.courses.students.list({
+          "courseId": courseId
+        }).then(function(response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log("getStudentsCount:", response);
+        },function(err) { console.error("Execute error", err); });
+
+        //getAnnouncementsCount in course
+        return gapi.client.classroom.courses.announcements.list({
+          "courseId": courseId
+        }).then(function(response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log("getAnnouncementsCount:", response);
+        },function(err) { console.error("Execute error", err); });
+
+        //getTopicsCount in course
+        return gapi.client.classroom.courses.topics.list({
+          "courseId": courseId
+        }).then(function(response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log("getTopicsCount:", response);
+        },function(err) { console.error("Execute error", err); });
+
+        //getTeachersCount in course
+        return gapi.client.classroom.courses.teachers.list({
+          "courseId": courseId
+        }).then(function(response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log("getTeachersCount", response);
+        },function(err) { console.error("Execute error", err); });
+
+      }
+
+
+
       handleClientLoad();
 
     </script>
