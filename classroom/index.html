@@ -151,7 +151,7 @@
     <script src="../js/main.js"></script>
 
     <!-- Classroom Dependencies -->
-    <script src="js/courses.js"></script>
+    <!-- <script src="js/courses.js"></script>
     <script src="js/courses.students.js"></script>
     <script src="js/courses.announcements.js"></script>
     <script src="js/courses.courseWork.js"></script>
@@ -162,7 +162,7 @@
     <script src="js/invitations.js"></script>
     <script src="js/userprofiles.js"></script>
     <script src="js/userprofiles.guardians.js"></script>
-    <script src="js/userprofiles.guardianinvitations.js"></script>
+    <script src="js/userprofiles.guardianinvitations.js"></script> -->
 
     <script>
     $body = $("body");
@@ -249,12 +249,12 @@
                           +'</div>'
                        +'</div>'
                        +'<div class="card-body">'
-                         +'<p data-toggle="tooltip" title="View Students"> Students: <span id="'+courses[i].id+'-studentCount">0<span></p>'
-                         +'<p class="mb-2" data-toggle="tooltip" title="View Teachers"> Teachers: <span id="'+courses[i].id+'-teacherCount">0<span></p>'
-                         +'<p data-toggle="tooltip" title="View Announcements"> Announcements: <span id="'+courses[i].id+'-announcementCounr">0<span></p>'
-                         +'<p data-toggle="tooltip" title="View Classworks"> Classworks: <span id="'+courses[i].id+'-classworkCount">0<span></p>'
-                         +'<p class="mb-2" data-toggle="tooltip" title="View Topics"> Topics: <span id="'+courses[i].id+'-topicsCount">0<span></p>'
-                         +'<p data-toggle="tooltip" title="View Live Classes"> Live Classes: <span id="'+courses[i].id+'-liveclassCount">0<span></p>'
+                         +'<p data-toggle="tooltip" title="View Students"> Students: <span id="'+courses[i].id+'-students">0<span></p>'
+                         +'<p class="mb-2" data-toggle="tooltip" title="View Teachers"> Teachers: <span id="'+courses[i].id+'-teachers">0<span></p>'
+                         +'<p data-toggle="tooltip" title="View Announcements"> Announcements: <span id="'+courses[i].id+'-announcements">0<span></p>'
+                         +'<p data-toggle="tooltip" title="View CourseWorks"> CourseWorks: <span id="'+courses[i].id+'-corseWorks">0<span></p>'
+                         +'<p class="mb-2" data-toggle="tooltip" title="View Topics"> Topics: <span id="'+courses[i].id+'-topics">0<span></p>'
+                         +'<p data-toggle="tooltip" title="View Live Classes"> Live Classes: <span id="'+courses[i].id+'-liveclasses">0<span></p>'
                        +'</div>'
                        +'<div class="card-footer">'
                          +'<div class="flex-c">'
@@ -272,41 +272,107 @@
         return print;
       }
 
-
       function getCourseDataCounts(courseId) {
+        classroomCoursesStudentsCount(courseId);
+        classroomCoursesTeachersCount(courseId);
 
-        //getStudentsCount in course
-        return gapi.client.classroom.courses.students.list({
+        classroomCoursesAnnouncementsCount(courseId);
+        classroomCoursesCourseWorkCount(courseId);
+        classroomCoursesTopicsCount(courseId);
+        classroomCoursesAliasesCount(courseId);
+      }
+
+
+      function classroomCoursesStudentsCount(courseId) {
+        return gapi.client.classroom.courses.sudents.list({
           "courseId": courseId
         }).then(function(response) {
           // Handle the results here (response.result has the parsed body).
-          console.log("getStudentsCount:", response);
+          data=response.result.sudents;
+          if (typeof data !== 'undefined' && data.length > 0) {
+            console.log("getStudentsCount:", data.length);
+            $("#"+courseId+"students").html(data.length);
+          } else {
+            $("#"+courseId+"students").html("0");
+          }
         },function(err) { console.error("Execute error", err); });
+      }
 
-        //getAnnouncementsCount in course
-        return gapi.client.classroom.courses.announcements.list({
-          "courseId": courseId
-        }).then(function(response) {
-          // Handle the results here (response.result has the parsed body).
-          console.log("getAnnouncementsCount:", response);
-        },function(err) { console.error("Execute error", err); });
-
-        //getTopicsCount in course
-        return gapi.client.classroom.courses.topics.list({
-          "courseId": courseId
-        }).then(function(response) {
-          // Handle the results here (response.result has the parsed body).
-          console.log("getTopicsCount:", response);
-        },function(err) { console.error("Execute error", err); });
-
-        //getTeachersCount in course
+      function classroomCoursesTeachersCount(courseId) {
         return gapi.client.classroom.courses.teachers.list({
           "courseId": courseId
         }).then(function(response) {
           // Handle the results here (response.result has the parsed body).
-          console.log("getTeachersCount", response);
+          data=response.result.teachers;
+          if (typeof data !== 'undefined' && data.length > 0) {
+            console.log("getTeachersCount:", data.length);
+            $("#"+courseId+"teachers").html(data.length);
+          } else {
+            $("#"+courseId+"teachers").html("0");
+          }
         },function(err) { console.error("Execute error", err); });
+      }
 
+      function classroomCoursesAnnouncementsCount(courseId){
+        return gapi.client.classroom.courses.announcements.list({
+          "courseId": courseId
+        }).then(function(response) {
+          // Handle the results here (response.result has the parsed body).
+          data=response.result.announcements;
+          if (typeof data !== 'undefined' && data.length > 0) {
+            console.log("getAnnouncementsCount:", data.length);
+            $("#"+courseId+"announcements").html(data.length);
+          } else {
+            $("#"+courseId+"announcements").html("0");
+          }
+        },function(err) { console.error("Execute error", err); });
+      }
+
+      function classroomCoursesTopicsCount(courseId){
+        return gapi.client.classroom.courses.topics.list({
+          "courseId": courseId
+        }).then(function(response) {
+          // Handle the results here (response.result has the parsed body).
+          data=response.result.topics;
+          if (typeof data !== 'undefined' && data.length > 0) {
+            console.log("getTopicsCount:", data.length);
+            $("#"+courseId+"topics").html(data.length);
+          } else {
+            $("#"+courseId+"topics").html("0");
+          }
+        },function(err) { console.error("Execute error", err); });
+      }
+
+      function classroomCoursesCourseWorkCount(courseId){
+        return gapi.client.classroom.courses.courseWork.list({
+          "courseId": courseId
+        }).then(function(response) {
+          // Handle the results here (response.result has the parsed body).
+          data=response.result.courseWork;
+          if (typeof data !== 'undefined' && data.length > 0) {
+            console.log("getCourseWorkCount:", data.length);
+            $("#"+courseId+"courseWork").html(data.length);
+          } else {
+            $("#"+courseId+"courseWork").html("0");
+          }
+        },function(err) { console.error("Execute error", err); });
+      }
+
+      function classroomCoursesAliasesCount(courseId) {
+        return gapi.client.classroom.courses.aliases.list({
+          "courseId": courseId
+        })
+        .then(function(response) {
+          // Handle the results here (response.result has the parsed body).
+          data=response.result.aliases;
+          if (typeof data !== 'undefined' && data.length > 0) {
+            console.log("getAliasesCount:", data.length);
+            $("#"+courseId+"aliases").html(data.length);
+          } else {
+            $("#"+courseId+"aliases").html("0");
+          }
+        },
+        function(err) { console.error("Execute error", err); });
       }
 
 

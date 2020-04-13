@@ -1,5 +1,5 @@
 //courses.topic - list
-function execute(courseId) {
+function coursesTopicList(courseId) {
   return gapi.client.classroom.courses.topics.list({
     "courseId": courseId
   })
