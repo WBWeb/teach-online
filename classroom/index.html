@@ -200,11 +200,13 @@
         $(courseid+"-classcode").empty().html($(courseid+"-classcode").attr("code"));
         $(courseid+"-classcode").attr("title", "Click To Hide Class Code");
         $(courseid+"-classcode").attr("onclick", 'hideClasscode('+courseid+')');
+        $('[data-toggle="tooltip"]').tooltip();
       }
       function hideClasscode(courseid) {
         $(courseid+"-classcode").empty().html($(courseid+"-classcode").attr("default"));
         $(courseid+"-classcode").attr("title", "Click To Show Class Code");
         $(courseid+"-classcode").attr("onclick", 'hideClasscode('+courseid+')');
+        $('[data-toggle="tooltip"]').tooltip();
       }
 
 
