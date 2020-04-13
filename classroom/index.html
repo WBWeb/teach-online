@@ -45,6 +45,28 @@
         }
 
         .login100-button-a {
+          font-size: 18px;
+          border-radius: 50%;
+          color: #3b5998;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 30px;
+          height: 30px;
+          background-color: #ffffff;
+          margin: 5px;
+          box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
+          -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
+          -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
+          -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
+          -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
+        }
+
+        .login100-button-a {
           font-size: 16px;
           color: #3b5998;
           justify-content: center;
@@ -59,7 +81,13 @@
         }
 
         .login100-button-a :hover{
-          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          background-color: #3b5998;
+          color: #fff;
+          box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2);
+          -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2);
+          -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2);
+          -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2);
+          -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2);
         }
         </style>
   </head>
@@ -156,12 +184,11 @@
                +'<br>'
                +'<p data-toggle="tooltip" title="View Live Classes"> Live Classes: <span id="'+courses[i].id+'-liveclassCount">0<span></p>'
                +'</div>'
-               +'<div class="card-footer">'
+               +'<div class="card-footer"><div class="flex-c">'
                +'<a class="login100-button-a" href="'+courses[i].alternateLink+'" data-fancybox data-type="iframe" class="card-text" data-toggle="tooltip" title="Open in google Classroom"><i class="fa fa-link"></i></a>'
                +'<a class="login100-button-a" href="javascript:void(0)" data-toggle="tooltip" title="View Class content in Google Drive"><i class="fa fa-folder"></i></a>'
                +'<a class="login100-button-a" href="javascript:void(0)" class="card-text" data-toggle="tooltip" onclick="modalAddLiveClass('+"'"+courses[i].id+"'"+')" title="Add/Schedule Live Class"><i class="fa fa-video-camera"></i></a>'
-
-               +'</div>'
+               +'</div></div>'
                +'</div></div>';
             }
         print+='</div>';
