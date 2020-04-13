@@ -26,7 +26,7 @@ function classroomCoursesAliasesDelete(courseId, name) {
 //courses.aliases - create
 function classroomCoursesAliasesCreate(courseId, name) {
   return gapi.client.classroom.courses.aliases.create({
-    "courseId": courseId
+    "courseId": courseId,
     "resource": {
       "alias": "p:"+name
     }
