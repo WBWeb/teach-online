@@ -67,23 +67,23 @@
         var courses = classroomCoursesList();
 
         print='<div class="row">';
-          for(p in courses){
-              if (p.state=="ACTIVE") {
+          for(i=0; i<courses.length; i++){
+              if (courses[i].state=="ACTIVE") {
                 bg='primary';
-              } else if (p.state=="NOT_ASSIGNED") {
+              } else if (courses[i].state=="NOT_ASSIGNED") {
                 bg='warning';
               } else {
                 bg='danger';
               }
 
               print+='<div class="col-md-3"><div class="card text-white bg-primary mb-3" style="max-width: 18rem;">'
-               +'<div class="card-header">'+p.name+' - '+p.section+' - ['+p.enrollmentCode+']</div>'
+               +'<div class="card-header">'+courses[i].name+' - '+courses[i].section+' - ['+courses[i].enrollmentCode+']</div>'
                +'<div class="card-body">'
-               +'<h5 class="card-title">'+p.descriptionHeading+'</h5>'
-               +'<a href="'+p.alternateLink+'" class="card-text">Classroom Link</a href="alternateLink"><br>'
-               +'<a href="'+p.alternateLink+'" class="card-text">Drive Link</a href="alternateLink"><br>'
-               +'<a href="'+p.teacherFolder.alternateLink+'" class="card-text">Calendar Link</a href="alternateLink"><br>'
-               +'<a href="'+p.alternateLink+'" class="card-text">Classroom Link</a href="alternateLink">'
+               +'<h5 class="card-title">'+courses[i].descriptionHeading+'</h5>'
+               +'<a href="'+courses[i].alternateLink+'" class="card-text">Classroom Link</a href="alternateLink"><br>'
+               +'<a href="'+courses[i].alternateLink+'" class="card-text">Drive Link</a href="alternateLink"><br>'
+               +'<a href="'+courses[i].teacherFolder.alternateLink+'" class="card-text">Calendar Link</a href="alternateLink"><br>'
+               +'<a href="'+courses[i].alternateLink+'" class="card-text">Classroom Link</a href="alternateLink">'
                +'</div>'
                +'</div></div>';
             }
