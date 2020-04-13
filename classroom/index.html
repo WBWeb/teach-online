@@ -290,6 +290,7 @@
 
 
       function modalEditCourse(courseID) {
+        console.log('Modal Clicked');
         $('#apimodal').empty().html(initModalDOM());
         $('#apimodaltitle').html('Edit Course');
 
@@ -297,7 +298,7 @@
               +'<div class="col-md-12">'
                 +'<div class="form-group">'
                   +'<label>Course Name</label>'
-                  +'<input type="text" max="50" id="courseName" class="form-control">'
+                  +'<input type="text" max="50" value="" id="courseName" class="form-control">'
                 +'</div>'
               +'</div>'
             +'</div>'
@@ -305,13 +306,13 @@
               +'<div class="col-md-4">'
                 +'<div class="form-group">'
                   +'<label>Section</label>'
-                  +'<input type="text" max="10" id="courseSection" class="form-control">'
+                  +'<input value="" type="text" max="10" id="courseSection" class="form-control">'
                 +'</div>'
               +'</div>'
               +'<div class="col-md-4">'
                 +'<div class="form-group">'
                   +'<label>Room</label>'
-                  +'<input type="text" max="10" id="courseRoom" class="form-control">'
+                  +'<input value="" type="text" max="10" id="courseRoom" class="form-control">'
                 +'</div>'
               +'</div>'
               +'<div class="col-md-4">'
@@ -331,21 +332,21 @@
               +'<div class="col-md-12">'
                 +'<div class="form-group">'
                   +'<label>Course Description</label>'
-                  +'<input type="text" max="200" id="courseDescriptionHeading" class="form-control">'
+                  +'<input value="" type="text" max="200" id="courseDescriptionHeading" class="form-control">'
                 +'</div>'
               +'</div>'
             +'</div>'
             +'<div class="row">'
               +'<div class="col-md-12 text-center">'
                 +'<div class="form-group">'
-                  +'<input type="button" onclick="initclassroomCoursesUpdate()" value="Update" class="btn btn-primary btn-md" >'
+                  +'<input value="" type="button" onclick="initclassroomCoursesUpdate()" value="Update" class="btn btn-primary btn-md" >'
                 +'</div>'
               +'</div>'
             +'</div>';
-
         $('#apimodalform').empty().html(print);
+        console.log('Modal Form print success');
         classroomCoursesGetFormValue(courseID);
-
+        $('#apimodal').modal('show');
       }
 
       function initclassroomCoursesUpdate() {
@@ -368,16 +369,19 @@
         .then(function(response) {
           // Handle the results here (response.result has the parsed body).
           console.log("Response", response);
+
           $("#courseName").val(response.result.name);
           $("#courseSection").val(response.result.section);
           $("#courseRoom").val(response.result.room);
           $("#courseState").val(response.result.courseState);
           $("#courseDescriptionHeading").val(response.result.descriptionHeading);
+          console.log('Form value put success');
         },
         function(err) { console.error("Execute error", err); });
       }
 
       function initModalDOM() {
+        console.log('Modal Init Success');
         print='<div class="modal-dialog" role="document">'
           +'<div class="modal-content">'
             +'<div class="modal-header">'
