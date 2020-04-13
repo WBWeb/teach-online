@@ -127,3 +127,13 @@ canvas {
   border: 0;
   border-radius: 10px;
 }
+
+.img-card{
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+}
+
+.img-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
