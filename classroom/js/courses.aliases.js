@@ -14,7 +14,7 @@ function classroomCoursesAliasesList(courseId) {
 function classroomCoursesAliasesDelete(courseId, name) {
   return gapi.client.classroom.courses.aliases.delete({
     "courseId": courseId,
-    "alias": "p:"+
+    "alias": "p:"+name
   })
   .then(function(response) {
     // Handle the results here (response.result has the parsed body).

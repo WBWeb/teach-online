@@ -33,7 +33,6 @@ function classroomCoursesUpdate(id,data) {
   return gapi.client.classroom.courses.update({
       "id": id,
       "resource": data
-      }
     })
   .then(function(response) {
     // Handle the results here (response.result has the parsed body).
