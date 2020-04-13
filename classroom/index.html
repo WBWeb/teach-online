@@ -64,11 +64,22 @@
 
     <script>
       function startApp() {
-        var courses = classroomCoursesList();
+        return gapi.client.classroom.courses.list({})
+        .then(function(response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log("Response", response);
 
+          //get DOM of courses
+          print=coursesDOM(response.result);
 
+          //print courses in page
+          $('#app').html(print);
 
+        },
+        function(err) { console.error("Execute error", err); });
+      }
 
+      function coursesDOM(courses) {
         print='<div class="row">';
           for(i=0; i<courses.length; i++){
             console.log(courses);
@@ -92,8 +103,7 @@
             }
         print+='</div>';
 
-        $('#app').html(print);
-
+        return print;
       }
 
       handleClientLoad();
