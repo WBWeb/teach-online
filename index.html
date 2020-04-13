@@ -117,7 +117,7 @@
       }
 
       function postLoginDOM() {
-        console.log(gapi.auth2.getAuthInstance().currentUser.get());
+        console.log(typeof(gapi.auth2.getAuthInstance().currentUser.get()));
         var profile = gapi.auth2.currentUser.get().getBasicProfile();
         console.log(profile);
         print='<div class="container-login100" style="background-image: url('+"'"+'images/bg-01.jpg'+"'"+');">'
