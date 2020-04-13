@@ -21,16 +21,16 @@
   </head>
   <body>
     <div class="container">
+      <div id="app">
 
+      </div>
+    </div>
+    <footer>
       <button id="sign-in-or-out-button"
               style="margin-left: 25px">Sign In/Authorize</button>
       <button id="revoke-access-button"
               style="display: none; margin-left: 25px">Revoke access</button>
-
-      <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
-
-
-    </div>
+    </footer>
     <div class="modalspin"><!-- Pre-Loader --></div>
   </body>
     <!-- General Dependencies -->
@@ -63,5 +63,50 @@
 
     <script src="js/userprofiles.guardians.js"></script>
     <script src="js/userprofiles.guardianinvitations.js"></script>
+
+    <script>
+      function function startApp() {
+        var courses = classroomCoursesList();
+
+        print='<div class="row">';
+          for(p in courses){
+              if (p.state=="ACTIVE") {
+                bg='primary';
+              } else if (p.state=="NOT_ASSIGNED") {
+                bg='warning';
+              } else {
+                bg='danger';
+              }
+
+              print+='<div class="col-md-3"><div class="card text-white bg-primary mb-3" style="max-width: 18rem;">'
+               +'<div class="card-header">'+p.name+' - '+p.section+' - ['+p.enrollmentCode+']</div>'
+               +'<div class="card-body">'
+               +'<h5 class="card-title">'+p.descriptionHeading+'</h5>'
+               +'<a href="'+p.alternateLink+'" class="card-text">Classroom Link</a href="alternateLink"><br>'
+               +'<a href="'+p.alternateLink+'" class="card-text">Drive Link</a href="alternateLink"><br>'
+               +'<a href="'+p.teacherFolder.alternateLink+'" class="card-text">Calendar Link</a href="alternateLink"><br>'
+               +'<a href="'+p.alternateLink+'" class="card-text">Classroom Link</a href="alternateLink">'
+               +'</div>'
+               +'</div></div>';
+            }
+        print+='</div>';
+
+        $('#app').html(print);
+
+      }
+
+    </script>
+
+    <div class="row">
+      <div class="col">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+          <div class="card-header">Header</div>
+          <div class="card-body">
+            <h5 class="card-title">Primary card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
 </html>
