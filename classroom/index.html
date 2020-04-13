@@ -69,8 +69,12 @@
           // Handle the results here (response.result has the parsed body).
           console.log("Response", response);
 
+          console.log('dom call int');
+
           //get DOM of courses
-          print=coursesDOM(response.result);
+          print=coursesDOM(response.result.courses);
+
+          console.log('dom call complete');
 
           //print courses in page
           $('#app').html(print);
@@ -80,6 +84,7 @@
       }
 
       function coursesDOM(courses) {
+        console.log('dom call success');
         print='<div class="row">';
           for(i=0; i<courses.length; i++){
             console.log(courses);
