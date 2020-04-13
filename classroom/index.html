@@ -284,11 +284,11 @@
 
 
       function classroomCoursesStudentsCount(courseId) {
-        return gapi.client.classroom.courses.sudents.list({
+        return gapi.client.classroom.courses.students.list({
           "courseId": courseId
         }).then(function(response) {
           // Handle the results here (response.result has the parsed body).
-          data=response.result.sudents;
+          data=response.result.students;
           if (typeof data !== 'undefined' && data.length > 0) {
             console.log("getStudentsCount:", data.length);
             $("#"+courseId+"students").html(data.length);
