@@ -120,15 +120,7 @@
         print='<div class="row">';
           for(i=0; i<courses.length; i++){
             console.log(courses[i]);
-              if (courses[i].courseState=="ACTIVE") {
-                bg='primary';
-              } else if (courses[i].courseState=="NOT_ASSIGNED") {
-                bg='warning';
-              } else {
-                bg='danger';
-              }
-
-              print+='<div class="col-md-3"><div class="card text-white bg-'+bg+' mb-3" style="max-width: 18rem;">'
+              print+='<div class="col-md-3"><div class="card bg-white mb-3" style="max-width: 18rem;">'
                +'<div class="card-header">Code - <b>'+courses[i].enrollmentCode+'</b></div>'
                +'<div class="card-body">'
                +'<h5 class="card-title">'+courses[i].name+' - '+courses[i].section+'</h5>'
