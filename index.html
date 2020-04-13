@@ -22,8 +22,10 @@
   </head>
   <body>
     <div class="container">
-      <button onclick="authenticate().then(loadClient)">authorize and load</button>
-      <button onclick="classroomCoursesList()">Get List</button>
+      <button id="sign-in-or-out-button"
+              style="margin-left: 25px">Sign In/Authorize</button>
+      <button id="revoke-access-button"
+              style="display: none; margin-left: 25px">Revoke access</button>
     </div>
     <div class="modalspin"><!-- Pre-Loader --></div>
   </body>
@@ -35,62 +37,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://apis.google.com/js/api.js"></script>
+    <script src="auth.js"></script>
+    <script src="config.js"></script>
 
-<script>
-//GoogleOAuth Functions
-function authenticate() {
-    return gapi.auth2.getAuthInstance()
-        .signIn({scope: "profile email openid https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/classroom.courses https://www.googleapis.com/auth/classroom.rosters https://www.googleapis.com/auth/classroom.coursework.students https://www.googleapis.com/auth/classroom.announcements https://www.googleapis.com/auth/classroom.guardianlinks.students https://www.googleapis.com/auth/classroom.push-notifications https://www.googleapis.com/auth/classroom.profile.photos https://www.googleapis.com/auth/classroom.profile.emails https://www.googleapis.com/auth/classroom.topics"})
-        .then(function() { console.log("Sign-in successful"); console.log(gapi.auth2.getAuthInstance().currentUser.get());},
-              function(err) { console.error("Error signing in", err); });
-  }
-  function loadClient() {
-    gapi.client.setApiKey("AIzaSyD-Fr-44tQ9b5sKLCVyuWW6C_2uRLSG2-g"); //API Key
-    return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/classroom/v1/rest")
-        .then(function() { console.log("GAPI client loaded for API"); },
-              function(err) { console.error("Error loading GAPI client for API", err); });
-  }
-  gapi.load("client:auth2", function() {
-    gapi.auth2.init({client_id: "1034568704034-tatvj4ekhecofh3dmcg7imt9ue52eo9n.apps.googleusercontent.com"}); //Client-ID
-  });
-
-
-//Swal2Setup
-  const Pop = Swal.mixin({
-    customClass: {
-      confirmButton: 'btn-sm btn btn-success bg-success-dark-gradient',
-      cancelButton: 'btn-sm btn btn-danger bg-danger-dark-gradient',
-    },
-    showClass: {
-      popup: 'animated fadeInDown faster'
-    },
-    hideClass: {
-      popup: 'animated fadeOutUp faster'
-    },
-    buttonsStyling: true
-  });
-
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top',
-    showConfirmButton: false,
-    timer: 1000,
-    timerProgressBar: true,
-    onOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  });
-
-//ChatJSSetup
-  chartColors = {
-    red: 'rgb(255, 99, 132)',
-    orange: 'rgb(255, 159, 64)',
-    yellow: 'rgb(255, 205, 86)',
-    green: 'rgb(75, 192, 192)',
-    blue: 'rgb(54, 162, 235)',
-    purple: 'rgb(153, 102, 255)',
-    grey: 'rgb(201, 203, 207)'
-  };
-</script>
 </html>
