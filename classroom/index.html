@@ -84,6 +84,7 @@
           -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
           transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
         }
+
         .class-code{
           cursor: pointer;
         }
@@ -170,12 +171,12 @@
                 +'<div class="course-container p-4" >'
                   +'<div class="row">'
                     +'<div class="col text-left">'
-                      +'<span class="login100-form-title p-b-30" style="text-align: left;">Classroom Courses</span>'
+                      +'<span class="login100-form-title p-b-10" style="text-align: left;">Classroom Courses</span>'
                     +'</div>'
-                    +'<div class="col">'
+                    +'<div class="col-2">'
                       +'<div class="flex-c" style="justify-content: flex-end;">'
-                        +'<div class="dropdown">'
-                          +'<button class="login100-button-a" data-toggle="tooltip" title="Settings" type="button" id="dropdownCoursesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
+                        +'<div class="dropleft">'
+                          +'<button class="login100-button-a" data-toggle="dropdown" title="Settings" type="button" id="dropdownCoursesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
                           +'<div class="dropdown-menu" aria-labelledby="dropdownCoursesMenu">'
                             +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalAddCourse()">Add New Course</a>'
                           +'</div>'
@@ -183,7 +184,7 @@
                       +'</div>'
                     +'</div>'
                   +'</div>'
-                  +'<div class="row" id="course-container">'
+                  +'<div class="row p-t-30 p-b-30" id="course-container" style="max-height:500px; overflow:scroll">'
                   +'</div>'
                 +'</div>'
               +'</div>';
@@ -200,12 +201,12 @@
                       +'<div class="card bg-white mb-3" style="width: auto;">'
                        +'<div class="card-header">'
                           +'<div class="row">'
-                           +'<div class="col text-left"><i class="fa fa-chevron-left p-t-5"></i><span class="class-code" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Click to Reveal">Class Code</span><i class="fa fa-chevron-right p-t-5"></i></div>'
-                           +'<div class="col">'
+                           +'<div class="col text-left"><i class="fa fa-chevron-left" style="font-size:25px;"></i><span class="class-code" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Click to Reveal" style="font-size:30px;">Class Code</span><i class="fa fa-chevron-right" style="font-size:25px;"></i></div>'
+                           +'<div class="col-2">'
                             +'<div class="flex-c" style="justify-content: flex-end;">'
-                              +'<div class="dropdown">'
-                                +'<button class="login100-button-a" data-toggle="tooltip" title="Course Settings" type="button" id="dropdownCourseSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
-                                +'<div class="dropdown-menu" aria-labelledby="dropdownCourseSettings">'
+                              +'<div class="dropleft">'
+                                +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
+                                +'<div class="dropdown-menu">'
                                   +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>'
                                   +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalDeleteCourse('+courses[i].id+')">Delete Course</a>'
                                 +'</div>'
