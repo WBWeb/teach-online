@@ -99,6 +99,7 @@
 
           //print courses in page
           $('#course-container').empty().html(print);
+          $('[data-toggle="tooltip"]').tooltip();
         },
         function(err) { console.error("Execute error", err); });
       }
@@ -125,19 +126,22 @@
                +'<div class="card-body">'
                +'<h5 class="card-title">'+courses[i].name+' - '+courses[i].section+'</h5>'
 
-               +'<p> Students: 0</p>'
-               +'<p> Teachers: 0</p>'
+               +'<p data-toggle="tooltip" title="View Students"> Students: <span id="'+courses[i].id+'-studentCount"><span></p>'
+               +'<p data-toggle="tooltip" title="View Teachers"> Teachers: <span id="'+courses[i].id+'-teacherCount"><span></p>'
 
-               +'<p> Announcements: 0</p>'
-               +'<p> Classworks: 0</p>'
-               +'<p> Topics: 0</p>'
-               +'<p> Grades: 0</p>'
+               +'<p data-toggle="tooltip" title="View Announcements"> Announcements: <span id="'+courses[i].id+'-announcementCounr"><span></p>'
+               +'<p data-toggle="tooltip" title="View Classworks"> Classworks: <span id="'+courses[i].id+'-classworkCount"><span></p>'
+               +'<p data-toggle="tooltip" title="View Topics"> Topics: <span id="'+courses[i].id+'-topicsCount"><span></p>'
+               +'<br>'
+               +'<p data-toggle="tooltip" title="View Live Classes"> Live Classes: <span id="'+courses[i].id+'-liveclassCount"><span></p>'
+               +'<a data-toggle="tooltip" title="View Class in Google Drive">Class Folder</a>'
 
-               +'<p> Live Classes: 0</p>'
-              // +'<a href="'+courses[i].teacherFolder.alternateLink+'" class="card-text">Drive Link</a><br>'
                +'</div>'
                +'<div class="card-footer">'
-               +'<a href="'+courses[i].alternateLink+'" class="card-text" data-toggle+"tooltip" title="Open in GOogle Classroom"><i class="fa fa-link"></i></a>'
+               +'<a href="'+courses[i].alternateLink+'" class="card-text" data-toggle="tooltip" title="Open in GOogle Classroom"><i class="fa fa-link"></i></a>'
+               +'<a href="'+courses[i].alternateLink+'" class="card-text" data-toggle="tooltip" title="Invite Teacher><i class="fa fa-link"></i></a>'
+               +'<a href="'+courses[i].alternateLink+'" class="card-text" data-toggle="tooltip" title="Invite Students><i class="fa fa-link"></i></a>'
+
                +'</div>'
                +'</div></div>';
             }
