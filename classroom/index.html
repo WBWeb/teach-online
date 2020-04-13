@@ -87,6 +87,9 @@
 
         .class-code{
           cursor: pointer;
+          font-weight: 600;
+          letter-spacing: 2px;
+          font-size:14px;
         }
 
         .dropdown-menu.show {
@@ -99,7 +102,7 @@
         }
 
         .card-title{
-          line-height: 2;
+          font-weight: 600;
         }
 
         </style>
@@ -215,9 +218,8 @@
                        +'<div class="card-header">'
                           +'<div class="row">'
                            +'<div class="col text-left">'
-                           +'<h5 class="card-title">'+courses[i].name+' - '+courses[i].section+'</h5>'
-                           +'<br>'
-                           +'<i class="fa fa-chevron-left" style="font-size:12px;"></i><span class="class-code" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code" style="font-size:12px;">'+courses[i].enrollmentCode+'</span><i class="fa fa-chevron-right" style="font-size:12px;"></i>'
+                           +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+'</h5>'
+                           +'</i><span class="class-code" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
                            +'</div>'
                            +'<div class="col-2">'
                             +'<div class="flex-c" style="justify-content: flex-end;">'
