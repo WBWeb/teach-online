@@ -120,6 +120,14 @@
 
     <script>
     $body = $("body");
+    $('.class-code').hover(
+      function () {
+        $(this).html($(this).attr("code"));
+      },
+      function () {
+        $(this).html($(this).attr("default"));
+      }
+    );
     var crs;
     $('#app').empty().html(initDOM());
 
