@@ -338,13 +338,17 @@
             +'<div class="row">'
               +'<div class="col-md-12 text-center">'
                 +'<div class="form-group">'
-                  +'<input type="button" onclick="" value="Update" class="btn btn-primary btn-md" >'
+                  +'<input type="button" onclick="initclassroomCoursesUpdate()" value="Update" class="btn btn-primary btn-md" >'
                 +'</div>'
               +'</div>'
             +'</div>';
 
         $('#apimodalform').empty().html(print);
         classroomCoursesGetFormValue(courseID);
+
+      }
+
+      function initclassroomCoursesUpdate() {
         classroomCoursesUpdate(courseID,classroomCoursesFormToDataObject());
       }
 
