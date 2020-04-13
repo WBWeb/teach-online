@@ -42,5 +42,5 @@
   }
 
   function stopPreloader() {
-    $body.addClass("loading");
+    $body.removeClass("loading");
   }
