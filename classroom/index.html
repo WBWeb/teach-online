@@ -39,10 +39,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script async defer src="https://apis.google.com/js/api.js"
-            onload="this.onload=function(){};handleClientLoad()"
-            onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <script src="https://apis.google.com/js/api.js">
     </script>
     <script src="auth.js"></script>
     <script src="../config.js"></script>
@@ -94,6 +92,8 @@
         $('#app').html(print);
 
       }
+
+      handleClientLoad();
 
     </script>
 
