@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+      <title>Teach Online - Youtube</title>
+      <meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Favicon -->
+        <link rel="icon" type="image/png" href="//wbweb.co.in/assets/images/favicon.png">
+
+      <!-- Onpage SEO -->
+        <meta name="title" content="">
+        <meta name="keyword" content="">
+        <meta name="description" content="">
+
+      <!-- Dependencies -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" id="theme-styles">
+
+      <style media="screen">
+        .modalspin {
+          display:    none;
+          position:   fixed;
+          z-index:    1000;
+          top:        0;
+          left:       0;
+          height:     100%;
+          width:      100%;
+          background: rgba( 255, 255, 255, .8 ) url('https://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
+        }
+
+        body {
+          background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        }
+
+        body.loading .modalspin {
+          overflow: hidden;
+        }
+        body.loading .modalspin {
+          display: block;
+        }
+      </style>
+  </head>
+  <body>
+    <div class="container">
+      <script>
+        var GoogleAuth;
+        var SCOPE = 'profile email openid https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/classroom.courses https://www.googleapis.com/auth/classroom.rosters https://www.googleapis.com/auth/classroom.coursework.students https://www.googleapis.com/auth/classroom.announcements https://www.googleapis.com/auth/classroom.guardianlinks.students https://www.googleapis.com/auth/classroom.push-notifications https://www.googleapis.com/auth/classroom.profile.photos https://www.googleapis.com/auth/classroom.profile.emails https://www.googleapis.com/auth/classroom.topics';
+        function handleClientLoad() {
+          // Load the API's client and auth2 modules.
+          // Call the initClient function after the modules load.
+          gapi.load('client:auth2', initClient);
+        }
+
+        function initClient() {
+          // Retrieve the discovery document for version 3 of Google Drive API.
+          // In practice, your app can retrieve one or more discovery documents.
+          var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest';
+
+          // Initialize the gapi.client object, which app uses to make API requests.
+          // Get API key and client ID from API Console.
+          // 'scope' field specifies space-delimited list of access scopes.
+          gapi.client.init({
+              'apiKey': 'AIzaSyD-Fr-44tQ9b5sKLCVyuWW6C_2uRLSG2-g',
+              'clientId': '1034568704034-tatvj4ekhecofh3dmcg7imt9ue52eo9n.apps.googleusercontent.com',
+              'discoveryDocs': [discoveryUrl],
+              'scope': SCOPE
+          }).then(function () {
+            GoogleAuth = gapi.auth2.getAuthInstance();
+
+            // Listen for sign-in state changes.
+            GoogleAuth.isSignedIn.listen(updateSigninStatus);
+
+            // Handle initial sign-in state. (Determine if user is already signed in.)
+            var user = GoogleAuth.currentUser.get();
+            setSigninStatus();
+
+            // Call handleAuthClick function when user clicks on
+            //      "Sign In/Authorize" button.
+            $('#sign-in-or-out-button').click(function() {
+              handleAuthClick();
+            });
+            $('#revoke-access-button').click(function() {
+              revokeAccess();
+            });
+          });
+        }
+
+        function handleAuthClick() {
+          if (GoogleAuth.isSignedIn.get()) {
+            // User is authorized and has clicked "Sign out" button.
+            GoogleAuth.signOut();
+          } else {
+            // User is not signed in. Start Google auth flow.
+            GoogleAuth.signIn();
+          }
+        }
+
+        function revokeAccess() {
+          GoogleAuth.disconnect();
+        }
+
+        function setSigninStatus(isSignedIn) {
+          var user = GoogleAuth.currentUser.get();
+          var isAuthorized = user.hasGrantedScopes(SCOPE);
+          if (isAuthorized) {
+            $('#sign-in-or-out-button').html('Sign out');
+            $('#revoke-access-button').css('display', 'inline-block');
+            $('#auth-status').html('You are currently signed in and have granted ' +
+                'access to this app.');
+          } else {
+            $('#sign-in-or-out-button').html('Sign In/Authorize');
+            $('#revoke-access-button').css('display', 'none');
+            $('#auth-status').html('You have not authorized this app or you are ' +
+                'signed out.');
+          }
+        }
+
+        function updateSigninStatus(isSignedIn) {
+          setSigninStatus();
+        }
+      </script>
+
+      <button id="sign-in-or-out-button"
+              style="margin-left: 25px">Sign In/Authorize</button>
+      <button id="revoke-access-button"
+              style="display: none; margin-left: 25px">Revoke access</button>
+
+      <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
+
+      <script async defer src="https://apis.google.com/js/api.js"
+              onload="this.onload=function(){};handleClientLoad()"
+              onreadystatechange="if (this.readyState === 'complete') this.onload()">
+      </script>
+    </div>
+    <div class="modalspin"><!-- Pre-Loader --></div>
+  </body>
+    <!-- Dependencies -->
+    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<script>
+
+//Swal2Setup
+  const Pop = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn-sm btn btn-success bg-success-dark-gradient',
+      cancelButton: 'btn-sm btn btn-danger bg-danger-dark-gradient',
+    },
+    showClass: {
+      popup: 'animated fadeInDown faster'
+    },
+    hideClass: {
+      popup: 'animated fadeOutUp faster'
+    },
+    buttonsStyling: true
+  });
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top',
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
+
+//ChatJSSetup
+  chartColors = {
+    red: 'rgb(255, 99, 132)',
+    orange: 'rgb(255, 159, 64)',
+    yellow: 'rgb(255, 205, 86)',
+    green: 'rgb(75, 192, 192)',
+    blue: 'rgb(54, 162, 235)',
+    purple: 'rgb(153, 102, 255)',
+    grey: 'rgb(201, 203, 207)'
+  };
+</script>
+</html>
