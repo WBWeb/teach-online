@@ -86,13 +86,24 @@
         }
 
         .class-code {
-          cursor: pointer;
           font-weight: 600;
           letter-spacing: 2px;
           font-size: 14px;
           padding: 2px 8px;
           border-radius: 20px;
           color: white;
+          -webkit-transform: perspective(1px) translateZ(0);
+          transform: perspective(1px) translateZ(0);
+          -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+          cursor: pointer;
+        }
+
+        .class-code:hover, .class-code:focus, .class-code:active {
+          -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+          -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+          transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
         }
 
         .dropdown-menu.show {
