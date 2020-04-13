@@ -99,6 +99,7 @@
 
           //print courses in page
           $('#course-container').empty().html(print);
+          $('[data-toggle="tooltip"]').tooltip();
         },
         function(err) { console.error("Execute error", err); });
       }
