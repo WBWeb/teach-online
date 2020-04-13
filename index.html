@@ -59,6 +59,7 @@
 
     <script>
       handleClientLoad();
+      startPreloader();
       $('#app').html(preLoginDOM());
 
 
@@ -72,6 +73,7 @@
         } else {
           $('#app').empty().html(preLoginDOM());
         }
+        stopPreloader();
       }
 
       function startApp() {

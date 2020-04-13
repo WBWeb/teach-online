@@ -35,3 +35,12 @@
     purple: 'rgb(153, 102, 255)',
     grey: 'rgb(201, 203, 207)'
   };
+
+
+  function startPreloader() {
+    $body.addClass("loading");
+  }
+
+  function stopPreloader() {
+    $body.addClass("loading");
+  }
