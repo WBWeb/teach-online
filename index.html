@@ -30,7 +30,7 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
 
   </head>
-  <body>
+  <body class="loading">
     <div id="app">
 
     </div>
@@ -58,9 +58,9 @@
     <script src="config.js"></script>
 
     <script>
-      handleClientLoad();
-      startPreloader();
-      $('#app').html(preLoginDOM());
+    $('#app').html(preLoginDOM());
+    handleClientLoad();
+
 
 
       // check and manipulate dom in case of login or logout
@@ -72,14 +72,15 @@
           startApp();
         } else {
           $('#app').empty().html(preLoginDOM());
+          stopPreloader();
         }
-        stopPreloader();
       }
 
       function startApp() {
         //write here to manipulate dom after loging in
         $('#app').empty().html(postLoginDOM());
         $('[data-toggle="tooltip"]').tooltip();
+        stopPreloader();
       }
 
       function preLoginDOM() {
@@ -101,7 +102,7 @@
               // +'</div>'
               +'<div class="flex-c">'
                 //+'<a href="#" class="login100-social-item"><i class="fa fa-facebook-f"></i></a>'
-                +'<a href="javascript:void(0);" id="sign-in-or-out-button" class="login100-social-item"><img src="images/icons/icon-google.png" alt="GOOGLE"></a>'
+                +'<a href="javascript:void(0);" id="sign-in-or-out-button" onclick="startPreloader();" class="login100-social-item"><img src="images/icons/icon-google.png" alt="GOOGLE"></a>'
               +'</div>'
               +'<div class="text-center p-t-30 p-b-20">'
                 +'<span class="txt1">Please Give All Google permissions during Sign in with Google.</span>'
@@ -127,7 +128,7 @@
               +'<center class="mb-4"><img src="'+current.Pt.QK+'" class="img-card"></center>'
               +'<div class="mb-3"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">'+current.Pt.Ad+'<br>'+current.Pt.yu+'</span></div>'
               +'<div class="flex-c">'
-                +'<a href="javascript:void(0);" id="sign-in-or-out-button" data-toggle="tooltip" class="login100-social-item" title="Log Out"><i class="fa fa-sign-out" aria-hidden="true"></i></a>'
+                +'<a href="javascript:void(0);" id="sign-in-or-out-button" onclick="startPreloader();" data-toggle="tooltip" class="login100-social-item" title="Log Out"><i class="fa fa-sign-out" aria-hidden="true"></i></a>'
                 +'<a href="classroom" class="login100-social-item" data-toggle="tooltip" title="Continue to Classroom"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>'
               +'</div>'
               +'<div class=" p-t-30 p-b-20">'

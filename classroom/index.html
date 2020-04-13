@@ -75,7 +75,7 @@
         }
         </style>
   </head>
-  <body>
+  <body class="loading">
     <div id="app">
 
     </div>
@@ -119,12 +119,12 @@
 
     <script>
     var crs;
+    $('#app').empty().html(initDOM());
+
       function startApp() {
         return gapi.client.classroom.courses.list({})
         .then(function(response) {
           // Handle the results here (response.result has the parsed body).
-
-          $('#app').empty().html(initDOM());
 
           //get DOM of courses
           console.log(response); crs=response;
@@ -133,6 +133,7 @@
           //print courses in page
           $('#course-container').empty().html(print);
           $('[data-toggle="tooltip"]').tooltip();
+          stopPreloader();
         },
         function(err) { console.error("Execute error", err); });
       }
@@ -155,7 +156,7 @@
           for(i=0; i<courses.length; i++){
             console.log(courses[i]);
               print+='<div class="col-md-3"><div class="card bg-white mb-3" style="width: auto;">'
-               +'<div class="card-header"><i class="fa fa-chevron-left"></i><span>'+courses[i].enrollmentCode+'</span><span>'+courses[i].enrollmentCode+'</span><i class="fa fa-chevron-left"></i></div>'
+               +'<div class="card-header"><i class="fa fa-chevron-left"></i><span class="class-code" code="'+courses[i].enrollmentCode+'" default="Class Code">Class Code</span><i class="fa fa-chevron-left"></i></div>'
                +'<div class="card-body">'
                +'<h5 class="card-title">'+courses[i].name+' - '+courses[i].section+'</h5>'
 
