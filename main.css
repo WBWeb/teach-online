@@ -19,3 +19,105 @@ body.loading .modalspin {
 body.loading .modalspin {
   display: block;
 }
+
+.bg-primary, .btn-primary, .badge-primary{
+    background: linear-gradient(to right, rgb(50, 151, 215) 0px, rgb(31, 120, 211) 100%);
+    box-shadow: rgba(32, 120, 211, 0.8) 0px 10px 29px 0px;
+}
+
+.text-primary{
+    color: linear-gradient(to right, rgb(50, 151, 215) 0px, rgb(31, 120, 211) 100%);
+}
+
+.bg-warning, .btn-warning, .badge-warning{
+    background: linear-gradient(47deg, rgb(238, 130, 25) 0px, #ffc107 100%);
+    box-shadow: rgba(239, 139, 117, 0.8) 0px 10px 29px 2px;
+}
+
+.text-warning{
+    color: linear-gradient(47deg, rgb(238, 130, 25) 0px, rgb(239, 69, 89) 100%);
+}
+
+.bg-info, .btn-info, .badge-info{
+    background: linear-gradient(47deg,#77c0ef 0,#2579cf 100%);
+    box-shadow: 0 10px 18px 0 rgba(75,154,222,0.29);
+}
+
+.text-info{
+    color: linear-gradient(47deg,#77c0ef 0,#2579cf 100%);
+}
+
+.bg-danger, .btn-danger, .badge-danger{
+    background: linear-gradient(47deg,#91010f 0,#ff6d6d 100%);
+    box-shadow: 0 10px 18px 0 #ff8f9a;
+}
+
+.bg-success, .btn-success, .badge-success{
+    background: linear-gradient(47deg,#1e7e34 0,#49d269 100%);
+    box-shadow: 0 10px 18px 0 #28a74591;
+}
+
+.bg-secondary, .btn-secondary, .badge-secondary{
+    background: linear-gradient(47deg, rgb(53, 53, 53) 0px, #adadad 100%);
+    box-shadow: 0 10px 18px 0 #00000091;
+}
+
+.bg-dark, .btn-dark, .badge-dark{
+background: linear-gradient(47deg, rgb(0, 0, 0) 0px, #39080d 100%);
+box-shadow: 0 10px 18px 0 #00000054;
+}
+
+.bg-light, .btn-light, .badge-light {
+    background: linear-gradient(to left, #52161c 0px, #0c0000 100%);
+    color: wheat;
+    box-shadow: rgba(212, 117, 117, 0.48) -2px 1px 29px 0px;
+}
+
+
+
+#mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
+    background: linear-gradient(47deg, rgb(0, 0, 0) 0px, #39080d 100%);
+box-shadow: 0 10px 18px 0 #00000054;
+}
+
+#mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a, #mainNav.fixed-top .sidenav-toggler > .nav-item > .nav-link{
+    background: linear-gradient(47deg, rgb(114, 1, 1) 0px, #00000000 100%);
+    box-shadow: 0 10px 18px 0 #00000054;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.badge:hover {
+ animation: pulse 1s infinite;
+ animation-timing-function: linear;
+}
+
+.breadcrumb {
+    margin-top: 0.5rem;
+    background: linear-gradient(47deg, rgb(0, 0, 0) 0px, #39080d 100%);
+    box-shadow: 0 10px 18px 0 #00000054;
+}
+
+.card, .card-footer:last-child {
+    border: 0;
+    border-radius: .5rem;
+}
+
+.btn, .button{
+    border-radius:1.5rem;
+    border:0;
+}
+
+.form-control {
+  box-shadow: rgba(18, 1, 1, 0.25) 0px 0px 7px 0px;
+  border: 0;
+  border-radius: 1.5rem;
+}
+
+canvas {
+  box-shadow: rgba(18, 1, 1, 0.25) 0px 0px 20px 0px;
+  border: 0;
+  border-radius: 10px;
+}
