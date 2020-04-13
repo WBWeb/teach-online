@@ -31,16 +31,8 @@
 
   </head>
   <body>
-    <div class="container">
-      <div id="app">
+    <div id="app">
 
-      </div>
-
-
-      <button id="sign-in-or-out-button"
-              style="margin-left: 25px">Sign In/Authorize</button>
-      <button id="revoke-access-button"
-              style="display: none; margin-left: 25px">Revoke access</button>
     </div>
     <div class="modalspin"><!-- Pre-Loader --></div>
   </body>
@@ -69,6 +61,20 @@
       handleClientLoad();
       $('#app').html(preLoginDOM());
 
+
+      // check and manipulate dom in case of login or logout
+      function setSigninStatus(isSignedIn) {
+        var user = GoogleAuth.currentUser.get();
+        var isAuthorized = user.hasGrantedScopes(SCOPE);
+        if (isAuthorized) {
+          console.log(gapi.auth2.getAuthInstance().currentUser.get());
+          $('#sign-in-or-out-button').html('<i class="fa fa-sign-out" aria-hidden="true"></i>');
+          startApp();
+        } else {
+          $('#sign-in-or-out-button').html('<img src="images/icons/icon-google.png" alt="GOOGLE">');
+        }
+      }
+
       function startApp() {
         //write here to manipulate dom after loging in
 
@@ -78,7 +84,7 @@
         print='<div class="container-login100" style="background-image: url('+"'"+'images/bg-01.jpg'+"'"+');">'
           +'<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">'
             +'<form class="login100-form validate-form">'
-              +'<span class="login100-form-title p-b-37">Sign I</span>'
+              +'<span class="login100-form-title p-b-37">Sign In</span>'
               +'<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">'
                 +'<input class="input100" type="text" name="username" placeholder="username or email">'
                 +'<span class="focus-input100"></span>'
