@@ -66,8 +66,12 @@
       function startApp() {
         var courses = classroomCoursesList();
 
+
+
+
         print='<div class="row">';
           for(i=0; i<courses.length; i++){
+            console.log(courses);
               if (courses[i].state=="ACTIVE") {
                 bg='primary';
               } else if (courses[i].state=="NOT_ASSIGNED") {
@@ -76,14 +80,13 @@
                 bg='danger';
               }
 
-              print+='<div class="col-md-3"><div class="card text-white bg-primary mb-3" style="max-width: 18rem;">'
+              print+='<div class="col-md-3"><div class="card text-white bg-'+bg+' mb-3" style="max-width: 18rem;">'
                +'<div class="card-header">'+courses[i].name+' - '+courses[i].section+' - ['+courses[i].enrollmentCode+']</div>'
                +'<div class="card-body">'
                +'<h5 class="card-title">'+courses[i].descriptionHeading+'</h5>'
-               +'<a href="'+courses[i].alternateLink+'" class="card-text">Classroom Link</a href="alternateLink"><br>'
-               +'<a href="'+courses[i].alternateLink+'" class="card-text">Drive Link</a href="alternateLink"><br>'
-               +'<a href="'+courses[i].teacherFolder.alternateLink+'" class="card-text">Calendar Link</a href="alternateLink"><br>'
-               +'<a href="'+courses[i].alternateLink+'" class="card-text">Classroom Link</a href="alternateLink">'
+               +'<a href="'+courses[i].alternateLink+'" class="card-text">Classroom Link</a><br>'
+               +'<a href="'+courses[i].teacherFolder.alternateLink+'" class="card-text">Drive Link</a><br>'
+               +'<a href="'+courses[i].calendarId+'" class="card-text">Calendar Link</a><br>'
                +'</div>'
                +'</div></div>';
             }
