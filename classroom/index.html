@@ -291,9 +291,9 @@
           data=response.result.students;
           if (typeof data !== 'undefined' && data.length > 0) {
             console.log(courseId+"-getStudentsCount:", data.length);
-            $("#"+courseId+"students").html(data.length);
+            $("#"+courseId+"-students").html(data.length);
           } else {
-            $("#"+courseId+"students").html("0");
+            $("#"+courseId+"-students").html("0");
           }
         },function(err) { console.error("Execute error", err); });
       }
@@ -306,9 +306,9 @@
           data=response.result.teachers;
           if (typeof data !== 'undefined' && data.length > 0) {
             console.log(courseId+"-getTeachersCount:", data.length);
-            $("#"+courseId+"teachers").html(data.length);
+            $("#"+courseId+"-teachers").html(data.length);
           } else {
-            $("#"+courseId+"teachers").html("0");
+            $("#"+courseId+"-teachers").html("0");
           }
         },function(err) { console.error("Execute error", err); });
       }
@@ -321,9 +321,9 @@
           data=response.result.announcements;
           if (typeof data !== 'undefined' && data.length > 0) {
             console.log(courseId+"-getAnnouncementsCount:", data.length);
-            $("#"+courseId+"announcements").html(data.length);
+            $("#"+courseId+"-announcements").html(data.length);
           } else {
-            $("#"+courseId+"announcements").html("0");
+            $("#"+courseId+"-announcements").html("0");
           }
         },function(err) { console.error("Execute error", err); });
       }
@@ -336,9 +336,9 @@
           data=response.result.topics;
           if (typeof data !== 'undefined' && data.length > 0) {
             console.log(courseId+"-getTopicsCount:", data.length);
-            $("#"+courseId+"topics").html(data.length);
+            $("#"+courseId+"-topics").html(data.length);
           } else {
-            $("#"+courseId+"topics").html("0");
+            $("#"+courseId+"-topics").html("0");
           }
         },function(err) { console.error("Execute error", err); });
       }
@@ -351,9 +351,9 @@
           data=response.result.courseWork;
           if (typeof data !== 'undefined' && data.length > 0) {
             console.log(courseId+"-getCourseWorkCount:", data.length);
-            $("#"+courseId+"courseWork").html(data.length);
+            $("#"+courseId+"-courseWork").html(data.length);
           } else {
-            $("#"+courseId+"courseWork").html("0");
+            $("#"+courseId+"-courseWork").html("0");
           }
         },function(err) { console.error("Execute error", err); });
       }
@@ -367,9 +367,9 @@
           data=response.result.aliases;
           if (typeof data !== 'undefined' && data.length > 0) {
             console.log(courseId+"-getAliasesCount:", data.length);
-            $("#"+courseId+"aliases").html(data.length);
+            $("#"+courseId+"-aliases").html(data.length);
           } else {
-            $("#"+courseId+"aliases").html("0");
+            $("#"+courseId+"-aliases").html("0");
           }
         },
         function(err) { console.error("Execute error", err); });
