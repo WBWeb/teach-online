@@ -184,6 +184,10 @@
 
       function startApp() {
         $('#nav').empty().html(initNavDOM());
+        initCourses();
+      }
+
+      function initCourses() {
         return gapi.client.classroom.courses.list({})
         .then(function(response) {
           // Handle the results here (response.result has the parsed body).
@@ -414,6 +418,8 @@
             title:"Update Suceess",
             icon: "success"
           });
+          $('#apimodal').modal('hide');
+          initCourses();
         },
         function(err) { console.error("Execute error", err); });
       }
