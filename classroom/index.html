@@ -155,8 +155,24 @@
 
       function initDOM() {
         print='<div class="container-login100" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
-                +'<div id="course-container" class="course-container p-4" >'
-
+                +'<div class="course-container p-4" >'
+                  +'<div class="row">'
+                    +'<div class="col text-left">'
+                      +'<span class="login100-form-title p-b-30">Classroom Courses</span>'
+                    +'</div>'
+                    +'<div class="col text-right">'
+                      +'<div class="flex-c text-right">'
+                        +'<div class="dropdown">'
+                          +'<button class="login100-button-a" data-toggle="tooltip" title="Settings" type="button" id="dropdownCoursesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">i class="fa fa-ellipsis-v"></i></button>'
+                          +'<div class="dropdown-menu" aria-labelledby="dropdownCoursesMenu">'
+                            +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalAddCourse()">Add New Course</a>'
+                          +'</div>'
+                        +'</div>'
+                      +'</div>'
+                    +'</div>'
+                  +'</div>'
+                  +'<div class="row" id="course-container">'
+                  +'</div>'
                 +'</div>'
               +'</div>';
 
@@ -165,7 +181,7 @@
 
       function coursesDOM(courses) {
         console.log('dom call success');
-        print='<div class="row">';
+        print='';
           for(i=0; i<courses.length; i++){
             console.log(courses[i]);
               print+='<div class="col-sm-6 col-md-4 col-lg-3">'
@@ -175,10 +191,10 @@
                            +'<div class="row text-right">'
                            +'<div class="flex-c">'
                               +'<div class="dropdown">'
-                                +'<button class="login100-button-a" data-toggle="tooltip" title="Course Settings" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">i class="fa fa-ellipsis-v"></i></button>'
-                                +'<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">'
-                                  +'a class="dropdown-item" href="#">Edit Course</a>'
-                                  +'<a class="dropdown-item" href="#">Delete Course</a>'
+                                +'<button class="login100-button-a" data-toggle="tooltip" title="Course Settings" type="button" id="dropdownCourseSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">i class="fa fa-ellipsis-v"></i></button>'
+                                +'<div class="dropdown-menu" aria-labelledby="dropdownCourseSettings">'
+                                  +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>'
+                                  +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalDeleteCourse('+courses[i].id+')">Delete Course</a>'
                                 +'</div>'
                               +'</div>'
                            +'</div>'
@@ -206,8 +222,6 @@
                       +'</div>'
                     +'</div>';
             }
-        print+='</div>';
-
         return print;
       }
       handleClientLoad();
