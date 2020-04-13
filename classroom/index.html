@@ -17,6 +17,7 @@
       <!-- Dependencies -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" id="theme-styles">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
         <link rel="stylesheet" href="../main.css">
 
       <!-- Theme -->
@@ -56,6 +57,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="auth.js"></script>
@@ -126,21 +128,19 @@
                +'<div class="card-body">'
                +'<h5 class="card-title">'+courses[i].name+' - '+courses[i].section+'</h5>'
 
-               +'<p data-toggle="tooltip" title="View Students"> Students: <span id="'+courses[i].id+'-studentCount"><span></p>'
-               +'<p data-toggle="tooltip" title="View Teachers"> Teachers: <span id="'+courses[i].id+'-teacherCount"><span></p>'
+               +'<p data-toggle="tooltip" title="View Students"> Students: <span id="'+courses[i].id+'-studentCount">0<span></p>'
+               +'<p data-toggle="tooltip" title="View Teachers"> Teachers: <span id="'+courses[i].id+'-teacherCount">0<span></p>'
 
-               +'<p data-toggle="tooltip" title="View Announcements"> Announcements: <span id="'+courses[i].id+'-announcementCounr"><span></p>'
-               +'<p data-toggle="tooltip" title="View Classworks"> Classworks: <span id="'+courses[i].id+'-classworkCount"><span></p>'
-               +'<p data-toggle="tooltip" title="View Topics"> Topics: <span id="'+courses[i].id+'-topicsCount"><span></p>'
+               +'<p data-toggle="tooltip" title="View Announcements"> Announcements: <span id="'+courses[i].id+'-announcementCounr">0<span></p>'
+               +'<p data-toggle="tooltip" title="View Classworks"> Classworks: <span id="'+courses[i].id+'-classworkCount">0<span></p>'
+               +'<p data-toggle="tooltip" title="View Topics"> Topics: <span id="'+courses[i].id+'-topicsCount">0<span></p>'
                +'<br>'
-               +'<p data-toggle="tooltip" title="View Live Classes"> Live Classes: <span id="'+courses[i].id+'-liveclassCount"><span></p>'
-               +'<a data-toggle="tooltip" title="View Class in Google Drive">Class Folder</a>'
-
+               +'<p data-toggle="tooltip" title="View Live Classes"> Live Classes: <span id="'+courses[i].id+'-liveclassCount">0<span></p>'
                +'</div>'
                +'<div class="card-footer">'
-               +'<a href="'+courses[i].alternateLink+'" class="card-text" data-toggle="tooltip" title="Open in GOogle Classroom"><i class="fa fa-link"></i></a>'
-               +'<a href="'+courses[i].alternateLink+'" class="card-text" data-toggle="tooltip" title="Invite Teacher><i class="fa fa-link"></i></a>'
-               +'<a href="'+courses[i].alternateLink+'" class="card-text" data-toggle="tooltip" title="Invite Students><i class="fa fa-link"></i></a>'
+               +'<a href="'+courses[i].alternateLink+'" data-fancybox data-type="iframe" class="card-text" data-toggle="tooltip" title="Open in google Classroom"><i class="fa fa-link"></i></a>'
+               +'<a class="card-text" data-toggle="tooltip" title="View Class content in Google Drive"><i class="fa fa-folder"></i></a>'
+               +'<a href="javascript:void(0)" class="card-text" data-toggle="tooltip" onclick="modalAddLiveClass('+"'"+courses[i].id+"'"+')" title="Add/Schedule Live Class"><i class="fa fa-video-camera"></i></a>'
 
                +'</div>'
                +'</div></div>';
