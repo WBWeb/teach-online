@@ -44,7 +44,7 @@
   </head>
   <body>
     <div class="container">
-      
+
       <button id="sign-in-or-out-button"
               style="margin-left: 25px">Sign In/Authorize</button>
       <button id="revoke-access-button"
@@ -56,7 +56,7 @@
     </div>
     <div class="modalspin"><!-- Pre-Loader --></div>
   </body>
-    <!-- Dependencies -->
+    <!-- General Dependencies -->
     <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
@@ -67,6 +67,23 @@
             onload="this.onload=function(){};handleClientLoad()"
             onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
-    <script src="../auth.js"></script>
+    <script src="auth.js"></script>
     <script src="../config.js"></script>
+
+    <!-- Classroom Dependencies -->
+    <script src="js/courses.js"></script>
+    <script src="js/courses.students.js"></script>
+    <script src="js/courses.announcements.js"></script>
+    <script src="js/courses.courseWork.js"></script>
+    <script src="js/courses.courseWork.studentSubmissions.js"></script>
+    <script src="js/courses.teachers.js"></script>
+    <script src="js/courses.topic.js"></script>
+    <script src="js/courses.aliases.js"></script>
+
+    <script src="js/invitations.js"></script>
+    <script src="js/userprofiles.js"></script>
+
+    <script src="js/userprofiles.guardians.js"></script>
+    <script src="js/userprofiles.guardianinvitations.js"></script>
+
 </html>
