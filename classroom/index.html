@@ -64,18 +64,30 @@
           -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
           -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
           -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
+
+          -webkit-transform: perspective(1px) translateZ(0);
+          transform: perspective(1px) translateZ(0);
+          -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+          cursor: pointer;
         }
 
-        .login100-button-a:hover{
+        .login100-button-a:hover, .login100-button-a:focus, .login100-button-a:active {
           box-shadow: -1px 1px 18px 0 #007bffa8;
           -moz-box-shadow: -1px 1px 18px 0 #007bffa8;
           -webkit-box-shadow: -1px 1px 18px 0 #007bffa8;
           -o-box-shadow: -1px 1px 18px 0 #007bffa8;
           -ms-box-shadow: -1px 1px 18px 0 #007bffa8;
+
+          -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+          -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+          transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
         }
         .class-code{
           cursor: pointer;
         }
+
         </style>
   </head>
   <body class="loading">
