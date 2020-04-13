@@ -165,9 +165,9 @@
         print='<div class="row">';
           for(i=0; i<courses.length; i++){
             console.log(courses[i]);
-              print+='<div class="col-md-3"><div class="card bg-white mb-3" style="width: auto;">'
+              print+='<div class="col-sm-4 col-md-3 "><div class="card bg-white mb-3" style="width: auto;">'
                +'<div class="card-header">'
-               +'<div class="row"><i class="fa fa-chevron-left p-t-5"></i><span class="class-code" id="'+courses[i].id+'-classCode" onclick="revealClasscode('+courses[i].id+')"  code="'+courses[i].enrollmentCode+'" data-toggle="tooltip" title="Click to Reveal">Class Code</span><i class="fa fa-chevron-right p-t-5"></i></div>'
+               +'<div class="row"><i class="fa fa-chevron-left p-t-5"></i><span class="class-code" onclick="Toast.fire('+"'"+courses[i].enrollmentCode+"','success'"+')"  data-toggle="tooltip" title="Click to Reveal">Class Code</span><i class="fa fa-chevron-right p-t-5"></i></div>'
                +'</div>'
                +'<div class="card-body">'
                +'<h5 class="card-title">'+courses[i].name+' - '+courses[i].section+'</h5>'
@@ -195,22 +195,6 @@
 
         return print;
       }
-
-      function revealClasscode(courseid) {
-        $(courseid+"-classcode").empty().html($(courseid+"-classcode").attr("code"));
-        $(courseid+"-classcode").attr("title", "Click To Hide Class Code");
-        $(courseid+"-classcode").attr("onclick", 'hideClasscode('+courseid+')');
-        $('[data-toggle="tooltip"]').tooltip();
-      }
-      function hideClasscode(courseid) {
-        $(courseid+"-classcode").empty().html($(courseid+"-classcode").attr("default"));
-        $(courseid+"-classcode").attr("title", "Click To Show Class Code");
-        $(courseid+"-classcode").attr("onclick", 'hideClasscode('+courseid+')');
-        $('[data-toggle="tooltip"]').tooltip();
-      }
-
-
-
       handleClientLoad();
 
     </script>
