@@ -77,9 +77,7 @@
 
       function startApp() {
         //write here to manipulate dom after loging in
-        $('#app').empty().html(preLoginDOM());
-        postLoginDOM();
-
+        $('#app').empty().html(postLoginDOM());
 
 
       }
@@ -125,7 +123,7 @@
         print='<div class="container-login100" style="background-image: url('+"'"+'images/bg-01.jpg'+"'"+');">'
           +'<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">'
             +'<form class="login100-form validate-form">'
-              +'<span class="login100-form-title p-b-37">Welcome</span>'
+              +'<span class="login100-form-title p-b-37">Welcome'+current.Yw.Pws+'</span>'
               +'<div class="flex-c p-b-112">'
                 +'<a href="javascript:void(0);" id="sign-in-or-out-button" class="login100-social-item"><img src="images/icons/icon-google.png" alt="GOOGLE"></a>'
               +'</div>'
