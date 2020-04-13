@@ -88,6 +88,7 @@
     <script src="js/userprofiles.guardianinvitations.js"></script>
 
     <script>
+    var crs;
       function startApp() {
         return gapi.client.classroom.courses.list({})
         .then(function(response) {
@@ -96,7 +97,7 @@
           $('#app').empty().html(initDOM());
 
           //get DOM of courses
-          console.log(response);
+          console.log(response); crs=response;
           print=coursesDOM(response.result.courses);
 
           //print courses in page
