@@ -47,24 +47,19 @@
         .login100-button-a {
           font-size: 16px;
           color: #3b5998;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -moz-box;
-          display: -ms-flexbox;
-          display: flex;
           justify-content: center;
           align-items: center;
-          height: 30px;
-          width: 30px;
+          height: 40px;
+          width: 40px;
           background-color: #fff;
+          padding: 5px;
           margin: 5px;
-          margin: 0;
-          border-radius: 50%;
-          0 5px 20px 0px rgba(0, 0, 0, 0.1): ;
-          -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
-          -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
-          -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
-          -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+          border-radius: 30%;
+          box-shadow: -1px 1px 18px 0 #00000045;
+        }
+
+        .login100-button-a :hover{
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         }
         </style>
   </head>
@@ -147,7 +142,7 @@
         print='<div class="row">';
           for(i=0; i<courses.length; i++){
             console.log(courses[i]);
-              print+='<div class="col-md-3"><div class="card bg-white mb-3" style="max-width: 18rem;">'
+              print+='<div class="col-md-3"><div class="card bg-white mb-3" style="width: auto;">'
                +'<div class="card-header">Class Code - <b>'+courses[i].enrollmentCode+'</b></div>'
                +'<div class="card-body">'
                +'<h5 class="card-title">'+courses[i].name+' - '+courses[i].section+'</h5>'
@@ -163,7 +158,7 @@
                +'</div>'
                +'<div class="card-footer">'
                +'<a class="login100-button-a" href="'+courses[i].alternateLink+'" data-fancybox data-type="iframe" class="card-text" data-toggle="tooltip" title="Open in google Classroom"><i class="fa fa-link"></i></a>'
-               +'<a class="login100-button-a" data-toggle="tooltip" title="View Class content in Google Drive"><i class="fa fa-folder"></i></a>'
+               +'<a class="login100-button-a" href="javascript:void(0)" data-toggle="tooltip" title="View Class content in Google Drive"><i class="fa fa-folder"></i></a>'
                +'<a class="login100-button-a" href="javascript:void(0)" class="card-text" data-toggle="tooltip" onclick="modalAddLiveClass('+"'"+courses[i].id+"'"+')" title="Add/Schedule Live Class"><i class="fa fa-video-camera"></i></a>'
 
                +'</div>'
