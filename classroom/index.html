@@ -85,11 +85,14 @@
           transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
         }
 
-        .class-code{
+        .class-code {
           cursor: pointer;
           font-weight: 600;
           letter-spacing: 2px;
-          font-size:14px;
+          font-size: 14px;
+          padding: 2px 8px;
+          border-radius: 20px;
+          color: white;
         }
 
         .dropdown-menu.show {
@@ -219,7 +222,7 @@
                           +'<div class="row">'
                            +'<div class="col text-left">'
                            +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+'</h5>'
-                           +'</i><span class="class-code" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
+                           +'</i><span class="class-code bg-light" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
                            +'</div>'
                            +'<div class="col-2">'
                             +'<div class="flex-c" style="justify-content: flex-end;">'
