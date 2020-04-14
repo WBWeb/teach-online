@@ -119,6 +119,22 @@
           font-weight: 600;
         }
 
+        .sticky-top {
+          position: fixed;
+          top: 0;
+          z-index: 1020;
+        }
+        .navbar {
+          padding: 15px;
+          width: 100%;
+        }
+        .navcard{
+          width=auto: ;
+          width: 100%;
+          background: #fffffff0;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+
         </style>
   </head>
   <body class="loading">
@@ -223,14 +239,14 @@
 
       function initNavDOM() {
         var current = gapi.auth2.getAuthInstance().currentUser.get();
-        print = +'<nav class="navbar sticky-top navbar-light">'
-          +'<div class="card text-right" style="width=auto;max-height:70px;min-height: 70px;border: none;border-radius: 8px;width: 100%;background: #fffffff0; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">'
-            +'<div class="row">'
-              +'<div class="col-10 col-md-3 offset-md-8 text-center text-md-right" style="padding: 0;">'
-              +'<p style="font-size: 16px;font-weight: 800;margin-top: 15px;">Welcome, '+current.Pt.pW+'</p>'
+        print ='<nav class="navbar sticky-top navbar-light">'
+          +'<div class="card text-right navcard">'
+            +'<div class="row m-0" class="justify-content: flex-end;">'
+              +'<div class="col-10 col-md-3 offset-md-7 text-center text-sm-right m-t-18" style="padding: 0;">'
+              +'<h5 class="h5-responsive" style="font-weight: 600;">Hi '+current.Pt.pW+'</h5>'
               +'</div>'
-              +'<div class="col-2 col-md-1 text-right" style="padding: 10px;">'
-                +'<img src="'+current.Pt.QK+'" height="50px" width="50px" style="border-radius: 50%;">'
+              +'<div class="col-2 text-right" style="padding: 10px;">'
+                +'<img src="'+current.Pt.QK+'" height="50px" width="50px" class="img-card">'
               +'</div>'
             +'</div>'
           +'</div>'
