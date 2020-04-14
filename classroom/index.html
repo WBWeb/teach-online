@@ -551,8 +551,8 @@ function modalCourseAddTopic(courseId) {
 function classroomTopicFormToDataObject(courseId) {
   console.log('Modal Form Data to object success');
   // var current = gapi.auth2.getAuthInstance().currentUser.get();
-  name = $("#topicName").val()
-  return name;
+  var topicName = $("#topicName").val()
+  return topicName;
 }
 
 function initclassroomTopicAdd(courseId) {
@@ -561,11 +561,11 @@ function initclassroomTopicAdd(courseId) {
 }
 
 
-function classroomTopicAdd(courseId,name) {
+function classroomTopicAdd(courseId,topicName) {
   return gapi.client.classroom.courses.topics.create({
     "courseId": courseId,
     "resource": {
-      "name": name
+      "name": topicName
     }
   })
   .then(function(response) {
