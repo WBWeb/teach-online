@@ -201,6 +201,14 @@
         pointer-events: none;
       }
 
+      .course-container{
+        height: 480px;
+      }
+
+      #course-container{
+        height: 450px;
+      }
+
         </style>
   </head>
   <body class="loading">
@@ -281,7 +289,9 @@
             Pop.fire({
               icon: 'success',
               title: data.length+' Courses Found',
-              text: 'Welcome to Teach online Classroom!'
+              text: 'Welcome to Teach online Classroom!',
+              timer: 2000,
+              timerProgressBar: true
             });
 
           } else {
@@ -393,6 +403,99 @@
                     getCourseData(courses[i].id);
             }
         return print;
+      }
+
+      function modalYoutubeAdd(courseId) {
+        console.log('Modal Clicked');
+        $('#apimodal').empty().html(initModalDOM());
+        $('#apimodaltitle').html('Schedule Youtube Broadcast');
+
+        print='<div class="row">'
+              +'<div class="col-md-12">'
+                +'<div class="form-group">'
+                  +'<label>Video Title</label>'
+                  +'<input type="text" max="50" value="" id="ytBroadcastTitle" class="form-control">'
+                +'</div>'
+              +'</div>'
+            +'</div>'
+            +'<div class="row">'
+              +'<div class="col-md-6">'
+                +'<div class="form-group">'
+                  +'<label>Scheduled Start Time</label>'
+                  +'<input value="" type="datetime-local" id="ytBroadcastScheduledStartTime" class="form-control">'
+                +'</div>'
+              +'</div>'
+              +'<div class="col-md-6">'
+              '<div class="form-group">'
+                +'<label>Scheduled End Time</label>'
+                +'<input value="" type="datetime-local" id="ytBroadcastScheduledEndTime" class="form-control">'
+              +'</div>'
+              +'</div>'
+            +'</div>'
+            +'<div class="row">'
+              +'<div class="col-md-12 text-center">'
+                +'<div class="form-group">'
+                  +'<input type="button" onclick="initModalYoutubeAdd(courseId)" value="Schedule Broadcast" class="btn btn-primary btn-md" >'
+                +'</div>'
+              +'</div>'
+            +'</div>';
+        $('#apimodalform').empty().html(print);
+        console.log('Modal Form print success');
+        $('#apimodal').modal('show');
+      }
+
+      function initModalYoutubeAdd(courseId) {
+        var current = gapi.auth2.getAuthInstance().currentUser.get();
+        console.log('Modal Form init Submitted');
+        title= $("#ytBroadcastTitle").val();
+        scheduledStartTime: $("#ytBroadcastScheduledStartTime").val().toISOString();
+        scheduledEndTime: $("#ytBroadcastScheduledEndTime").val().toISOString();
+        description = 'beg-courseId-'+courseI="&ownerId-"+current.Pt.MU+"-end";
+        youtubeLiveBroadcastsInsert(title,scheduledStartTime,scheduledEndTime,description);
+      }
+
+      var dateobj = new Date();
+      function youtubeLiveBroadcastsInsert(title,scheduledStartTime,scheduledEndTime,description) {
+        return gapi.client.youtube.liveBroadcasts.insert({
+            "part": "snippet,contentDetails,status",
+            "resource": {
+              "snippet": {
+                "title": title,
+                "scheduledStartTime": scheduledStartTime,
+                "scheduledEndTime": scheduledEndTime,
+                "description": description
+              },
+              "contentDetails": {
+                "enableClosedCaptions": true,
+                "enableContentEncryption": true,
+                "enableDvr": true,
+                "enableEmbed": true,
+                "recordFromStart": true,
+                "startWithSlate": true
+              },
+              "status": {
+                "privacyStatus": "unlisted"
+              }
+            }
+          })
+        .then(function(response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log('Modal Form Submitted');
+          // Handle the results here (response.result has the parsed body).
+          console.log("Response", response);
+          Toast.fire({
+            title:"Youtube Broadcast Schedule Success",
+            icon: "success"
+          });
+          $('#apimodal').modal('hide');
+          initCourses();
+        },
+        function(err) { console.error("Execute error", err);
+          Toast.fire({
+            title:"Youtube Broadcast Schedule Failed",
+            icon: "error"
+          });
+        });
       }
 
 

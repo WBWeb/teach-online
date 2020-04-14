@@ -324,7 +324,7 @@ function initDOM() {
 }
 
 
-//Course Update Functionality
+//Course add Functionality
 function modalAddCourse() {
   console.log('Modal Clicked');
   $('#apimodal').empty().html(initModalDOM());
