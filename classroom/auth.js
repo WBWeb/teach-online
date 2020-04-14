@@ -9,7 +9,7 @@ function handleClientLoad() {
 function initClient() {
   // Retrieve the discovery document for version 3 of Google Drive API.
   // In practice, your app can retrieve one or more discovery documents.
-  var discoveryUrl = 'https://content.googleapis.com/discovery/v1/apis/classroom/v1/rest https://www.googleapis.com/youtube/v3';
+  var discoveryUrl = ['https://content.googleapis.com/discovery/v1/apis/classroom/v1/rest', 'https://www.googleapis.com/discovery/v1/apis'];
 
   // Initialize the gapi.client object, which app uses to make API requests.
   // Get API key and client ID from API Console.
@@ -17,7 +17,7 @@ function initClient() {
   gapi.client.init({
       'apiKey': 'AIzaSyD-Fr-44tQ9b5sKLCVyuWW6C_2uRLSG2-g',
       'clientId': '1034568704034-tatvj4ekhecofh3dmcg7imt9ue52eo9n.apps.googleusercontent.com',
-      'discoveryDocs': [discoveryUrl],
+      'discoveryDocs': discoveryUrl,
       'scope': SCOPE
   }).then(function () {
     GoogleAuth = gapi.auth2.getAuthInstance();
