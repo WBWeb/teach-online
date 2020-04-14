@@ -544,7 +544,7 @@ function initclassroomTeacherAdd(courseId) {
 
 
 function classroomTeacherAdd(data) {
-  return gapi.client.classroom.courses.teachers.create(data)
+  return gapi.client.classroom.courses.teachers.create(courseId,data)
   .then(function(response) {
     console.log('Modal Form Submitted');
     // Handle the results here (response.result has the parsed body).
