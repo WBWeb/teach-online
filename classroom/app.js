@@ -88,8 +88,7 @@ function classroomCoursesTopics(courseId){
       $("#"+courseId+"-topics").html(data.length);
 
       for(i=0; i<data.length; i++){
-        print+='<p>'+data[i].name+'</p>';
-        print+='<p class="popUp" onclick="Pop.fire({title="'+data[i].name+'", text:"Updated: '+data[i].updateTime+'" icon: "success", })"> '+(i+1)+' - '+data[i].id+'</p>';
+        print+='<p class="popUp" onclick="Pop.fire({title="'+data[i].name+'", text:"Updated: '+data[i].updateTime+'", icon: "success", })"> '+(i+1)+' - '+data[i].topicId+'</p>';
       }
     } else {
       $("#"+courseId+"-topics").html("0");
