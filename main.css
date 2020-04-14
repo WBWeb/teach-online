@@ -25,6 +25,10 @@ body.loading .modalspin {
     box-shadow: rgba(32, 120, 211, 0.8) 0px 10px 29px 0px;
 }
 
+.btn-primary:hover{
+  box-shadow: rgba(32, 120, 211, 0.54) -1px 4px 29px 0px;
+}
+
 .text-primary{
     color: linear-gradient(to right, rgb(50, 151, 215) 0px, rgb(31, 120, 211) 100%);
 }
@@ -39,9 +43,14 @@ body.loading .modalspin {
 }
 
 .bg-info, .btn-info, .badge-info{
-    background: linear-gradient(47deg,#77c0ef 0,#2579cf 100%);
-    box-shadow: 0 10px 18px 0 rgba(75,154,222,0.29);
+    background: linear-gradient(47deg,#5ea9da 0,#2579cf 100%);
+    box-shadow: 0 10px 18px 0 rgba(0, 137, 255, 0.56);
 }
+
+.btn-info:hover{
+  box-shadow: 0px 10px 20px 0 rgba(0, 137, 255, 0.56);
+}
+
 
 .text-info{
     color: linear-gradient(47deg,#77c0ef 0,#2579cf 100%);
@@ -52,9 +61,18 @@ body.loading .modalspin {
     box-shadow: 0 10px 18px 0 #ff8f9a;
 }
 
+.btn-danger:hover{
+  box-shadow: 0px 3px 18px 0 #ff8f9a;
+}
+
+
 .bg-success, .btn-success, .badge-success{
     background: linear-gradient(47deg,#1e7e34 0,#49d269 100%);
     box-shadow: 0 10px 18px 0 #28a74591;
+}
+
+.btn-success:hover{
+  box-shadow: 0px 3px 18px 0 #28a74559;
 }
 
 .bg-secondary, .btn-secondary, .badge-secondary{
