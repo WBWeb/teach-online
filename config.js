@@ -1,8 +1,8 @@
 //Swal2Setup
   const Pop = Swal.mixin({
     customClass: {
-      confirmButton: 'btn-sm btn btn-success bg-success-dark-gradient',
-      cancelButton: 'btn-sm btn btn-danger bg-danger-dark-gradient',
+      confirmButton: 'btn-sm btn bg-success-dark-gradient',
+      cancelButton: 'btn-sm btnbg-danger-dark-gradient',
     },
     showClass: {
       popup: 'animated fadeInDown faster'
