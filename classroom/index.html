@@ -286,240 +286,240 @@
 
     $('#app').empty().html(initDOM());
 
-      function startApp() {
-        $('#nav').empty().html(initNavDOM());
-        initCourses();
-      }
+    function startApp() {
+      $('#nav').empty().html(initNavDOM());
+      initCourses();
+    }
 
-      function initCourses() {
-        return gapi.client.classroom.courses.list({})
-        .then(function(response) {
-          // Handle the results here (response.result has the parsed body).
+    function initCourses() {
+      return gapi.client.classroom.courses.list({})
+      .then(function(response) {
+        // Handle the results here (response.result has the parsed body).
 
-          //get DOM of courses
-          console.log(response);
-          data=response.result.courses;
+        //get DOM of courses
+        console.log(response);
+        data=response.result.courses;
 
-          if (typeof data !== 'undefined' && data.length > 0) {
-            print=coursesDOM(response.result.courses);
-            //print courses in page
-            $('#course-container').empty().html(print);
+        if (typeof data !== 'undefined' && data.length > 0) {
+          print=coursesDOM(response.result.courses);
+          //print courses in page
+          $('#course-container').empty().html(print);
 
-            Pop.fire({
-              icon: 'success',
-              title: data.length+' Courses Found',
-              text: 'Welcome to Teach online Classroom!',
-              timer: 2000,
-              timerProgressBar: true
-            });
+          Pop.fire({
+            icon: 'success',
+            title: data.length+' Courses Found',
+            text: 'Welcome to Teach online Classroom!',
+            timer: 2000,
+            timerProgressBar: true
+          });
 
-          } else {
-            Pop.fire({
-              icon: 'error',
-              title: 'No Courses Found',
-              text: 'Welcome to Teach online Classroom!',
-              footer: 'Create Class or Join Class to use this portal'
-            });
-          }
-          $('[data-toggle="tooltip"]').tooltip();
-          $('.collapse').collapse();
-          stopPreloader();
-        },
-        function(err) { console.error("Execute error", err); });
-      }
+        } else {
+          Pop.fire({
+            icon: 'error',
+            title: 'No Courses Found',
+            text: 'Welcome to Teach online Classroom!',
+            footer: 'Create Class or Join Class to use this portal'
+          });
+        }
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.collapse').collapse();
+        stopPreloader();
+      },
+      function(err) { console.error("Execute error", err); });
+    }
 
-      function initNavDOM() {
-        var current = gapi.auth2.getAuthInstance().currentUser.get();
-        print ='<nav class="navbar sticky-top navbar-light">'
-                +'<div class="card text-right navcard">'
-                  +'<div class="row m-0" style="padding: 10px;">'
-                    +'<div class="col text-left">'
-                    +'<h5 class="h5-responsive" style="font-weight: 600;">Hi '+current.Pt.pW+'</h5>'
-                    +'</div>'
-                    +'<div class="text-right" style="width:70px">'
-                      +'<div class="dropleft">'
-                        +'<a data-toggle="dropdown" title="menu" aria-haspopup="true" aria-expanded="false"><img src="'+current.Pt.QK+'" height="50px" width="50px" class="img-card"></button>'
-                        +'<div class="dropdown-menu">'
-                          +'<a class="dropdown-item" href="javascript:void(0)" onclick="history.go(-1)">Go Back</a>'
-                          +'<a class="dropdown-item" href="javascript:void(0)" id="sign-in-or-out-button"> <i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>'
-                        +'</div>'
+    function initNavDOM() {
+      var current = gapi.auth2.getAuthInstance().currentUser.get();
+      print ='<nav class="navbar sticky-top navbar-light">'
+              +'<div class="card text-right navcard">'
+                +'<div class="row m-0" style="padding: 10px;">'
+                  +'<div class="col text-left">'
+                  +'<h5 class="h5-responsive" style="font-weight: 600;">Hi '+current.Pt.pW+'</h5>'
+                  +'</div>'
+                  +'<div class="text-right" style="width:70px">'
+                    +'<div class="dropleft">'
+                      +'<a data-toggle="dropdown" title="menu" aria-haspopup="true" aria-expanded="false"><img src="'+current.Pt.QK+'" height="50px" width="50px" class="img-card"></button>'
+                      +'<div class="dropdown-menu">'
+                        +'<a class="dropdown-item" href="javascript:void(0)" onclick="history.go(-1)">Go Back</a>'
+                        +'<a class="dropdown-item" href="javascript:void(0)" id="sign-in-or-out-button"> <i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>'
                       +'</div>'
                     +'</div>'
                   +'</div>'
                 +'</div>'
-              +'</nav>';
+              +'</div>'
+            +'</nav>';
 
-        return print;
-      }
+      return print;
+    }
 
-      function coursesDOM(courses) {
-        console.log('dom call success');
-        print=''; var domain = ["students","teachers","announcements","courseWork","aliases","topics"];
-          for(i=0; i<courses.length; i++){
-            console.log(courses[i]);
-              print+='<div class="col-sm-6 col-md-4 col-lg-3">'
-                      +'<div class="card bg-white mb-3" style="width: auto;">'
-                       +'<div class="card-header">'
-                          +'<div class="row">'
-                           +'<div class="col text-left">'
-                           +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+'</h5>'
-                           +'</i><span id="enrollmentCode-'+courses[i].id+'" code="'+courses[i].enrollmentCode+'" class="class-code bg-light" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
-                           +'</div>'
-                           +'<div class="col-2">'
-                            +'<div class="flex-c" style="justify-content: flex-end;">'
-                              +'<div class="dropleft">'
-                                +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
-                                +'<div class="dropdown-menu">'
-                                  +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>'
-                                  +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalDeleteCourse('+courses[i].id+')">Delete Course</a>'
-                                +'</div>'
+    function coursesDOM(courses) {
+      console.log('dom call success');
+      print=''; var domain = ["students","teachers","announcements","courseWork","aliases","topics"];
+        for(i=0; i<courses.length; i++){
+          console.log(courses[i]);
+            print+='<div class="col-sm-6 col-md-4 col-lg-3">'
+                    +'<div class="card bg-white mb-3" style="width: auto;">'
+                     +'<div class="card-header">'
+                        +'<div class="row">'
+                         +'<div class="col text-left">'
+                         +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+'</h5>'
+                         +'</i><span id="enrollmentCode-'+courses[i].id+'" code="'+courses[i].enrollmentCode+'" class="class-code bg-light" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
+                         +'</div>'
+                         +'<div class="col-2">'
+                          +'<div class="flex-c" style="justify-content: flex-end;">'
+                            +'<div class="dropleft">'
+                              +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
+                              +'<div class="dropdown-menu">'
+                                +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>'
+                                +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalDeleteCourse('+courses[i].id+')">Delete Course</a>'
                               +'</div>'
                             +'</div>'
-                            +'</div>'
                           +'</div>'
-                       +'</div>'
-                       +'<div id="card-body-'+courses[i].id+'" class="card-body">'
-                        +'<div class="accordion" id="accordion-'+courses[i].id+'">';
-                           for (item of domain) {
-                                print+='<div class="card">'
-                                           +'<div class="card-header" id="accordion-heading-'+courses[i].id+'-'+item+'">'
-                                             +'<h2 class="mb-0">'
-                                               +'<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-collapse-'+courses[i].id+'-'+item+'" aria-expanded="true" aria-controls="accordion-collapse-'+courses[i].id+'-'+item+'">'
-                                                +ucFirst(item)+': <span id="'+courses[i].id+'-'+item+'">0<span>'
-                                               +'</button>'
-                                             +'</h2>'
+                          +'</div>'
+                        +'</div>'
+                     +'</div>'
+                     +'<div id="card-body-'+courses[i].id+'" class="card-body">'
+                      +'<div class="accordion" id="accordion-'+courses[i].id+'">';
+                         for (item of domain) {
+                              print+='<div class="card">'
+                                         +'<div class="card-header" id="accordion-heading-'+courses[i].id+'-'+item+'">'
+                                           +'<h2 class="mb-0">'
+                                             +'<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-collapse-'+courses[i].id+'-'+item+'" aria-expanded="true" aria-controls="accordion-collapse-'+courses[i].id+'-'+item+'">'
+                                              +ucFirst(item)+': <span id="'+courses[i].id+'-'+item+'">0<span>'
+                                             +'</button>'
+                                           +'</h2>'
+                                         +'</div>'
+                                         +'<div id="accordion-collapse-'+courses[i].id+'-'+item+'" class="collapse show" aria-labelledby="accordion-heading-'+courses[i].id+'-'+item+'" data-parent="#accordion-'+courses[i].id+'">'
+                                           +'<div id="accordion-body-list-'+courses[i].id+'-'+item+'" class="card-body course-accordion-body">'
                                            +'</div>'
-                                           +'<div id="accordion-collapse-'+courses[i].id+'-'+item+'" class="collapse show" aria-labelledby="accordion-heading-'+courses[i].id+'-'+item+'" data-parent="#accordion-'+courses[i].id+'">'
-                                             +'<div id="accordion-body-list-'+courses[i].id+'-'+item+'" class="card-body course-accordion-body">'
-                                             +'</div>'
-                                           +'</div>'
-                                         +'</div>';
-                          }
-                          print+='</div>'
-                       +'</div>'
-                       +'<div class="card-footer">'
-                         +'<div class="flex-c">'
-                           +'<a class="login100-button-a" href="'+courses[i].alternateLink+'" target="_blank" class="card-text" data-toggle="tooltip" title="Open in google Classroom"><i class="fa fa-link"></i></a>'
-                           +'<div class="dropup">'
-                             +'<button class="login100-button-a" data-toggle="dropdown" title="Manage Online Classes" aria-haspopup="true" aria-expanded="false"><i class="fa fa-video-camera"></i></button>'
-                             +'<div class="dropdown-menu">'
-                               +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalYoutubeAdd('+courses[i].id+')">Youtube</a>'
-                               +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalZoomAdd('+courses[i].id+')">Zoom</a>'
-                             +'</div>'
+                                         +'</div>'
+                                       +'</div>';
+                        }
+                        print+='</div>'
+                     +'</div>'
+                     +'<div class="card-footer">'
+                       +'<div class="flex-c">'
+                         +'<a class="login100-button-a" href="'+courses[i].alternateLink+'" target="_blank" class="card-text" data-toggle="tooltip" title="Open in google Classroom"><i class="fa fa-link"></i></a>'
+                         +'<div class="dropup">'
+                           +'<button class="login100-button-a" data-toggle="dropdown" title="Manage Online Classes" aria-haspopup="true" aria-expanded="false"><i class="fa fa-video-camera"></i></button>'
+                           +'<div class="dropdown-menu">'
+                             +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalYoutubeAdd('+courses[i].id+')">Youtube</a>'
+                             +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalZoomAdd('+courses[i].id+')">Zoom</a>'
                            +'</div>'
-                           +'<a class="login100-button-a" href="javascript:void(0)" data-toggle="tooltip" title="View Class contents in Google Drive"><i class="fa fa-folder"></i></a>'
-                           +'<div class="dropup">'
-                             +'<button class="login100-button-a" data-toggle="dropdown" title="Manage Invitations" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i></button>'
-                             +'<div class="dropdown-menu">'
-                               +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationStudents('+courses[i].id+')">Students</a>'
-                               +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationTeachers('+courses[i].id+')">Teachers</a>'
-                             +'</div>'
+                         +'</div>'
+                         +'<a class="login100-button-a" href="javascript:void(0)" data-toggle="tooltip" title="View Class contents in Google Drive"><i class="fa fa-folder"></i></a>'
+                         +'<div class="dropup">'
+                           +'<button class="login100-button-a" data-toggle="dropdown" title="Manage Invitations" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i></button>'
+                           +'<div class="dropdown-menu">'
+                             +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationStudents('+courses[i].id+')">Students</a>'
+                             +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationTeachers('+courses[i].id+')">Teachers</a>'
                            +'</div>'
                          +'</div>'
                        +'</div>'
-                      +'</div>'
-                    +'</div>';
-                    getCourseData(courses[i].id);
-            }
-        return print;
-      }
+                     +'</div>'
+                    +'</div>'
+                  +'</div>';
+                  getCourseData(courses[i].id);
+          }
+      return print;
+    }
 
-      function modalYoutubeAdd(courseId) {
-        console.log('Modal Clicked');
-        $('#apimodal').empty().html(initModalDOM());
-        $('#apimodaltitle').html('Schedule Youtube Broadcast');
+    function modalYoutubeAdd(courseId) {
+      console.log('Modal Clicked');
+      $('#apimodal').empty().html(initModalDOM());
+      $('#apimodaltitle').html('Schedule Youtube Broadcast');
 
-        print='<div class="row">'
-              +'<div class="col-md-12">'
-                +'<div class="form-group">'
-                  +'<label>Video Title</label>'
-                  +'<input type="text" max="50" value="" id="ytBroadcastTitle" class="form-control">'
-                +'</div>'
-              +'</div>'
-            +'</div>'
-            +'<div class="row">'
-              +'<div class="col-md-6">'
-                +'<div class="form-group">'
-                  +'<label>Scheduled Start Time</label>'
-                  +'<input value="" type="datetime-local" id="ytBroadcastScheduledStartTime" class="form-control">'
-                +'</div>'
-              +'</div>'
-              +'<div class="col-md-6">'
+      print='<div class="row">'
+            +'<div class="col-md-12">'
               +'<div class="form-group">'
-                +'<label>Scheduled End Time</label>'
-                +'<input value="" type="datetime-local" id="ytBroadcastScheduledEndTime" class="form-control">'
-              +'</div>'
+                +'<label>Video Title</label>'
+                +'<input type="text" max="50" value="" id="ytBroadcastTitle" class="form-control">'
               +'</div>'
             +'</div>'
-            +'<div class="row">'
-              +'<div class="col-md-12 text-center">'
-                +'<div class="form-group">'
-                  +'<input type="button" onclick="initModalYoutubeAdd('+courseId+')" value="Schedule Broadcast" class="btn btn-primary btn-md" >'
-                +'</div>'
+          +'</div>'
+          +'<div class="row">'
+            +'<div class="col-md-6">'
+              +'<div class="form-group">'
+                +'<label>Scheduled Start Time</label>'
+                +'<input value="" type="datetime-local" id="ytBroadcastScheduledStartTime" class="form-control">'
               +'</div>'
-            +'</div>';
-        $('#apimodalform').empty().html(print);
-        console.log('Modal Form print success');
-        $('#apimodal').modal('show');
-      }
+            +'</div>'
+            +'<div class="col-md-6">'
+            +'<div class="form-group">'
+              +'<label>Scheduled End Time</label>'
+              +'<input value="" type="datetime-local" id="ytBroadcastScheduledEndTime" class="form-control">'
+            +'</div>'
+            +'</div>'
+          +'</div>'
+          +'<div class="row">'
+            +'<div class="col-md-12 text-center">'
+              +'<div class="form-group">'
+                +'<input type="button" onclick="initModalYoutubeAdd('+courseId+')" value="Schedule Broadcast" class="btn btn-primary btn-md" >'
+              +'</div>'
+            +'</div>'
+          +'</div>';
+      $('#apimodalform').empty().html(print);
+      console.log('Modal Form print success');
+      $('#apimodal').modal('show');
+    }
 
-      function initModalYoutubeAdd(courseId) {
-        var current = gapi.auth2.getAuthInstance().currentUser.get();
-        console.log('Modal Form init Submitted');
-        title= $("#ytBroadcastTitle").val();
-        date = new Date($("#ytBroadcastScheduledStartTime").val());
-        isoString = date.toISOString();
-        scheduledStartTime= date;
-        date = new Date($("#ytBroadcastScheduledEndTime").val());
-        isoString = date.toISOString();
-        scheduledEndTime= date;
-        description = 'beg-courseId='+courseId+'&ownerId='+current.Pt.MU+'-end';
-        youtubeLiveBroadcastsInsert(title,scheduledStartTime,scheduledEndTime,description);
-      }
+    function initModalYoutubeAdd(courseId) {
+      var current = gapi.auth2.getAuthInstance().currentUser.get();
+      console.log('Modal Form init Submitted');
+      title= $("#ytBroadcastTitle").val();
+      date = new Date($("#ytBroadcastScheduledStartTime").val());
+      isoString = date.toISOString();
+      scheduledStartTime= date;
+      date = new Date($("#ytBroadcastScheduledEndTime").val());
+      isoString = date.toISOString();
+      scheduledEndTime= date;
+      description = 'beg-courseId='+courseId+'&ownerId='+current.Pt.MU+'-end';
+      youtubeLiveBroadcastsInsert(title,scheduledStartTime,scheduledEndTime,description);
+    }
 
-      var dateobj = new Date();
-      function youtubeLiveBroadcastsInsert(title,scheduledStartTime,scheduledEndTime,description) {
-        return gapi.client.youtube.liveBroadcasts.insert({
-            "part": "snippet,contentDetails,status",
-            "resource": {
-              "snippet": {
-                "title": title,
-                "scheduledStartTime": scheduledStartTime,
-                "scheduledEndTime": scheduledEndTime,
-                "description": description
-              },
-              "contentDetails": {
-                "enableClosedCaptions": true,
-                "enableContentEncryption": true,
-                "enableDvr": true,
-                "enableEmbed": true,
-                "recordFromStart": true,
-                "startWithSlate": true
-              },
-              "status": {
-                "privacyStatus": "unlisted"
-              }
+    var dateobj = new Date();
+    function youtubeLiveBroadcastsInsert(title,scheduledStartTime,scheduledEndTime,description) {
+      return gapi.client.youtube.liveBroadcasts.insert({
+          "part": "snippet,contentDetails,status",
+          "resource": {
+            "snippet": {
+              "title": title,
+              "scheduledStartTime": scheduledStartTime,
+              "scheduledEndTime": scheduledEndTime,
+              "description": description
+            },
+            "contentDetails": {
+              "enableClosedCaptions": true,
+              "enableContentEncryption": true,
+              "enableDvr": true,
+              "enableEmbed": true,
+              "recordFromStart": true,
+              "startWithSlate": true
+            },
+            "status": {
+              "privacyStatus": "unlisted"
             }
-          })
-        .then(function(response) {
-          // Handle the results here (response.result has the parsed body).
-          console.log('Modal Form Submitted');
-          // Handle the results here (response.result has the parsed body).
-          console.log("Response", response);
-          Toast.fire({
-            title:"Youtube Broadcast Schedule Success",
-            icon: "success"
-          });
-          $('#apimodal').modal('hide');
-          initCourses();
-        },
-        function(err) { console.error("Execute error", err);
-          Toast.fire({
-            title:"Youtube Broadcast Schedule Failed",
-            icon: "error"
-          });
+          }
+        })
+      .then(function(response) {
+        // Handle the results here (response.result has the parsed body).
+        console.log('Modal Form Submitted');
+        // Handle the results here (response.result has the parsed body).
+        console.log("Response", response);
+        Toast.fire({
+          title:"Youtube Broadcast Schedule Success",
+          icon: "success"
         });
-      }
+        $('#apimodal').modal('hide');
+        initCourses();
+      },
+      function(err) { console.error("Execute error", err);
+        Toast.fire({
+          title:"Youtube Broadcast Schedule Failed",
+          icon: "error"
+        });
+      });
+    }
 
 
 //Course add student Functionality
@@ -589,76 +589,76 @@
   }
 
   //Course add teacher Functionality
-    function modalCourseAddTeacher(courseId) {
-      console.log('Modal Clicked');
-      $('#apimodal').empty().html(initModalDOM());
-      $('#apimodaltitle').html('Add Teacher');
+  function modalCourseAddTeacher(courseId) {
+    console.log('Modal Clicked');
+    $('#apimodal').empty().html(initModalDOM());
+    $('#apimodaltitle').html('Add Teacher');
 
-      print='<div class="row">'
-            +'<div class="col-md-12">'
-              +'<div class="form-group">'
-                +'<label>Teacher Email</label>'
-                +'<input type="text" max="100" value="" id="teacherEmail" class="form-control">'
-              +'</div>'
+    print='<div class="row">'
+          +'<div class="col-md-12">'
+            +'<div class="form-group">'
+              +'<label>Teacher Email</label>'
+              +'<input type="text" max="100" value="" id="teacherEmail" class="form-control">'
             +'</div>'
           +'</div>'
-          +'<div class="row">'
-            +'<div class="col-md-12">'
-              +'<div class="form-group">'
-                +'<p class="muted">You can add teacher only if you are subscribed to G Suite for Education, you email id has admin Access and you are verified owner this website domain.</p>'
-              +'</div>'
+        +'</div>'
+        +'<div class="row">'
+          +'<div class="col-md-12">'
+            +'<div class="form-group">'
+              +'<p class="muted">You can add teacher only if you are subscribed to G Suite for Education, you email id has admin Access and you are verified owner this website domain.</p>'
             +'</div>'
           +'</div>'
-          +'<div class="row">'
-            +'<div class="col-md-12 text-center">'
-              +'<div class="form-group">'
-                +'<input type="button" onclick="initclassroomTeacherAdd('+courseId+')" value="Add Teacher" class="btn btn-primary btn-md" >'
-              +'</div>'
+        +'</div>'
+        +'<div class="row">'
+          +'<div class="col-md-12 text-center">'
+            +'<div class="form-group">'
+              +'<input type="button" onclick="initclassroomTeacherAdd('+courseId+')" value="Add Teacher" class="btn btn-primary btn-md" >'
             +'</div>'
-          +'</div>';
-      $('#apimodalform').empty().html(print);
-      console.log('Modal Form print success');
-      $('#apimodal').modal('show');
-    }
+          +'</div>'
+        +'</div>';
+    $('#apimodalform').empty().html(print);
+    console.log('Modal Form print success');
+    $('#apimodal').modal('show');
+  }
 
-    function initclassroomTeacherAdd(courseId) {
-      console.log('Modal Form init Submitted');
-      classroomTeacherAdd(courseId,$("#teacherEmail").val());
-    }
+  function initclassroomTeacherAdd(courseId) {
+    console.log('Modal Form init Submitted');
+    classroomTeacherAdd(courseId,$("#teacherEmail").val());
+  }
 
 
-    function classroomTeacherAdd(courseId,email) {
-      return gapi.client.classroom.courses.teachers.create({
-        "courseId":courseId,
-        "resource":{
-          "userId" : email
-        }
-      })
-      .then(function(response) {
-        console.log('Modal Form Submitted');
-        // Handle the results here (response.result has the parsed body).
-        console.log("Response", response);
-        Toast.fire({
-          title:"Teacher Add Success",
-          icon: "success"
-        });
-        $('#apimodal').modal('hide');
-        initCourses();
-      },
-      function(err) {
-        console.error("Execute error", err);
-        Toast.fire({
-          title:"Teacher Add Failed",
-          icon: "error"
-        });
-      });
-    }
-
-      handleClientLoad();
-
-      function ucFirst(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+  function classroomTeacherAdd(courseId,email) {
+    return gapi.client.classroom.courses.teachers.create({
+      "courseId":courseId,
+      "resource":{
+        "userId" : email
       }
+    })
+    .then(function(response) {
+      console.log('Modal Form Submitted');
+      // Handle the results here (response.result has the parsed body).
+      console.log("Response", response);
+      Toast.fire({
+        title:"Teacher Add Success",
+        icon: "success"
+      });
+      $('#apimodal').modal('hide');
+      initCourses();
+    },
+    function(err) {
+      console.error("Execute error", err);
+      Toast.fire({
+        title:"Teacher Add Failed",
+        icon: "error"
+      });
+    });
+  }
+
+  handleClientLoad();
+
+  function ucFirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
 
 
