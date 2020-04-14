@@ -287,18 +287,18 @@
                           +'</div>'
                        +'</div>'
                        +'<div id="card-body-'+courses[i].id+'" class="card-body">'
-                        +'<div class="accordion" id="accordion-'+courseID+'">';
+                        +'<div class="accordion" id="accordion-'+courses[i].id+'">';
                            for (item of domain) {
                                 print+='<div class="card">'
-                                           +'<div class="card-header" id="accordion-heading-'+courseID+'-'+item+'">'
+                                           +'<div class="card-header" id="accordion-heading-'+courses[i].id+'-'+item+'">'
                                              +'<h2 class="mb-0">'
-                                               +'<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-collapse-'+courseID+'-'+item+'" aria-expanded="true" aria-controls="accordion-collapse-'+courseID+'-'+item+'">'
-                                                +ucFirst(item)+': <span id="'+courseID+'-'+item+'">0<span>'
+                                               +'<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-collapse-'+courses[i].id+'-'+item+'" aria-expanded="true" aria-controls="accordion-collapse-'+courses[i].id+'-'+item+'">'
+                                                +ucFirst(item)+': <span id="'+courses[i].id+'-'+item+'">0<span>'
                                                +'</button>'
                                              +'</h2>'
                                            +'</div>'
-                                           +'<div id="accordion-collapse-'+courseID+'-'+item+'" class="collapse show" aria-labelledby="accordion-heading-'+courseID+'-'+item+'" data-parent="#accordion-'+courseID+'">'
-                                             +'<div id="accordion-body-list-'+courseID+'-'+item+'" class="card-body">'
+                                           +'<div id="accordion-collapse-'+courses[i].id+'-'+item+'" class="collapse show" aria-labelledby="accordion-heading-'+courses[i].id+'-'+item+'" data-parent="#accordion-'+courses[i].id+'">'
+                                             +'<div id="accordion-body-list-'+courses[i].id+'-'+item+'" class="card-body">'
                                              +'</div>'
                                            +'</div>'
                                          +'</div>';
