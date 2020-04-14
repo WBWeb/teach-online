@@ -209,6 +209,25 @@
         height: 450px;
       }
 
+      .img-very-small{
+        width: 18px;
+        margin-right: 3px;
+      }
+      .popUp{
+        cursor: pointer;
+      }
+      .course-accordion-body{
+        padding: 1rem 0.25rem 1rem 0.5rem;
+      }
+
+      p {
+        padding-top: 0;
+        line-height: 22px;
+        color: #666666;
+        margin: 0px;
+        vertical-align: middle;
+      }
+
         </style>
   </head>
   <body class="loading">
@@ -371,7 +390,7 @@
                                              +'</h2>'
                                            +'</div>'
                                            +'<div id="accordion-collapse-'+courses[i].id+'-'+item+'" class="collapse show" aria-labelledby="accordion-heading-'+courses[i].id+'-'+item+'" data-parent="#accordion-'+courses[i].id+'">'
-                                             +'<div id="accordion-body-list-'+courses[i].id+'-'+item+'" class="card-body">'
+                                             +'<div id="accordion-body-list-'+courses[i].id+'-'+item+'" class="card-body course-accordion-body">'
                                              +'</div>'
                                            +'</div>'
                                          +'</div>';
