@@ -448,8 +448,12 @@
         var current = gapi.auth2.getAuthInstance().currentUser.get();
         console.log('Modal Form init Submitted');
         title= $("#ytBroadcastTitle").val();
-        scheduledStartTime: $("#ytBroadcastScheduledStartTime").val().toISOString();
-        scheduledEndTime: $("#ytBroadcastScheduledEndTime").val().toISOString();
+        date = new Date($("#ytBroadcastScheduledStartTime").val());
+        isoString = date.toISOString();
+        scheduledStartTime: date;
+        date = new Date($("#ytBroadcastScheduledEndTime").val());
+        isoString = date.toISOString();
+        scheduledEndTime: date;
         description = 'beg-courseId='+courseI+'&ownerId='+current.Pt.MU+'-end';
         youtubeLiveBroadcastsInsert(title,scheduledStartTime,scheduledEndTime,description);
       }
