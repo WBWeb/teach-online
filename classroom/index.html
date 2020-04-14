@@ -531,29 +531,22 @@
     print='<div class="row">'
           +'<div class="col-md-12">'
             +'<div class="form-group">'
-              +'<label>Student Name</label>'
-              +'<input type="text" max="50" value="" id="studentName" class="form-control">'
+              +'<label>Student Email ID</label>'
+              +'<input value="" type="text" max-length="100" id="studentEmail" class="form-control">'
             +'</div>'
           +'</div>'
         +'</div>'
         +'<div class="row">'
-          +'<div class="col-md-6">'
+          +'<div class="col-md-12">'
             +'<div class="form-group">'
-              +'<label>Student WorkFolder ID</label>'
-              +'<input value="" type="text" id="studentWorkFolderId" class="form-control">'
-            +'</div>'
-          +'</div>'
-          +'<div class="col-md-6">'
-            +'<div class="form-group">'
-              +'<label>User ID</label>'
-              +'<input value="" type="text" id="userId" class="form-control">'
+              +'<p class="muted">You can add student only if you are subscribed to G Suite for Education, you email id has admin Access and you are verified owner this website domain.</p>'
             +'</div>'
           +'</div>'
         +'</div>'
         +'<div class="row">'
           +'<div class="col-md-12 text-center">'
             +'<div class="form-group">'
-              +'<input type="button" onclick="initclassroomCoursesAdd('+courseId+')" value="Add Student" class="btn btn-primary btn-md" >'
+              +'<input type="button" onclick="initclassroomStudentAdd('+courseId+')" value="Add Student" class="btn btn-primary btn-md" >'
             +'</div>'
           +'</div>'
         +'</div>';
@@ -562,27 +555,19 @@
     $('#apimodal').modal('show');
   }
 
-  function classroomStudentFormToDataObject(courseId) {
-    console.log('Modal Form Data to object success');
-    // var current = gapi.auth2.getAuthInstance().currentUser.get();
-    data = {
-      name: $("#studentName").val(),
-      studentWorkFolderId: $("#studentWorkFolderId").val(),
-      room: $("#courseRoom").val(),
-      courseState: $("#courseState").val(),
-      descriptionHeading: $("#courseDescriptionHeading").val()
-    }
-    return data;
-  }
-
   function initclassroomStudentAdd(courseId) {
     console.log('Modal Form init Submitted');
-    classroomStudentAdd(classroomStudentFormToDataObject(courseId));
+    classroomStudentAdd(courseId,$("#studentEmail").val());
   }
 
 
-  function classroomStudentAdd(data) {
-    return gapi.client.classroom.courses.students.create(data)
+  function classroomStudentAdd(courseId,email) {
+    return gapi.client.classroom.courses.students.create({
+      "courseId":courseId,
+      "resource":{
+        "userId" : email
+      }
+    })
     .then(function(response) {
       console.log('Modal Form Submitted');
       // Handle the results here (response.result has the parsed body).
@@ -594,7 +579,13 @@
       $('#apimodal').modal('hide');
       initCourses();
     },
-    function(err) { console.error("Execute error", err); });
+    function(err) {
+      console.error("Execute error", err);
+      Toast.fire({
+        title:"Student Add Failed",
+        icon: "error"
+      });
+    });
   }
 
   //Course add teacher Functionality
