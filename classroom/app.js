@@ -257,6 +257,7 @@ function initDOM() {
                     +'<button class="login100-button-a" data-toggle="dropdown" title="Settings" type="button" id="dropdownCoursesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
                     +'<div class="dropdown-menu" aria-labelledby="dropdownCoursesMenu">'
                       +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalAddCourse()">Add New Course</a>'
+                      +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalJoinCourse()">Join New Course</a>'
                     +'</div>'
                   +'</div>'
                 +'</div>'
