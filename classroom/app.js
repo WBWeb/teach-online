@@ -5,19 +5,24 @@ function classroomCoursesStudents(courseId) {
     "courseId": courseId
   }).then(function(response) {
     // Handle the results here (response.result has the parsed body).
+    print="";
     data=response.result.students;
+
+
     if (typeof data !== 'undefined' && data.length > 0) {
       console.log("data-getStudentsCount:", data);
       console.log(courseId+"-getStudentsCount:", data.length);
       $("#"+courseId+"-students").html(data.length);
-      print="";
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].profile.name.fullName+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-students").html(print);
     } else {
       $("#"+courseId+"-students").html("0");
     }
+
+    print+='<span class="btn btn-info btn-sm my-2" onclick="modalCourseAddStudent('+courseId+')" style="padding: 2px 10px 2px 10px;text-align: center;">Add Student</span>';
+    $("#accordion-body-list-"+courseId+"-students").html(print);
+
   },function(err) { console.error("Execute error", err); });
 }
 
@@ -26,19 +31,22 @@ function classroomCoursesTeachers(courseId) {
     "courseId": courseId
   }).then(function(response) {
     // Handle the results here (response.result has the parsed body).
+    print="";
     data=response.result.teachers;
     if (typeof data !== 'undefined' && data.length > 0) {
       console.log("data-getTeachersCount:", data);
       console.log(courseId+"-getTeachersCount:", data.length);
       $("#"+courseId+"-teachers").html(data.length);
-      print="";
+
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].profile.name.fullName+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-teachers").html(print);
+
     } else {
       $("#"+courseId+"-teachers").html("0");
     }
+    print+='<span class="btn btn-info btn-sm my-2" onclick="modalCourseAddTeacher('+courseId+')" style="padding: 2px 10px 2px 10px;text-align: center;">Add Teacher</span>';
+    $("#accordion-body-list-"+courseId+"-teachers").html(print);
   },function(err) { console.error("Execute error", err); });
 }
 
@@ -47,19 +55,23 @@ function classroomCoursesAnnouncements(courseId){
     "courseId": courseId
   }).then(function(response) {
     // Handle the results here (response.result has the parsed body).
+    print="";
     data=response.result.announcements;
     if (typeof data !== 'undefined' && data.length > 0) {
       console.log("data-getAnnouncementsCount:", data);
       console.log(courseId+"-getAnnouncementsCount:", data.length);
       $("#"+courseId+"-announcements").html(data.length);
-      print="";
+
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].text+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-announcements").html(print);
     } else {
       $("#"+courseId+"-announcements").html("0");
     }
+    print+='<span class="btn btn-info btn-sm my-2" onclick="modalCourseAddAnnouncement('+courseId+')" style="padding: 2px 10px 2px 10px;text-align: center;">Add Announcement</span>';
+
+    $("#accordion-body-list-"+courseId+"-announcements").html(print);
+
   },function(err) { console.error("Execute error", err); });
 }
 
@@ -68,19 +80,22 @@ function classroomCoursesTopics(courseId){
     "courseId": courseId
   }).then(function(response) {
     // Handle the results here (response.result has the parsed body).
+    print="";
     data=response.result.topic;
     if (typeof data !== 'undefined' && data.length > 0) {
       console.log("data-getTopicsCount:", data);
       console.log(courseId+"-getTopicsCount:", data.length);
       $("#"+courseId+"-topics").html(data.length);
-      print="";
+
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].name+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-topics").html(print);
     } else {
       $("#"+courseId+"-topics").html("0");
     }
+    $("#accordion-body-list-"+courseId+"-topics").html(print);
+    print+='<span class="btn btn-info btn-sm my-2" onclick="modalCourseAddTopic('+courseId+')" style="padding: 2px 10px 2px 10px;text-align: center;">Add Topic</span>';
+
   },function(err) { console.error("Execute error", err); });
 }
 
@@ -89,19 +104,22 @@ function classroomCoursesCourseWork(courseId){
     "courseId": courseId
   }).then(function(response) {
     // Handle the results here (response.result has the parsed body).
+    print="";
     data=response.result.courseWork;
     if (typeof data !== 'undefined' && data.length > 0) {
       console.log("data-getCourseWorkCount:", data);
       console.log(courseId+"-getCourseWorkCount:", data.length);
       $("#"+courseId+"-courseWork").html(data.length);
-      print="";
+
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].title+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-courseWork").html(print);
     } else {
       $("#"+courseId+"-courseWork").html("0");
     }
+    print+='<span class="btn btn-info btn-sm my-2" onclick="modalCourseAddCourseWork('+courseId+')" style="padding: 2px 10px 2px 10px;text-align: center;">Add CourseWork</span>';
+    $("#accordion-body-list-"+courseId+"-courseWork").html(print);
+
   },function(err) { console.error("Execute error", err); });
 }
 
@@ -111,20 +129,24 @@ function classroomCoursesAliases(courseId) {
   })
   .then(function(response) {
     // Handle the results here (response.result has the parsed body).
-    data=response.result["aliases"];
+    print="";
     console.log("Aliases reponse", response);
+    data=response.aliases;
+
     console.log("data-getAliasesCount:", data);
     if (typeof data !== 'undefined' && data.length > 0) {
       console.log(courseId+"-getAliasesCount:", data.length);
       $("#"+courseId+"-aliases").html(data.length);
-      print="";
+
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].alias+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-aliases").html(print);
     } else {
       $("#"+courseId+"-aliases").html("0");
     }
+    print+='<span class="btn btn-info btn-sm my-2" onclick="modalCourseAddAlias('+courseId+')" style="padding: 2px 10px 2px 10px;text-align: center;">Add Alias</span>';
+    $("#accordion-body-list-"+courseId+"-aliases").html(print);
+
   },
   function(err) { console.error("Execute error", err); });
 }
