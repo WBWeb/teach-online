@@ -520,20 +520,20 @@ function modalCourseAddAnnouncement(courseID) {
         +'</div>'
         +'<div class="col-md-6">'
           +'<div class="form-group">'
-            +'<label>Scheduled Time</label>'
-            +'<input value="" type="datetime-local" id="announcement-scheduledTime" class="form-control">'
-          +'</div>'
-        +'</div>'
-      +'</div>'
-      +'<div class="row">'
-        +'<div class="col-md-12">'
-          +'<div class="form-group">'
             +'<label>State</label>'
             +'<select id="announcement-state" class="form-control">'
               +'<option>PUBLISHED</option>'
               +'<option>DRAFT</option>'
               +'<option>DELETED</option>'
             +'</select>'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="row">'
+        +'<div class="col-md-12">'
+          +'<div class="form-group">'
+            +'<label>Scheduled Time</label>'
+            +'<input value="" type="datetime-local" id="announcement-scheduledTime" class="form-control">'
           +'</div>'
         +'</div>'
       +'</div>'
@@ -565,7 +565,7 @@ function classroomAnnouncementFormToDataObject(courseID) {
   scheduledTime= date;
   data = {
     assigneeMode: $("#announcement-assigneeMode").val(),
-    scheduledTime: scheduledTime,
+    // scheduledTime: scheduledTime,
     state: $("#announcement-state").val(),
     text: $("#announcement-text").val()
   }
@@ -588,7 +588,7 @@ function classroomAnnouncementAdd(courseId,data) {
     // Handle the results here (response.result has the parsed body).
     console.log("Response", response);
     Toast.fire({
-      title:"Course Add Success",
+      title:"Announcement Add Success",
       icon: "success"
     });
     $('#apimodal').modal('hide');
