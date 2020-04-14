@@ -723,7 +723,7 @@ function classroomCoursesTeacherDelete(courseId,userId) {
 //courses.announcement - delete
 function deleteCoursesAnnouncement(courseId,AnnouncementId) {
   Pop.fire({
-    text: "Are you sure you want to delete the course ?",
+    text: "Are you sure you want to delete the announcement ?",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Yes, delete it!',
@@ -744,12 +744,12 @@ function deleteCoursesAnnouncement(courseId,AnnouncementId) {
 }
 
 function classroomCoursesAnnouncementDelete(courseId,AnnouncementId) {
-  return gapi.client.classroom.courses.delete({
+  return gapi.client.classroom.courses.announcements.delete({
     "courseId": courseId,
     "id": AnnouncementId
   })
   .then(function(response) {
-    console.log("Deleted Course Response", response);
+    console.log("Deleted Announcement Response", response);
     Pop.fire({
       title: "Deleted!",
       icon: 'success',
@@ -766,6 +766,51 @@ function classroomCoursesAnnouncementDelete(courseId,AnnouncementId) {
   });
 }
 
+//courses.topic - delete
+function deleteCoursesTopic(courseId,topicId) {
+  Pop.fire({
+    text: "Are you sure you want to delete the topic ?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.value) {
+      classroomCoursesTopicDelete(courseId,topicId);
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Pop.fire({
+        title: "Cancelled",
+        icon: 'error',
+        timer: 2000,
+        timerProgressBar: true
+      });
+    }
+  });
+}
+
+function classroomCoursesTopicDelete(courseId,topicId) {
+  return gapi.client.classroom.courses.topics.delete({
+    "courseId": courseId,
+    "id": topicId
+  })
+  .then(function(response) {
+    console.log("Deleted Topic Response", response);
+    Pop.fire({
+      title: "Deleted!",
+      icon: 'success',
+      timer: 2000,
+      timerProgressBar: true
+    });
+  },
+  function(err) {
+    console.error("Execute error", err);
+    Toast.fire({
+      title: "An error occured",
+      icon: 'error'
+    });
+  });
+}
 
   handleClientLoad();
 
