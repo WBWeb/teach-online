@@ -14,7 +14,7 @@ function classroomCoursesStudents(courseId) {
       console.log(courseId+"-getStudentsCount:", data.length);
       $("#"+courseId+"-students").html(data.length);
       for(i=0; i<data.length; i++){
-        print+='<p>'+data[i].profile.name.fullName+'</p>';
+        print+='<p onclick="popStudentDetails('+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small">'+data[i].profile.name.fullName+'</p>';
       }
     } else {
       $("#"+courseId+"-students").html("0");
@@ -39,7 +39,7 @@ function classroomCoursesTeachers(courseId) {
       $("#"+courseId+"-teachers").html(data.length);
 
       for(i=0; i<data.length; i++){
-        print+='<p>'+data[i].profile.name.fullName+'</p>';
+        print+='<p onclick="popTeacherDetails('+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small">'+data[i].profile.name.fullName+'</p>';
       }
 
     } else {
@@ -63,7 +63,7 @@ function classroomCoursesAnnouncements(courseId){
       $("#"+courseId+"-announcements").html(data.length);
 
       for(i=0; i<data.length; i++){
-        print+='<p>'+data[i].text+'</p>';
+        print+='<p class="popUp" onclick="popAnouncement('+data[i].id+')"> '+(i+1)+' - '+data[i].id+' - '+data[i].state+'</p>';
       }
     } else {
       $("#"+courseId+"-announcements").html("0");
@@ -89,6 +89,7 @@ function classroomCoursesTopics(courseId){
 
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].name+'</p>';
+        print+='<p class="popUp" onclick="Pop.fire({title="'+data[i].name+'", text:"Updated: '+data[i].updateTime+'" icon: "success", })"> '+(i+1)+' - '+data[i].id+'</p>';
       }
     } else {
       $("#"+courseId+"-topics").html("0");
@@ -112,7 +113,7 @@ function classroomCoursesCourseWork(courseId){
       $("#"+courseId+"-courseWork").html(data.length);
 
       for(i=0; i<data.length; i++){
-        print+='<p>'+data[i].title+'</p>';
+        print+='<p class="popUp" onclick="popCourseWork('+data[i].id+')" data-toggle="tooltip" title="State: '+data[i].state+'"> '+(i+1)+':'+data[i].id+':'+data[i].workType+'</p>';
       }
     } else {
       $("#"+courseId+"-courseWork").html("0");
