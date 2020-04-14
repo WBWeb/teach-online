@@ -52,7 +52,7 @@ function classroomCoursesAnnouncementsModifyAssignees(courseId,id,data) {
 
 //courses.announcements - create
 function classroomCoursesAnnouncementsCreate(courseId,data) {
-  return gapi.client.classroom.courses.create({
+  return gapi.client.classroom.courses.announcements.create({
     "courseId":courseId,
     "resource":data
   })

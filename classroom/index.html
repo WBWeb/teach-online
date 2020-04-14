@@ -502,7 +502,100 @@
         });
       }
 
+//Course add Functionality
+function modalCourseAddAnnouncement(courseID) {
+  console.log('Modal Clicked');
+  $('#apimodal').empty().html(initModalDOM());
+  $('#apimodaltitle').html('Add Announcement');
 
+  print='<div class="row">'
+        +'<div class="col-md-6">'
+          +'<div class="form-group">'
+            +'<label>Assignee Mode</label>'
+            +'<select id="announcement-assigneeMode" class="form-control">'
+              +'<option>ALL_STUDENTS</option>'
+              +'<option>INDIVIDUAL_STUDENTS</option>'
+            +'</select>'
+          +'</div>'
+        +'</div>'
+        +'<div class="col-md-6">'
+          +'<div class="form-group">'
+            +'<label>Scheduled Time</label>'
+            +'<input value="" type="datetime-local" id="announcement-scheduledTime" class="form-control">'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="row">'
+        +'<div class="col-md-12">'
+          +'<div class="form-group">'
+            +'<label>State</label>'
+            +'<select id="announcement-state" class="form-control">'
+              +'<option>PUBLISHED</option>'
+              +'<option>DRAFT</option>'
+              +'<option>DELETED</option>'
+            +'</select>'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="row">'
+        +'<div class="col-md-12">'
+          +'<div class="form-group">'
+            +'<label>Announcement Text</label>'
+            +'<input type="text" value="" id="announcement-text" max-length="200" class="form-control">'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="row">'
+        +'<div class="col-md-12 text-center">'
+          +'<div class="form-group">'
+            +'<input type="button" onclick="initclassroomAnnouncementAdd('+courseID+')" value="Add Announcement" class="btn btn-primary btn-md" >'
+          +'</div>'
+        +'</div>'
+      +'</div>';
+  $('#apimodalform').empty().html(print);
+  console.log('Modal Form print success');
+  $('#apimodal').modal('show');
+}
+
+function classroomAnnouncementFormToDataObject(courseID) {
+  console.log('Modal Form Data to object success');
+  // var current = gapi.auth2.getAuthInstance().currentUser.get();
+  date = new Date($("#announcement-scheduledTime").val());
+  isoString = date.toISOString();
+  scheduledTime= date;
+  data = {
+    assigneeMode: $("#announcement-assigneeMode").val(),
+    scheduledTime: scheduledTime,
+    state: $("#announcement-state").val(),
+    text: $("#announcement-text").val()
+  }
+  return data;
+}
+
+function initclassroomAnnouncementAdd(courseId) {
+  console.log('Modal Form init Submitted');
+  classroomAnnouncementAdd(courseId,classroomAnnouncementFormToDataObject(courseId));
+}
+
+
+function classroomAnnouncementAdd(courseId,data) {
+  return gapi.client.classroom.courses.announcements.create({
+    "courseId":courseId,
+    "resource":data
+  })
+  .then(function(response) {
+    console.log('Modal Form Submitted');
+    // Handle the results here (response.result has the parsed body).
+    console.log("Response", response);
+    Toast.fire({
+      title:"Course Add Success",
+      icon: "success"
+    });
+    $('#apimodal').modal('hide');
+    initCourses();
+  },
+  function(err) { console.error("Execute error", err); });
+}
 
 
 
@@ -511,6 +604,8 @@
       function ucFirst(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
       }
+
+
 
 
 
