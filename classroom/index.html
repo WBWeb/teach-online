@@ -502,6 +502,81 @@
         });
       }
 
+//Course add student Functionality
+function modalCourseAddStudent(courseId) {
+  console.log('Modal Clicked');
+  $('#apimodal').empty().html(initModalDOM());
+  $('#apimodaltitle').html('Add Course');
+
+  print='<div class="row">'
+        +'<div class="col-md-12">'
+          +'<div class="form-group">'
+            +'<label>Student Name</label>'
+            +'<input type="text" max="50" value="" id="studentName" class="form-control">'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="row">'
+        +'<div class="col-md-6">'
+          +'<div class="form-group">'
+            +'<label>Student WorkFolder ID</label>'
+            +'<input value="" type="text" id="studentWorkFolderId" class="form-control">'
+          +'</div>'
+        +'</div>'
+        +'<div class="col-md-6">'
+          +'<div class="form-group">'
+            +'<label>User ID</label>'
+            +'<input value="" type="text" id="userId" class="form-control">'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="row">'
+        +'<div class="col-md-12 text-center">'
+          +'<div class="form-group">'
+            +'<input type="button" onclick="initclassroomCoursesAdd('+courseId+')" value="Add Student" class="btn btn-primary btn-md" >'
+          +'</div>'
+        +'</div>'
+      +'</div>';
+  $('#apimodalform').empty().html(print);
+  console.log('Modal Form print success');
+  $('#apimodal').modal('show');
+}
+
+function classroomStudentFormToDataObject(courseId) {
+  console.log('Modal Form Data to object success');
+  // var current = gapi.auth2.getAuthInstance().currentUser.get();
+  data = {
+    name: $("#studentName").val(),
+    studentWorkFolderId: $("#studentWorkFolderId").val(),
+    room: $("#courseRoom").val(),
+    courseState: $("#courseState").val(),
+    descriptionHeading: $("#courseDescriptionHeading").val()
+  }
+  return data;
+}
+
+function initclassroomStudentAdd(courseId) {
+  console.log('Modal Form init Submitted');
+  classroomStudentAdd(classroomStudentFormToDataObject(courseId));
+}
+
+
+function classroomStudentAdd(data) {
+  return gapi.client.classroom.courses.students.create(data)
+  .then(function(response) {
+    console.log('Modal Form Submitted');
+    // Handle the results here (response.result has the parsed body).
+    console.log("Response", response);
+    Toast.fire({
+      title:"Student Add Success",
+      icon: "success"
+    });
+    $('#apimodal').modal('hide');
+    initCourses();
+  },
+  function(err) { console.error("Execute error", err); });
+}
+
 //Course add teacher Functionality
 function modalCourseAddTeacher(courseId) {
   console.log('Modal Clicked');
@@ -544,10 +619,7 @@ function initclassroomTeacherAdd(courseId) {
 
 
 function classroomTeacherAdd(data) {
-  return gapi.client.classroom.courses.teachers.create({
-    "courseId":courseId,
-    "resource":data
-  })
+  return gapi.client.classroom.courses.teachers.create(data)
   .then(function(response) {
     console.log('Modal Form Submitted');
     // Handle the results here (response.result has the parsed body).
