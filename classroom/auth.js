@@ -68,9 +68,3 @@ function setSigninStatus(isSignedIn) {
 function updateSigninStatus(isSignedIn) {
   setSigninStatus();
 }
-
-// if(!localStorage.getItem("user-ownerId")) {
-//   localStorage.setItem('user-ownerId', GoogleAuth.currentUser.getId());
-// } else{
-//   $('#productSku').val(localStorage.getItem('user-ownerId'));
-// }
