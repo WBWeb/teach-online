@@ -12,7 +12,7 @@ function classroomCoursesStudents(courseId) {
       $("#"+courseId+"-students").html(data.length);
       print="";
       for(i=0; i<data.length; i++){
-        print+='<p>'+data[i].profile.fullName+'</p>';
+        print+='<p>'+data[i].profile.name.fullName+'</p>';
       }
       $("#accordion-body-list-"+courseId+"-students").html(print);
     } else {
@@ -33,7 +33,7 @@ function classroomCoursesTeachers(courseId) {
       $("#"+courseId+"-teachers").html(data.length);
       print="";
       for(i=0; i<data.length; i++){
-        print+='<p>'+data[i].profile.fullName+'</p>';
+        print+='<p>'+data[i].profile.name.fullName+'</p>';
       }
       $("#accordion-body-list-"+courseId+"-teachers").html(print);
     } else {
@@ -111,9 +111,10 @@ function classroomCoursesAliases(courseId) {
   })
   .then(function(response) {
     // Handle the results here (response.result has the parsed body).
-    data=response.result.aliases;
+    data=response.result["aliases"];
+    console.log("Aliases reponse", response);
+    console.log("data-getAliasesCount:", data);
     if (typeof data !== 'undefined' && data.length > 0) {
-      console.log("data-getAliasesCount:", data);
       console.log(courseId+"-getAliasesCount:", data.length);
       $("#"+courseId+"-aliases").html(data.length);
       print="";
