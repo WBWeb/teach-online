@@ -14,7 +14,7 @@ function classroomCoursesStudents(courseId) {
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].profile.fullName+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-students").html(data.length);
+      $("#accordion-body-list-"+courseId+"-students").html(print);
     } else {
       $("#"+courseId+"-students").html("0");
     }
@@ -35,7 +35,7 @@ function classroomCoursesTeachers(courseId) {
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].profile.fullName+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-teachers").html(data.length);
+      $("#accordion-body-list-"+courseId+"-teachers").html(print);
     } else {
       $("#"+courseId+"-teachers").html("0");
     }
@@ -56,7 +56,7 @@ function classroomCoursesAnnouncements(courseId){
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].text+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-announcements").html(data.length);
+      $("#accordion-body-list-"+courseId+"-announcements").html(print);
     } else {
       $("#"+courseId+"-announcements").html("0");
     }
@@ -77,7 +77,7 @@ function classroomCoursesTopics(courseId){
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].name+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-topics").html(data.length);
+      $("#accordion-body-list-"+courseId+"-topics").html(print);
     } else {
       $("#"+courseId+"-topics").html("0");
     }
@@ -98,7 +98,7 @@ function classroomCoursesCourseWork(courseId){
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].title+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-courseWork").html(data.length);
+      $("#accordion-body-list-"+courseId+"-courseWork").html(print);
     } else {
       $("#"+courseId+"-courseWork").html("0");
     }
@@ -120,7 +120,7 @@ function classroomCoursesAliases(courseId) {
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].alias+'</p>';
       }
-      $("#accordion-body-list-"+courseId+"-aliases").html(data.length);
+      $("#accordion-body-list-"+courseId+"-aliases").html(print);
     } else {
       $("#"+courseId+"-aliases").html("0");
     }
