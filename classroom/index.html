@@ -454,7 +454,7 @@
         date = new Date($("#ytBroadcastScheduledEndTime").val());
         isoString = date.toISOString();
         scheduledEndTime: date;
-        description = 'beg-courseId='+courseI+'&ownerId='+current.Pt.MU+'-end';
+        description = 'beg-courseId='+courseId+'&ownerId='+current.Pt.MU+'-end';
         youtubeLiveBroadcastsInsert(title,scheduledStartTime,scheduledEndTime,description);
       }
 
