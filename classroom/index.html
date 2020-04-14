@@ -363,7 +363,7 @@
                           +'<div class="row">'
                            +'<div class="col text-left">'
                            +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+'</h5>'
-                           +'</i><span class="class-code bg-light" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
+                           +'</i><span id="enrollmentCode-'+courses[i].id+'" code="'+courses[i].enrollmentCode+'" class="class-code bg-light" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
                            +'</div>'
                            +'<div class="col-2">'
                             +'<div class="flex-c" style="justify-content: flex-end;">'
@@ -521,220 +521,71 @@
         });
       }
 
-//Course add teacher Functionality
-function modalCourseAddTeacher(courseId) {
-  console.log('Modal Clicked');
-  $('#apimodal').empty().html(initModalDOM());
-  $('#apimodaltitle').html('Add Teacher');
+    //Course add teacher Functionality
+    function modalCourseAddTeacher(courseId) {
+      console.log('Modal Clicked');
+      $('#apimodal').empty().html(initModalDOM());
+      $('#apimodaltitle').html('Add Teacher');
 
-  print='<div class="row">'
-        +'<div class="col-md-12">'
-          +'<div class="form-group">'
-            +'<label>Teacher Name</label>'
-            +'<input type="text" max="50" value="" id="teacherName" class="form-control">'
+      print='<div class="row">'
+            +'<div class="col-md-12">'
+              +'<div class="form-group">'
+                +'<label>Teacher Email</label>'
+                +'<input type="text" max="100" value="" id="teacherEmail" class="form-control">'
+              +'</div>'
+            +'</div>'
           +'</div>'
-        +'</div>'
-      +'</div>'
-      +'<div class="row">'
-        +'<div class="col-md-12 text-center">'
-          +'<div class="form-group">'
-            +'<input type="button" onclick="initclassroomTeacherAdd('+courseId+')" value="Add Teacher" class="btn btn-primary btn-md" >'
+          +'<div class="row">'
+            +'<div class="col-md-12">'
+              +'<div class="form-group">'
+                +'<p class="muted">You can add teacher only if you are subscribed to G Suite for Education, you email id has admin Access and you are verified owner this website domain.</p>'
+              +'</div>'
+            +'</div>'
           +'</div>'
-        +'</div>'
-      +'</div>';
-  $('#apimodalform').empty().html(print);
-  console.log('Modal Form print success');
-  $('#apimodal').modal('show');
-}
-
-function classroomTeacherFormToDataObject(courseId) {
-  console.log('Modal Form Data to object success');
-  // var current = gapi.auth2.getAuthInstance().currentUser.get();
-  data = {
-    name: $("#teacherName").val()
-  }
-  return data;
-}
-
-function initclassroomTeacherAdd(courseId) {
-  console.log('Modal Form init Submitted');
-  classroomTeacherAdd(classroomTeacherFormToDataObject(courseId));
-}
-
-
-function classroomTeacherAdd(data) {
-  return gapi.client.classroom.courses.teachers.create({
-    "courseId":courseId,
-    "resource":data
-  })
-  .then(function(response) {
-    console.log('Modal Form Submitted');
-    // Handle the results here (response.result has the parsed body).
-    console.log("Response", response);
-    Toast.fire({
-      title:"Teacher Add Success",
-      icon: "success"
-    });
-    $('#apimodal').modal('hide');
-    initCourses();
-  },
-  function(err) { console.error("Execute error", err); });
-}
-
-//Course add announcement Functionality
-function modalCourseAddAnnouncement(courseId) {
-  console.log('Modal Clicked');
-  $('#apimodal').empty().html(initModalDOM());
-  $('#apimodaltitle').html('Add Announcement');
-
-  print='<div class="row">'
-        +'<div class="col-md-6">'
-          +'<div class="form-group">'
-            +'<label>Assignee Mode</label>'
-            +'<select id="announcement-assigneeMode" onchange="manageAnnouncementChooseStudent('+courseId+')" class="form-control">'
-              +'<option>ALL_STUDENTS</option>'
-              +'<option>INDIVIDUAL_STUDENTS</option>'
-            +'</select>'
-          +'</div>'
-        +'</div>'
-        +'<div class="col-md-6">'
-          +'<div class="form-group">'
-            +'<label>State</label>'
-            +'<select id="announcement-state" onchange="manageAnnouncementScheduledTime()" class="form-control" required>'
-              +'<option>PUBLISHED</option>'
-              +'<option>DRAFT</option>'
-            +'</select>'
-          +'</div>'
-        +'</div>'
-      +'</div>'
-      +'<div class="row" id="announcement-scheduledTime-div" style="display:none;">'
-        +'<div class="col-md-12">'
-          +'<div class="form-group">'
-            +'<label>Scheduled Time</label>'
-            +'<input value="" type="hidden" id="announcement-scheduledTime" class="form-control" disabled>'
-          +'</div>'
-        +'</div>'
-      +'</div>'
-      +'<div class="row" id="announcement-chooseStudent-div" style="display:none;">'
-        +'<div class="col-md-12">'
-          +'<div class="form-group">'
-            +'<label>Select Students</label>'
-            +'<select multiple id="announcement-chooseStudent" class="form-control" disabled></select>'
-          +'</div>'
-        +'</div>'
-      +'</div>'
-      +'<div class="row">'
-        +'<div class="col-md-12">'
-          +'<div class="form-group">'
-            +'<label>Announcement Text</label>'
-            +'<input type="text" value="" id="announcement-text" max-length="200" class="form-control">'
-          +'</div>'
-        +'</div>'
-      +'</div>'
-      +'<div class="row">'
-        +'<div class="col-md-12 text-center">'
-          +'<div class="form-group">'
-            +'<input type="button" onclick="initclassroomAnnouncementAdd('+courseId+')" value="Add Announcement" class="btn btn-primary btn-md" >'
-          +'</div>'
-        +'</div>'
-      +'</div>';
-  $('#apimodalform').empty().html(print);
-  console.log('Modal Form print success');
-  $('#apimodal').modal('show');
-}
-
-function manageAnnouncementScheduledTime() {
-  var state = $("#announcement-state").val();
-  if(state == 'PUBLISHED'){
-    $("#announcement-scheduledTime").prop('required',false).prop('disabled',true).attr('type','hidden');
-    $("#announcement-scheduledTime-div").slideUp('1000');
-  } else {
-    $("#announcement-scheduledTime").prop('disabled',false).prop('required',true).attr('type','datetime-local');
-    $("#announcement-scheduledTime-div").slideDown('1000');
-  }
-}
-
-function manageAnnouncementChooseStudent(courseId) {
-  var state = $("#announcement-assigneeMode").val();
-  if(state == 'ALL_STUDENTS'){
-    $("#announcement-chooseStudent").prop('required',false).prop('disabled',true);
-    $("#announcement-chooseStudent-div").slideUp('1000');
-  } else {
-    $("#announcement-chooseStudent").prop('disabled',false).prop('required',true);
-    //function to add students enrolled in the course
-    getCourseStudentListAsOption(courseId,"#announcement-chooseStudent");
-    $("#announcement-chooseStudent-div").slideDown('1000');
-  }
-}
-
-function getCourseStudentListAsOption(courseId,selectedId){
-  return gapi.client.classroom.courses.students.list({
-    "courseId": courseId
-  })
-  .then(function(response) {
-    data=response.result.students;
-    $(selectedId).empty();
-    if (typeof data !== 'undefined' && data.length > 0) {
-      for(i=0; i<data.length; i++){
-        $(selectedId).append('<option value="'+data[i].profile.id+'" data-label="'+data[i].profile.emailAddress+'" data-icon="'+data[i].profile.photoUrl+'">'+data[i].profile.name.fullName+'</option>');
-      }
-    } else {
-      $(selectedId).append('<option value="">No Students Enrolled</option>');
+          +'<div class="row">'
+            +'<div class="col-md-12 text-center">'
+              +'<div class="form-group">'
+                +'<input type="button" onclick="initclassroomTeacherAdd('+courseId+')" value="Add Teacher" class="btn btn-primary btn-md" >'
+              +'</div>'
+            +'</div>'
+          +'</div>';
+      $('#apimodalform').empty().html(print);
+      console.log('Modal Form print success');
+      $('#apimodal').modal('show');
     }
-  },
-  function(err) { console.error("Execute error", err); });
-}
 
-function classroomAnnouncementFormToDataObject(courseId) {
-  console.log('Modal Form Data to object success');
-  // var current = gapi.auth2.getAuthInstance().currentUser.get();
-  data = {
-    assigneeMode: $("#announcement-assigneeMode").val(),
-    state: $("#announcement-state").val(),
-    text: $("#announcement-text").val()
-  }
-  if ($("#announcement-scheduledTime").prop('required')) {
-    date = new Date($("#announcement-scheduledTime").val());
-    isoString = date.toISOString();
-    data['scheduledTime']=isoString;
-  }
-
-  if ($("#announcement-chooseStudent").prop('required')) {
-    studentIdsObj = {}; studentArray = [];
-    studentArray = $("#announcement-chooseStudent").val();
-    studentIdsObj['studentIds']=studentArray;
-    data['individualStudentsOptions']=studentIdsObj;
-  }
-
-  return data;
-}
-
-function initclassroomAnnouncementAdd(courseId) {
-  console.log('Modal Form init Submitted');
-  classroomAnnouncementAdd(courseId,classroomAnnouncementFormToDataObject(courseId));
-}
+    function initclassroomTeacherAdd(courseId) {
+      console.log('Modal Form init Submitted');
+      classroomTeacherAdd(courseId,$("#teacherEmail").val());
+    }
 
 
-function classroomAnnouncementAdd(courseId,data) {
-  return gapi.client.classroom.courses.announcements.create({
-    "courseId":courseId,
-    "resource":data
-  })
-  .then(function(response) {
-    console.log('Modal Form Submitted');
-    // Handle the results here (response.result has the parsed body).
-    console.log("Response", response);
-    Toast.fire({
-      title:"Announcement Add Success",
-      icon: "success"
-    });
-    $('#apimodal').modal('hide');
-    initCourses();
-  },
-  function(err) { console.error("Execute error", err); });
-}
-
-
+    function classroomTeacherAdd(courseId,email) {
+      return gapi.client.classroom.courses.teachers.create({
+        "courseId":courseId,
+        "resource":{
+          "userId" : email
+        }
+      })
+      .then(function(response) {
+        console.log('Modal Form Submitted');
+        // Handle the results here (response.result has the parsed body).
+        console.log("Response", response);
+        Toast.fire({
+          title:"Teacher Add Success",
+          icon: "success"
+        });
+        $('#apimodal').modal('hide');
+        initCourses();
+      },
+      function(err) {
+        console.error("Execute error", err);
+        Toast.fire({
+          title:"Teacher Add Failed",
+          icon: "error"
+        });
+      });
+    }
 
       handleClientLoad();
 
