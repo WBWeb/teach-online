@@ -14,7 +14,7 @@ function classroomCoursesStudents(courseId) {
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].profile.fullName+'</p>';
       }
-      $("#accordion-body-list-"+courseID+"-students").html(data.length);
+      $("#accordion-body-list-"+courseId+"-students").html(data.length);
     } else {
       $("#"+courseId+"-students").html("0");
     }
@@ -35,7 +35,7 @@ function classroomCoursesTeachers(courseId) {
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].profile.fullName+'</p>';
       }
-      $("#accordion-body-list-"+courseID+"-teachers").html(data.length);
+      $("#accordion-body-list-"+courseId+"-teachers").html(data.length);
     } else {
       $("#"+courseId+"-teachers").html("0");
     }
@@ -56,7 +56,7 @@ function classroomCoursesAnnouncements(courseId){
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].text+'</p>';
       }
-      $("#accordion-body-list-"+courseID+"-announcements").html(data.length);
+      $("#accordion-body-list-"+courseId+"-announcements").html(data.length);
     } else {
       $("#"+courseId+"-announcements").html("0");
     }
@@ -77,7 +77,7 @@ function classroomCoursesTopics(courseId){
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].name+'</p>';
       }
-      $("#accordion-body-list-"+courseID+"-topics").html(data.length);
+      $("#accordion-body-list-"+courseId+"-topics").html(data.length);
     } else {
       $("#"+courseId+"-topics").html("0");
     }
@@ -98,7 +98,7 @@ function classroomCoursesCourseWork(courseId){
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].title+'</p>';
       }
-      $("#accordion-body-list-"+courseID+"-courseWork").html(data.length);
+      $("#accordion-body-list-"+courseId+"-courseWork").html(data.length);
     } else {
       $("#"+courseId+"-courseWork").html("0");
     }
@@ -120,7 +120,7 @@ function classroomCoursesAliases(courseId) {
       for(i=0; i<data.length; i++){
         print+='<p>'+data[i].alias+'</p>';
       }
-      $("#accordion-body-list-"+courseID+"-aliases").html(data.length);
+      $("#accordion-body-list-"+courseId+"-aliases").html(data.length);
     } else {
       $("#"+courseId+"-aliases").html("0");
     }
@@ -139,7 +139,7 @@ function getCourseData(courseId) {
 }
 
 //Course Update Functionality
-function modalEditCourse(courseID) {
+function modalEditCourse(courseId) {
   console.log('Modal Clicked');
   $('#apimodal').empty().html(initModalDOM());
   $('#apimodaltitle').html('Edit Course');
@@ -189,13 +189,13 @@ function modalEditCourse(courseID) {
       +'<div class="row">'
         +'<div class="col-md-12 text-center">'
           +'<div class="form-group">'
-            +'<input type="button" onclick="initclassroomCoursesUpdate('+courseID+')" value="Update" class="btn btn-primary btn-md" >'
+            +'<input type="button" onclick="initclassroomCoursesUpdate('+courseId+')" value="Update" class="btn btn-primary btn-md" >'
           +'</div>'
         +'</div>'
       +'</div>';
   $('#apimodalform').empty().html(print);
   console.log('Modal Form print success');
-  classroomCoursesGetFormValue(courseID);
+  classroomCoursesGetFormValue(courseId);
   $('#apimodal').modal('show');
 }
 
@@ -226,8 +226,8 @@ function classroomCoursesGetFormValue(id) {
   function(err) { console.error("Execute error", err); });
 }
 
-function initclassroomCoursesUpdate(courseID) {
-  classroomCoursesUpdate(courseID,classroomCoursesFormToDataObject());
+function initclassroomCoursesUpdate(courseId) {
+  classroomCoursesUpdate(courseId,classroomCoursesFormToDataObject());
 }
 
 
