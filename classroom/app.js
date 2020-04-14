@@ -93,8 +93,8 @@ function classroomCoursesTopics(courseId){
     } else {
       $("#"+courseId+"-topics").html("0");
     }
-    $("#accordion-body-list-"+courseId+"-topics").html(print);
     print+='<span class="btn btn-info btn-sm my-2" onclick="modalCourseAddTopic('+courseId+')" style="padding: 2px 10px 2px 10px;text-align: center;">Add Topic</span>';
+    $("#accordion-body-list-"+courseId+"-topics").html(print);
 
   },function(err) { console.error("Execute error", err); });
 }
@@ -298,7 +298,7 @@ function initModalDOM() {
 
 function initDOM() {
   print='<div class="container-login100" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
-          +'<div class="course-container p-4" >'
+          +'<div class="course-container p-3" >'
             +'<div class="row">'
               +'<div class="col text-left">'
                 +'<span class="login100-form-title p-b-10" style="text-align: left;">Classroom Courses</span>'
@@ -315,7 +315,7 @@ function initDOM() {
                 +'</div>'
               +'</div>'
             +'</div>'
-            +'<div class="row p-t-30 p-b-30" id="course-container" style="max-height:500px; overflow:scroll">'
+            +'<div class="row p-t-30 p-b-30" id="course-container" style="max-height:540px; overflow:scroll">'
             +'</div>'
           +'</div>'
         +'</div>';
