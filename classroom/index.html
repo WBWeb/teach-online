@@ -502,7 +502,64 @@
         });
       }
 
-//Course add Functionality
+//Course add teacher Functionality
+function modalCourseAddTeacher(courseID) {
+  console.log('Modal Clicked');
+  $('#apimodal').empty().html(initModalDOM());
+  $('#apimodaltitle').html('Add Teacher');
+
+  print='<div class="row">'
+        +'<div class="col-md-12">'
+          +'<div class="form-group">'
+            +'<label>Teacher Name</label>'
+            +'<input type="text" max="50" value="" id="teacherName" class="form-control">'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="row">'
+        +'<div class="col-md-12 text-center">'
+          +'<div class="form-group">'
+            +'<input type="button" onclick="initclassroomTeacherAdd()" value="Add Teacher" class="btn btn-primary btn-md" >'
+          +'</div>'
+        +'</div>'
+      +'</div>';
+  $('#apimodalform').empty().html(print);
+  console.log('Modal Form print success');
+  $('#apimodal').modal('show');
+}
+
+function classroomTeacherFormToDataObject(courseID) {
+  console.log('Modal Form Data to object success');
+  // var current = gapi.auth2.getAuthInstance().currentUser.get();
+  data = {
+    name: $("#teacherName").val()
+  }
+  return data;
+}
+
+function initclassroomTeacherAdd(courseID) {
+  console.log('Modal Form init Submitted');
+  classroomTeacherAdd(classroomTeacherFormToDataObject());
+}
+
+
+function classroomTeacherAdd(data) {
+  return gapi.client.classroom.courses.teachers.create(data)
+  .then(function(response) {
+    console.log('Modal Form Submitted');
+    // Handle the results here (response.result has the parsed body).
+    console.log("Response", response);
+    Toast.fire({
+      title:"Teacher Add Success",
+      icon: "success"
+    });
+    $('#apimodal').modal('hide');
+    initCourses();
+  },
+  function(err) { console.error("Execute error", err); });
+}
+
+//Course add announcement Functionality
 function modalCourseAddAnnouncement(courseID) {
   console.log('Modal Clicked');
   $('#apimodal').empty().html(initModalDOM());
