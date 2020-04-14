@@ -230,6 +230,7 @@
             });
           }
           $('[data-toggle="tooltip"]').tooltip();
+          $('.collapse').collapse();
           stopPreloader();
         },
         function(err) { console.error("Execute error", err); });
@@ -261,7 +262,7 @@
 
       function coursesDOM(courses) {
         console.log('dom call success');
-        print='';
+        print=''; var domain = ["students","teachers","announcements","corseWork","aliases","topics"];
           for(i=0; i<courses.length; i++){
             console.log(courses[i]);
               print+='<div class="col-sm-6 col-md-4 col-lg-3">'
@@ -285,13 +286,25 @@
                             +'</div>'
                           +'</div>'
                        +'</div>'
-                       +'<div class="card-body">'
-                         +'<p data-toggle="tooltip" title="View Students"> Students: <span id="'+courses[i].id+'-students">0<span></p>'
-                         +'<p class="mb-2" data-toggle="tooltip" title="View Teachers"> Teachers: <span id="'+courses[i].id+'-teachers">0<span></p>'
-                         +'<p data-toggle="tooltip" title="View Announcements"> Announcements: <span id="'+courses[i].id+'-announcements">0<span></p>'
-                         +'<p data-toggle="tooltip" title="View CourseWorks"> CourseWorks: <span id="'+courses[i].id+'-corseWorks">0<span></p>'
-                         +'<p class="mb-2" data-toggle="tooltip" title="View Topics"> Topics: <span id="'+courses[i].id+'-topics">0<span></p>'
-                         +'<p data-toggle="tooltip" title="View Live Classes"> Live Classes: <span id="'+courses[i].id+'-liveclasses">0<span></p>'
+                       +'<div id="card-body-'+courses[i].id+'" class="card-body">'
+                        +'<div class="accordion" id="accordion-'+courseID+'">';
+                           for (item of domain) {
+                             var print+=''
+                                         +'<div class="card">'
+                                           +'<div class="card-header" id="accordion-heading-'+courseID+'-'+item+'">'
+                                             +'<h2 class="mb-0">'
+                                               +'<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-collapse-'+courseID+'-'+item+'" aria-expanded="true" aria-controls="accordion-collapse-'+courseID+'-'+item+'">'
+                                                +ucFirst(item)+': <span id="'+courseID+'-'+item+'">0<span>'
+                                               +'</button>'
+                                             +'</h2>'
+                                           +'</div>'
+                                           +'<div id="accordion-collapse-'+courseID+'-'+item+'" class="collapse show" aria-labelledby="accordion-heading-'+courseID+'-'+item+'" data-parent="#accordion-'+courseID+'">'
+                                             +'<div id="accordion-body-list-'+courseID+'-'+item+'" class="card-body">'
+                                             +'</div>'
+                                           +'</div>'
+                                         +'</div>';
+                          }
+                          print+='</div>'
                        +'</div>'
                        +'<div class="card-footer">'
                          +'<div class="flex-c">'
@@ -304,7 +317,7 @@
                        +'</div>'
                       +'</div>'
                     +'</div>';
-                    getCourseDataCounts(courses[i].id);
+                    getCourseData(courses[i].id);
             }
         return print;
       }
@@ -314,6 +327,10 @@
 
 
       handleClientLoad();
+
+      function ucFirst(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
 
 
 

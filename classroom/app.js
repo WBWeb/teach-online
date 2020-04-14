@@ -1,6 +1,6 @@
 //Course counters Functionality
 
-function classroomCoursesStudentsCount(courseId) {
+function classroomCoursesStudents(courseId) {
   return gapi.client.classroom.courses.students.list({
     "courseId": courseId
   }).then(function(response) {
@@ -9,15 +9,19 @@ function classroomCoursesStudentsCount(courseId) {
     if (typeof data !== 'undefined' && data.length > 0) {
       console.log("data-getStudentsCount:", data);
       console.log(courseId+"-getStudentsCount:", data.length);
-      console.log(data+"-getStudentsCount:", data.length);
       $("#"+courseId+"-students").html(data.length);
+      print="";
+      for(i=0; i<data.length; i++){
+        print+='<p>'+data[i].profile.fullName+'</p>';
+      }
+      $("#accordion-body-list-"+courseID+"-students").html(data.length);
     } else {
       $("#"+courseId+"-students").html("0");
     }
   },function(err) { console.error("Execute error", err); });
 }
 
-function classroomCoursesTeachersCount(courseId) {
+function classroomCoursesTeachers(courseId) {
   return gapi.client.classroom.courses.teachers.list({
     "courseId": courseId
   }).then(function(response) {
@@ -27,13 +31,18 @@ function classroomCoursesTeachersCount(courseId) {
       console.log("data-getTeachersCount:", data);
       console.log(courseId+"-getTeachersCount:", data.length);
       $("#"+courseId+"-teachers").html(data.length);
+      print="";
+      for(i=0; i<data.length; i++){
+        print+='<p>'+data[i].profile.fullName+'</p>';
+      }
+      $("#accordion-body-list-"+courseID+"-teachers").html(data.length);
     } else {
       $("#"+courseId+"-teachers").html("0");
     }
   },function(err) { console.error("Execute error", err); });
 }
 
-function classroomCoursesAnnouncementsCount(courseId){
+function classroomCoursesAnnouncements(courseId){
   return gapi.client.classroom.courses.announcements.list({
     "courseId": courseId
   }).then(function(response) {
@@ -43,29 +52,39 @@ function classroomCoursesAnnouncementsCount(courseId){
       console.log("data-getAnnouncementsCount:", data);
       console.log(courseId+"-getAnnouncementsCount:", data.length);
       $("#"+courseId+"-announcements").html(data.length);
+      print="";
+      for(i=0; i<data.length; i++){
+        print+='<p>'+data[i].text+'</p>';
+      }
+      $("#accordion-body-list-"+courseID+"-announcements").html(data.length);
     } else {
       $("#"+courseId+"-announcements").html("0");
     }
   },function(err) { console.error("Execute error", err); });
 }
 
-function classroomCoursesTopicsCount(courseId){
+function classroomCoursesTopics(courseId){
   return gapi.client.classroom.courses.topics.list({
     "courseId": courseId
   }).then(function(response) {
     // Handle the results here (response.result has the parsed body).
-    data=response.result.topics;
+    data=response.result.topic;
     if (typeof data !== 'undefined' && data.length > 0) {
       console.log("data-getTopicsCount:", data);
       console.log(courseId+"-getTopicsCount:", data.length);
       $("#"+courseId+"-topics").html(data.length);
+      print="";
+      for(i=0; i<data.length; i++){
+        print+='<p>'+data[i].name+'</p>';
+      }
+      $("#accordion-body-list-"+courseID+"-topics").html(data.length);
     } else {
       $("#"+courseId+"-topics").html("0");
     }
   },function(err) { console.error("Execute error", err); });
 }
 
-function classroomCoursesCourseWorkCount(courseId){
+function classroomCoursesCourseWork(courseId){
   return gapi.client.classroom.courses.courseWork.list({
     "courseId": courseId
   }).then(function(response) {
@@ -75,13 +94,18 @@ function classroomCoursesCourseWorkCount(courseId){
       console.log("data-getCourseWorkCount:", data);
       console.log(courseId+"-getCourseWorkCount:", data.length);
       $("#"+courseId+"-courseWork").html(data.length);
+      print="";
+      for(i=0; i<data.length; i++){
+        print+='<p>'+data[i].title+'</p>';
+      }
+      $("#accordion-body-list-"+courseID+"-courseWork").html(data.length);
     } else {
       $("#"+courseId+"-courseWork").html("0");
     }
   },function(err) { console.error("Execute error", err); });
 }
 
-function classroomCoursesAliasesCount(courseId) {
+function classroomCoursesAliases(courseId) {
   return gapi.client.classroom.courses.aliases.list({
     "courseId": courseId
   })
@@ -92,6 +116,11 @@ function classroomCoursesAliasesCount(courseId) {
       console.log("data-getAliasesCount:", data);
       console.log(courseId+"-getAliasesCount:", data.length);
       $("#"+courseId+"-aliases").html(data.length);
+      print="";
+      for(i=0; i<data.length; i++){
+        print+='<p>'+data[i].alias+'</p>';
+      }
+      $("#accordion-body-list-"+courseID+"-aliases").html(data.length);
     } else {
       $("#"+courseId+"-aliases").html("0");
     }
@@ -99,14 +128,14 @@ function classroomCoursesAliasesCount(courseId) {
   function(err) { console.error("Execute error", err); });
 }
 
-function getCourseDataCounts(courseId) {
-  classroomCoursesStudentsCount(courseId);
-  classroomCoursesTeachersCount(courseId);
+function getCourseData(courseId) {
+  classroomCoursesStudents(courseId);
+  classroomCoursesTeachers(courseId);
 
-  classroomCoursesAnnouncementsCount(courseId);
-  classroomCoursesCourseWorkCount(courseId);
-  classroomCoursesTopicsCount(courseId);
-  classroomCoursesAliasesCount(courseId);
+  classroomCoursesAnnouncements(courseId);
+  classroomCoursesCourseWork(courseId);
+  classroomCoursesTopics(courseId);
+  classroomCoursesAliases(courseId);
 }
 
 //Course Update Functionality
