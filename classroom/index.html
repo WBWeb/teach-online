@@ -503,7 +503,7 @@
       }
 
 //Course add Functionality
-function modalCourseAddAnnouncement(courseID) {
+function modalCourseAddAnnouncement(courseId) {
   console.log('Modal Clicked');
   $('#apimodal').empty().html(initModalDOM());
   $('#apimodaltitle').html('Add Announcement');
@@ -512,7 +512,7 @@ function modalCourseAddAnnouncement(courseID) {
         +'<div class="col-md-6">'
           +'<div class="form-group">'
             +'<label>Assignee Mode</label>'
-            +'<select id="announcement-assigneeMode" onchange="manageAnnouncementChooseStudent('+courseID+')" class="form-control">'
+            +'<select id="announcement-assigneeMode" onchange="manageAnnouncementChooseStudent('+courseId+')" class="form-control">'
               +'<option>ALL_STUDENTS</option>'
               +'<option>INDIVIDUAL_STUDENTS</option>'
             +'</select>'
@@ -556,7 +556,7 @@ function modalCourseAddAnnouncement(courseID) {
       +'<div class="row">'
         +'<div class="col-md-12 text-center">'
           +'<div class="form-group">'
-            +'<input type="button" onclick="initclassroomAnnouncementAdd('+courseID+')" value="Add Announcement" class="btn btn-primary btn-md" >'
+            +'<input type="button" onclick="initclassroomAnnouncementAdd('+courseId+')" value="Add Announcement" class="btn btn-primary btn-md" >'
           +'</div>'
         +'</div>'
       +'</div>';
@@ -576,7 +576,7 @@ function manageAnnouncementScheduledTime() {
   }
 }
 
-function manageAnnouncementChooseStudent(courseID) {
+function manageAnnouncementChooseStudent(courseId) {
   var state = $("#announcement-assigneeMode").val();
   if(state == 'ALL_STUDENTS'){
     $("#announcement-chooseStudent").prop('required',false).prop('disabled',true);
@@ -584,12 +584,12 @@ function manageAnnouncementChooseStudent(courseID) {
   } else {
     $("#announcement-chooseStudent").prop('disabled',false).prop('required',true);
     //function to add students enrolled in the course
-    getCourseStudentListAsOption(courseID,"#announcement-chooseStudent");
+    getCourseStudentListAsOption(courseId,"#announcement-chooseStudent");
     $("#announcement-chooseStudent-div").slideDown('1000');
   }
 }
 
-function getCourseStudentListAsOption(courseID,selectedId){
+function getCourseStudentListAsOption(courseId,selectedId){
   return gapi.client.classroom.courses.students.list({
     "courseId": courseId
   })
@@ -606,7 +606,7 @@ function getCourseStudentListAsOption(courseID,selectedId){
   function(err) { console.error("Execute error", err); });
 }
 
-function classroomAnnouncementFormToDataObject(courseID) {
+function classroomAnnouncementFormToDataObject(courseId) {
   console.log('Modal Form Data to object success');
   // var current = gapi.auth2.getAuthInstance().currentUser.get();
   data = {
