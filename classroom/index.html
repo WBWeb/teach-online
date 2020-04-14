@@ -403,6 +403,7 @@
                          +'<div class="dropup">'
                            +'<button class="login100-button-a" data-toggle="dropdown" title="Manage Online Classes" aria-haspopup="true" aria-expanded="false"><i class="fa fa-video-camera"></i></button>'
                            +'<div class="dropdown-menu">'
+                             +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalGmeetAdd('+courses[i].id+')">Google Meet</a>'
                              +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalYoutubeAdd('+courses[i].id+')">Youtube</a>'
                              +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalZoomAdd('+courses[i].id+')">Zoom</a>'
                            +'</div>'
@@ -522,137 +523,6 @@
     }
 
 
-//Course add student Functionality
-  function modalCourseAddStudent(courseId) {
-    console.log('Modal Clicked');
-    $('#apimodal').empty().html(initModalDOM());
-    $('#apimodaltitle').html('Add Student');
-
-    print='<div class="row">'
-          +'<div class="col-md-12">'
-            +'<div class="form-group">'
-              +'<label>Student Email ID</label>'
-              +'<input value="" type="text" max-length="100" id="studentEmail" class="form-control">'
-            +'</div>'
-          +'</div>'
-        +'</div>'
-        +'<div class="row">'
-          +'<div class="col-md-12">'
-            +'<div class="form-group">'
-              +'<p class="muted">You can add student only if you are subscribed to G Suite for Education, you email id has admin Access and you are verified owner this website domain.</p>'
-            +'</div>'
-          +'</div>'
-        +'</div>'
-        +'<div class="row">'
-          +'<div class="col-md-12 text-center">'
-            +'<div class="form-group">'
-              +'<input type="button" onclick="initclassroomStudentAdd('+courseId+')" value="Add Student" class="btn btn-primary btn-md" >'
-            +'</div>'
-          +'</div>'
-        +'</div>';
-    $('#apimodalform').empty().html(print);
-    console.log('Modal Form print success');
-    $('#apimodal').modal('show');
-  }
-
-  function initclassroomStudentAdd(courseId) {
-    console.log('Modal Form init Submitted');
-    classroomStudentAdd(courseId,$("#studentEmail").val());
-  }
-
-
-  function classroomStudentAdd(courseId,email) {
-    return gapi.client.classroom.courses.students.create({
-      "courseId":courseId,
-      "resource":{
-        "userId" : email
-      }
-    })
-    .then(function(response) {
-      console.log('Modal Form Submitted');
-      // Handle the results here (response.result has the parsed body).
-      console.log("Response", response);
-      Toast.fire({
-        title:"Student Add Success",
-        icon: "success"
-      });
-      $('#apimodal').modal('hide');
-      initCourses();
-    },
-    function(err) {
-      console.error("Execute error", err);
-      Toast.fire({
-        title:"Student Add Failed",
-        icon: "error"
-      });
-    });
-  }
-
-  //Course add teacher Functionality
-  function modalCourseAddTeacher(courseId) {
-    console.log('Modal Clicked');
-    $('#apimodal').empty().html(initModalDOM());
-    $('#apimodaltitle').html('Add Teacher');
-
-    print='<div class="row">'
-          +'<div class="col-md-12">'
-            +'<div class="form-group">'
-              +'<label>Teacher Email</label>'
-              +'<input type="text" max="100" value="" id="teacherEmail" class="form-control">'
-            +'</div>'
-          +'</div>'
-        +'</div>'
-        +'<div class="row">'
-          +'<div class="col-md-12">'
-            +'<div class="form-group">'
-              +'<p class="muted">You can add teacher only if you are subscribed to G Suite for Education, you email id has admin Access and you are verified owner this website domain.</p>'
-            +'</div>'
-          +'</div>'
-        +'</div>'
-        +'<div class="row">'
-          +'<div class="col-md-12 text-center">'
-            +'<div class="form-group">'
-              +'<input type="button" onclick="initclassroomTeacherAdd('+courseId+')" value="Add Teacher" class="btn btn-primary btn-md" >'
-            +'</div>'
-          +'</div>'
-        +'</div>';
-    $('#apimodalform').empty().html(print);
-    console.log('Modal Form print success');
-    $('#apimodal').modal('show');
-  }
-
-  function initclassroomTeacherAdd(courseId) {
-    console.log('Modal Form init Submitted');
-    classroomTeacherAdd(courseId,$("#teacherEmail").val());
-  }
-
-
-  function classroomTeacherAdd(courseId,email) {
-    return gapi.client.classroom.courses.teachers.create({
-      "courseId":courseId,
-      "resource":{
-        "userId" : email
-      }
-    })
-    .then(function(response) {
-      console.log('Modal Form Submitted');
-      // Handle the results here (response.result has the parsed body).
-      console.log("Response", response);
-      Toast.fire({
-        title:"Teacher Add Success",
-        icon: "success"
-      });
-      $('#apimodal').modal('hide');
-      initCourses();
-    },
-    function(err) {
-      console.error("Execute error", err);
-      Toast.fire({
-        title:"Teacher Add Failed",
-        icon: "error"
-      });
-    });
-  }
 
   handleClientLoad();
 
