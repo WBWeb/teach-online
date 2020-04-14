@@ -512,7 +512,7 @@ function modalCourseAddAnnouncement(courseID) {
         +'<div class="col-md-6">'
           +'<div class="form-group">'
             +'<label>Assignee Mode</label>'
-            +'<select id="announcement-assigneeMode" class="form-control">'
+            +'<select id="announcement-assigneeMode" onchange="manageAnnouncementChooseStudent('+courseID+')" class="form-control">'
               +'<option>ALL_STUDENTS</option>'
               +'<option>INDIVIDUAL_STUDENTS</option>'
             +'</select>'
@@ -534,6 +534,14 @@ function modalCourseAddAnnouncement(courseID) {
           +'<div class="form-group">'
             +'<label>Scheduled Time</label>'
             +'<input value="" type="hidden" id="announcement-scheduledTime" class="form-control" disabled>'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="row" id="announcement-chooseStudent-div" style="display:none;">'
+        +'<div class="col-md-12">'
+          +'<div class="form-group">'
+            +'<label>Scheduled Time</label>'
+            +'<select id="announcement-chooseStudent" class="form-control" disabled></select>'
           +'</div>'
         +'</div>'
       +'</div>'
@@ -565,6 +573,18 @@ function manageAnnouncementScheduledTime() {
   } else {
     $("#announcement-scheduledTime").removeAttr('disabled').addAttr('required').attr('type','datetime-local');
     $("#announcement-scheduledTime-div").slideDown('1000');
+  }
+}
+
+function manageAnnouncementChooseStudent(courseID) {
+  var state = $("#announcement-assigneeMode").val();
+  if(state == 'ALL_STUDENTS'){
+    $("#announcement-chooseStudent").removeAttr('required').addAttr('disabled');
+    $("#announcement-chooseStudent-div").slideUp('1000');
+  } else {
+    $("#announcement-chooseStudent").removeAttr('disabled').addAttr('required');
+    //function to add students enrolled in the course
+    $("#announcement-chooseStudent-div").slideDown('1000');
   }
 }
 
