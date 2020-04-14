@@ -595,6 +595,7 @@ function getCourseStudentListAsOption(courseId,selectedId){
   })
   .then(function(response) {
     data=response.result.students;
+    $(selectedId).empty();
     if (typeof data !== 'undefined' && data.length > 0) {
       for(i=0; i<data.length; i++){
         $(selectedId).append('<option value="'+data[i].profile.id+'" data-label="'+data[i].profile.emailAddress+'" data-icon="'+data[i].profile.photoUrl+'">'+data[i].profile.name.fullName+'</option>');
