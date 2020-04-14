@@ -503,7 +503,7 @@
       }
 
 //Course add teacher Functionality
-function modalCourseAddTeacher(courseID) {
+function modalCourseAddTeacher(courseId) {
   console.log('Modal Clicked');
   $('#apimodal').empty().html(initModalDOM());
   $('#apimodaltitle').html('Add Teacher');
@@ -528,7 +528,7 @@ function modalCourseAddTeacher(courseID) {
   $('#apimodal').modal('show');
 }
 
-function classroomTeacherFormToDataObject(courseID) {
+function classroomTeacherFormToDataObject(courseId) {
   console.log('Modal Form Data to object success');
   // var current = gapi.auth2.getAuthInstance().currentUser.get();
   data = {
@@ -537,7 +537,7 @@ function classroomTeacherFormToDataObject(courseID) {
   return data;
 }
 
-function initclassroomTeacherAdd(courseID) {
+function initclassroomTeacherAdd(courseId) {
   console.log('Modal Form init Submitted');
   classroomTeacherAdd(classroomTeacherFormToDataObject());
 }
