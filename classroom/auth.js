@@ -56,6 +56,7 @@ function revokeAccess() {
 
 function setSigninStatus(isSignedIn) {
   var user = GoogleAuth.currentUser.get();
+  console.log(user);
   var isAuthorized = user.hasGrantedScopes(SCOPE);
   if (isAuthorized) {
     startApp();
@@ -67,3 +68,9 @@ function setSigninStatus(isSignedIn) {
 function updateSigninStatus(isSignedIn) {
   setSigninStatus();
 }
+
+// if(!localStorage.getItem("user-ownerId")) {
+//   localStorage.setItem('user-ownerId', GoogleAuth.currentUser.getId());
+// } else{
+//   $('#productSku').val(localStorage.getItem('user-ownerId'));
+// }
