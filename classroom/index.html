@@ -548,16 +548,10 @@ function modalCourseAddTopic(courseId) {
   $('#apimodal').modal('show');
 }
 
-function classroomTopicFormToDataObject(courseId) {
-  console.log('Modal Form Data to object success');
-  // var current = gapi.auth2.getAuthInstance().currentUser.get();
-  var topicName = $("#topicName").val()
-  return topicName;
-}
 
 function initclassroomTopicAdd(courseId) {
   console.log('Modal Form init Submitted');
-  classroomTopicAdd(courseId,classroomTopicFormToDataObject(courseId));
+  classroomTopicAdd(courseId,$('#topicName').val());
 }
 
 
@@ -579,7 +573,13 @@ function classroomTopicAdd(courseId,topicName) {
     $('#apimodal').modal('hide');
     initCourses();
   },
-  function(err) { console.error("Execute error", err); });
+  function(err) { 
+    console.error("Execute error", err); 
+    Toast.fire({
+      title:"Error Adding Topic",
+      icon: "error"
+    });
+  });
 }
  
 
