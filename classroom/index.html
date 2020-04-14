@@ -450,10 +450,10 @@
         title= $("#ytBroadcastTitle").val();
         date = new Date($("#ytBroadcastScheduledStartTime").val());
         isoString = date.toISOString();
-        scheduledStartTime: date;
+        scheduledStartTime= date;
         date = new Date($("#ytBroadcastScheduledEndTime").val());
         isoString = date.toISOString();
-        scheduledEndTime: date;
+        scheduledEndTime= date;
         description = 'beg-courseId='+courseId+'&ownerId='+current.Pt.MU+'-end';
         youtubeLiveBroadcastsInsert(title,scheduledStartTime,scheduledEndTime,description);
       }
