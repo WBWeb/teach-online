@@ -561,6 +561,8 @@ function classroomTeacherAdd(data) {
 
 //Course add announcement Functionality
 function modalCourseAddAnnouncement(courseID) {
+//Course add Functionality
+function modalCourseAddAnnouncement(courseId) {
   console.log('Modal Clicked');
   $('#apimodal').empty().html(initModalDOM());
   $('#apimodaltitle').html('Add Announcement');
@@ -569,7 +571,7 @@ function modalCourseAddAnnouncement(courseID) {
         +'<div class="col-md-6">'
           +'<div class="form-group">'
             +'<label>Assignee Mode</label>'
-            +'<select id="announcement-assigneeMode" onchange="manageAnnouncementChooseStudent('+courseID+')" class="form-control">'
+            +'<select id="announcement-assigneeMode" onchange="manageAnnouncementChooseStudent('+courseId+')" class="form-control">'
               +'<option>ALL_STUDENTS</option>'
               +'<option>INDIVIDUAL_STUDENTS</option>'
             +'</select>'
@@ -581,7 +583,6 @@ function modalCourseAddAnnouncement(courseID) {
             +'<select id="announcement-state" onchange="manageAnnouncementScheduledTime()" class="form-control" required>'
               +'<option>PUBLISHED</option>'
               +'<option>DRAFT</option>'
-              +'<option>DELETED</option>'
             +'</select>'
           +'</div>'
         +'</div>'
@@ -598,7 +599,7 @@ function modalCourseAddAnnouncement(courseID) {
         +'<div class="col-md-12">'
           +'<div class="form-group">'
             +'<label>Select Students</label>'
-            +'<select id="announcement-chooseStudent" class="form-control" disabled></select>'
+            +'<select multiple id="announcement-chooseStudent" class="form-control" disabled></select>'
           +'</div>'
         +'</div>'
       +'</div>'
@@ -613,7 +614,7 @@ function modalCourseAddAnnouncement(courseID) {
       +'<div class="row">'
         +'<div class="col-md-12 text-center">'
           +'<div class="form-group">'
-            +'<input type="button" onclick="initclassroomAnnouncementAdd('+courseID+')" value="Add Announcement" class="btn btn-primary btn-md" >'
+            +'<input type="button" onclick="initclassroomAnnouncementAdd('+courseId+')" value="Add Announcement" class="btn btn-primary btn-md" >'
           +'</div>'
         +'</div>'
       +'</div>';
@@ -633,7 +634,7 @@ function manageAnnouncementScheduledTime() {
   }
 }
 
-function manageAnnouncementChooseStudent(courseID) {
+function manageAnnouncementChooseStudent(courseId) {
   var state = $("#announcement-assigneeMode").val();
   if(state == 'ALL_STUDENTS'){
     $("#announcement-chooseStudent").prop('required',false).prop('disabled',true);
@@ -641,22 +642,50 @@ function manageAnnouncementChooseStudent(courseID) {
   } else {
     $("#announcement-chooseStudent").prop('disabled',false).prop('required',true);
     //function to add students enrolled in the course
+    getCourseStudentListAsOption(courseId,"#announcement-chooseStudent");
     $("#announcement-chooseStudent-div").slideDown('1000');
   }
 }
 
-function classroomAnnouncementFormToDataObject(courseID) {
+function getCourseStudentListAsOption(courseId,selectedId){
+  return gapi.client.classroom.courses.students.list({
+    "courseId": courseId
+  })
+  .then(function(response) {
+    data=response.result.students;
+    $(selectedId).empty();
+    if (typeof data !== 'undefined' && data.length > 0) {
+      for(i=0; i<data.length; i++){
+        $(selectedId).append('<option value="'+data[i].profile.id+'" data-label="'+data[i].profile.emailAddress+'" data-icon="'+data[i].profile.photoUrl+'">'+data[i].profile.name.fullName+'</option>');
+      }
+    } else {
+      $(selectedId).append('<option value="">No Students Enrolled</option>');
+    }
+  },
+  function(err) { console.error("Execute error", err); });
+}
+
+function classroomAnnouncementFormToDataObject(courseId) {
   console.log('Modal Form Data to object success');
   // var current = gapi.auth2.getAuthInstance().currentUser.get();
-  // date = new Date($("#announcement-scheduledTime").val());
-  // isoString = date.toISOString();
-  // scheduledTime= date;
   data = {
     assigneeMode: $("#announcement-assigneeMode").val(),
-    // scheduledTime: scheduledTime,
     state: $("#announcement-state").val(),
     text: $("#announcement-text").val()
   }
+  if ($("#announcement-scheduledTime").prop('required')) {
+    date = new Date($("#announcement-scheduledTime").val());
+    isoString = date.toISOString();
+    data['scheduledTime']=isoString;
+  }
+
+  if ($("#announcement-chooseStudent").prop('required')) {
+    studentIdsObj = {}; studentArray = [];
+    studentArray = $("#announcement-chooseStudent").val();
+    studentIdsObj['studentIds']=studentArray;
+    data['individualStudentsOptions']=studentIdsObj;
+  }
+
   return data;
 }
 
