@@ -371,7 +371,7 @@
                               +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
                               +'<div class="dropdown-menu">'
                                 +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>'
-                                +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalDeleteCourse('+courses[i].id+')">Delete Course</a>'
+                                +'<a class="dropdown-item" href="javascript:void(0)" onclick="deleteCourse('+courses[i].id+')">Delete Course</a>'
                               +'</div>'
                             +'</div>'
                           +'</div>'
@@ -573,15 +573,59 @@ function classroomTopicAdd(courseId,topicName) {
     $('#apimodal').modal('hide');
     initCourses();
   },
-  function(err) { 
-    console.error("Execute error", err); 
+  function(err) {
+    console.error("Execute error", err);
     Toast.fire({
       title:"Error Adding Topic",
       icon: "error"
     });
   });
 }
- 
+
+
+
+//courses - delete
+function deleteCourse(courseId) {
+  Pop.fire({
+    text: "Are you sure you want to delete the course ?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.value) {
+      classroomCoursesDelete(courseId);
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Pop.fire({
+        title: "Cancelled",
+        icon: 'error',
+        timer: 2000,
+        timerProgressBar: true
+      });
+    }
+  });
+}
+
+function classroomCoursesDelete(id) {
+  return gapi.client.classroom.courses.delete({"id": id})
+  .then(function(response) {
+    console.log("Deleted Course Response", response);
+    Pop.fire({
+      title: "Deleted!",
+      icon: 'success',
+      timer: 2000,
+      timerProgressBar: true
+    });
+  },
+  function(err) {
+    console.error("Execute error", err);
+    Toast.fire({
+      title: "An error occured",
+      icon: 'error'
+    });
+  });
+}
 
 
   handleClientLoad();
