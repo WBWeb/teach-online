@@ -627,6 +627,52 @@ function classroomCoursesDelete(id) {
   });
 }
 
+//Course teacher - delete
+function deleteCourseTeacher(courseId,userId) {
+  Pop.fire({
+    text: "Are you sure you want to remove teacher from this course ?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, remove it!',
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.value) {
+      classroomCoursesTeacherDelete(courseId,userId);
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Pop.fire({
+        title: "Cancelled",
+        icon: 'error',
+        timer: 2000,
+        timerProgressBar: true
+      });
+    }
+  });
+}
+
+function classroomCoursesTeacherDelete(courseId,userId) {
+  return gapi.client.classroom.courses.teachers.delete({
+    "courseId": courseId,
+    "userId": userId
+  })
+  .then(function(response) {
+    console.log("Removed Teacher Response", response);
+    Pop.fire({
+      title: "Removed!",
+      icon: 'success',
+      timer: 2000,
+      timerProgressBar: true
+    });
+  },
+  function(err) {
+    console.error("Execute error", err);
+    Toast.fire({
+      title: "An error occured",
+      icon: 'error'
+    });
+  });
+}
+
 
   handleClientLoad();
 
