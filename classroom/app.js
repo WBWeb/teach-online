@@ -14,7 +14,7 @@ function classroomCoursesStudents(courseId) {
       console.log(courseId+"-getStudentsCount:", data.length);
       $("#"+courseId+"-students").html(data.length);
       for(i=0; i<data.length; i++){
-        print+='<p onclick="popStudentDetails('+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small">'+data[i].profile.name.fullName+'</p>';
+        print+='<p onclick="popStudentDetails('+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small"><span>'+data[i].profile.name.fullName+'<span></p>';
       }
     } else {
       $("#"+courseId+"-students").html("0");
@@ -113,7 +113,7 @@ function classroomCoursesCourseWork(courseId){
       $("#"+courseId+"-courseWork").html(data.length);
 
       for(i=0; i<data.length; i++){
-        print+='<p class="popUp" onclick="popCourseWork('+data[i].id+')" data-toggle="tooltip" title="State: '+data[i].state+'"> '+(i+1)+':'+data[i].id+':'+data[i].workType+'</p>';
+        print+='<p class="popUp" onclick="popCourseWork('+data[i].id+')" data-toggle="tooltip" title="State: '+data[i].state+'"> '+(i+1)+' - '+data[i].id+' - '+data[i].workType+'</p>';
       }
     } else {
       $("#"+courseId+"-courseWork").html("0");
