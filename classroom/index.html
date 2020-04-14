@@ -134,6 +134,9 @@
           background: #fffffff0;
           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         }
+        .h5-responsive{
+          line-height: 50px;
+        }
 
         </style>
   </head>
@@ -186,14 +189,9 @@
 
     <script>
     $body = $("body");
-    $('.class-code').hover(
-      function () {
-        $(this).html($(this).attr("code"));
-      },
-      function () {
-        $(this).html($(this).attr("default"));
-      }
-    );
+    $('.dropdown').hover(function(){
+      $('.dropdown-toggle', this).trigger('click');
+    });
     var crs;
 
     $('#app').empty().html(initDOM());
@@ -240,17 +238,23 @@
       function initNavDOM() {
         var current = gapi.auth2.getAuthInstance().currentUser.get();
         print ='<nav class="navbar sticky-top navbar-light">'
-          +'<div class="card text-right navcard">'
-            +'<div class="row m-0" class="justify-content: flex-end;">'
-              +'<div class="col-10 col-md-3 offset-md-7 text-center text-sm-right m-t-18" style="padding: 0;">'
-              +'<h5 class="h5-responsive" style="font-weight: 600;">Hi '+current.Pt.pW+'</h5>'
-              +'</div>'
-              +'<div class="col-2 text-right" style="padding: 10px;">'
-                +'<img src="'+current.Pt.QK+'" height="50px" width="50px" class="img-card">'
-              +'</div>'
-            +'</div>'
-          +'</div>'
-        +'</nav>';
+                +'<div class="card text-right navcard">'
+                  +'<div class="row m-0" style="padding: 10px;">'
+                    +'<div class="col text-center text-sm-right">'
+                    +'<h5 class="h5-responsive" style="font-weight: 600;">Hi '+current.Pt.pW+'</h5>'
+                    +'</div>'
+                    +'<div class="text-right" style="width:70px">'
+                      +'<div class="dropleft">'
+                        +'<a data-toggle="dropdown" title="menu" aria-haspopup="true" aria-expanded="false"><img src="'+current.Pt.QK+'" height="50px" width="50px" class="img-card"></button>'
+                        +'<div class="dropdown-menu">'
+                          +'<a class="dropdown-item" href="javascript:void(0)" onclick="history.go(-1)">Go Back</a>'
+                          +'<a class="dropdown-item" href="javascript:void(0)" id="sign-in-or-out-button"> <i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>'
+                        +'</div>'
+                      +'</div>'
+                    +'</div>'
+                  +'</div>'
+                +'</div>'
+              +'</nav>';
 
         return print;
       }
