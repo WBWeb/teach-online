@@ -568,10 +568,10 @@ function modalCourseAddAnnouncement(courseID) {
 function manageAnnouncementScheduledTime() {
   var state = $("#announcement-state").val();
   if(state == 'PUBLISHED'){
-    $("#announcement-scheduledTime").removeAttr('required').addAttr('disabled','true').attr('type','hidden');
+    $("#announcement-scheduledTime").prop('required',false).prop('disabled',true).attr('type','hidden');
     $("#announcement-scheduledTime-div").slideUp('1000');
   } else {
-    $("#announcement-scheduledTime").removeAttr('disabled').addAttr('required','true').attr('type','datetime-local');
+    $("#announcement-scheduledTime").prop('disabled',false).prop('required',true).attr('type','datetime-local');
     $("#announcement-scheduledTime-div").slideDown('1000');
   }
 }
@@ -579,10 +579,10 @@ function manageAnnouncementScheduledTime() {
 function manageAnnouncementChooseStudent(courseID) {
   var state = $("#announcement-assigneeMode").val();
   if(state == 'ALL_STUDENTS'){
-    $("#announcement-chooseStudent").removeAttr('required').addAttr('disabled');
+    $("#announcement-chooseStudent").prop('required',false).prop('disabled',true);
     $("#announcement-chooseStudent-div").slideUp('1000');
   } else {
-    $("#announcement-chooseStudent").removeAttr('disabled').addAttr('required');
+    $("#announcement-chooseStudent").prop('disabled',false).prop('required',true);
     //function to add students enrolled in the course
     $("#announcement-chooseStudent-div").slideDown('1000');
   }
