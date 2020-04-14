@@ -521,7 +521,7 @@ function modalCourseAddAnnouncement(courseID) {
         +'<div class="col-md-6">'
           +'<div class="form-group">'
             +'<label>State</label>'
-            +'<select id="announcement-state" onchange="manageAnnouncementScheduledTime()" class="form-control">'
+            +'<select id="announcement-state" onchange="manageAnnouncementScheduledTime()" class="form-control" required>'
               +'<option>PUBLISHED</option>'
               +'<option>DRAFT</option>'
               +'<option>DELETED</option>'
@@ -533,7 +533,7 @@ function modalCourseAddAnnouncement(courseID) {
         +'<div class="col-md-12">'
           +'<div class="form-group">'
             +'<label>Scheduled Time</label>'
-            +'<input value="" type="datetime-local" id="announcement-scheduledTime" class="form-control">'
+            +'<input value="" type="hidden" id="announcement-scheduledTime" class="form-control" disabled>'
           +'</div>'
         +'</div>'
       +'</div>'
@@ -560,10 +560,10 @@ function modalCourseAddAnnouncement(courseID) {
 function manageAnnouncementScheduledTime() {
   var state = $("#announcement-state").val();
   if(state == 'PUBLISHED'){
-    $("#announcement-scheduledTime").attr('disabled','true').attr('type','hidden');
+    $("#announcement-scheduledTime").removeAttr('required').addAttr('disabled').attr('type','hidden');
     $("#announcement-scheduledTime-div").slideUp('1000');
   } else {
-    $("#announcement-scheduledTime").attr('disabled','false').attr('required','true').attr('type','datetime-local');
+    $("#announcement-scheduledTime").removeAttr('disabled').addAttr('required').attr('type','datetime-local');
     $("#announcement-scheduledTime-div").slideDown('1000');
   }
 }
