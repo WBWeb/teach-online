@@ -297,7 +297,7 @@ function initModalDOM() {
 }
 
 function initDOM() {
-  print='<div class="container-login100" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
+  print='<div class="container-classroom" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
           +'<div class="course-container p-3" >'
             +'<div class="row">'
               +'<div class="col text-left">'
