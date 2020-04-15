@@ -165,19 +165,19 @@ function classroomCoursesAliases(courseId) {
 }
 
 function getCourseData(courseId) {
-  classroomCoursesStudents(courseId);
-  classroomCoursesTeachers(courseId);
-  classroomCoursesAnnouncements(courseId);
-  classroomCoursesCourseWork(courseId);
-  classroomCoursesTopics(courseId);
-  classroomCoursesAliases(courseId);
-
   coursesTeachersArray = [];
   coursesStudentsArray = [];
   coursesAnnouncementsArray = [];
   coursescourseWorkArray = [];
   coursesTopicsArray = [];
   coursesAliasesArray = [];
+
+  classroomCoursesStudents(courseId);
+  classroomCoursesTeachers(courseId);
+  classroomCoursesAnnouncements(courseId);
+  classroomCoursesCourseWork(courseId);
+  classroomCoursesTopics(courseId);
+  classroomCoursesAliases(courseId);
 
   console.log(coursesTeachersArray);
   console.log(coursesStudentsArray);
