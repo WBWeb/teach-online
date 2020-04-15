@@ -526,6 +526,7 @@
     function popTeacherDetails(courseId,userId) {
     console.log('Pop Teacher Clicked');
     teacherData = coursesTeachersGet(courseId,userId);
+    console.log(teacherData);
     $('#apimodal').empty().html(initModalDOM());
     $('#apimodaltitle').html('Teacher Details');
 
@@ -547,9 +548,9 @@
     "courseId": courseId,
     "userId": userId
   })
-  .then(function(response) {
+  .then(function(newteacher) {
     // Handle the results here (response.result has the parsed body).
-    console.log("Response", response);
+    console.log("Response", newteacher);
     return response;
   },
   function(err) { console.error("Execute error", err); });
