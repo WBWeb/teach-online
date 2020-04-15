@@ -39,7 +39,7 @@ function classroomCoursesTeachers(courseId) {
       $("#"+courseId+"-teachers").html(data.length);
 
       for(i=0; i<data.length; i++){
-        print+='<p onclick="popTeacherDetails('+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small">'+data[i].profile.name.fullName+'</p>';
+        print+='<p onclick="popTeacherDetails('+data[i].courseId+','+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small">'+data[i].profile.name.fullName+'</p>';
       }
 
     } else {
