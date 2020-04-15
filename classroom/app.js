@@ -22,7 +22,7 @@ function classroomCoursesStudents(courseId) {
       $("#"+courseId+"-students").html(data.length);
       for(i=0; i<data.length; i++){
         coursesStudentsArray.push(data[i]);
-        print+='<p onclick="popStudentDetails('+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small"><span>'+data[i].profile.name.fullName+'<span></p>';
+        print+='<p class="popUp" onclick="popStudentDetails('+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small"><span>'+data[i].profile.name.fullName+'<span></p>';
       }
     } else {
       $("#"+courseId+"-students").html("0");
@@ -48,7 +48,7 @@ function classroomCoursesTeachers(courseId) {
 
       for(i=0; i<data.length; i++){
         coursesTeachersArray.push(data[i]);
-        print+='<p onclick="popTeacherDetails('+data[i].courseId+','+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small">'+data[i].profile.name.fullName+'</p>';
+        print+='<p class="popUp" onclick="popTeacherDetails('+data[i].courseId+','+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small">'+data[i].profile.name.fullName+'</p>';
       }
 
     } else {
@@ -152,7 +152,7 @@ function classroomCoursesAliases(courseId) {
 
       for(i=0; i<data.length; i++){
         coursesAliasesArray.push(data[i]);
-        print+='<p>'+data[i].alias+'</p>';
+        print+='<p class="popUp" >'+data[i].alias+'</p>';
       }
     } else {
       $("#"+courseId+"-aliases").html("0");
