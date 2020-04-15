@@ -1,5 +1,12 @@
 //Course counters Functionality
 
+var coursesTeachersArray [];
+var coursesStudentsArray [];
+var coursesAnnouncementsArray [];
+var coursescourseWorkArray [];
+var coursesTopicsArray [];
+var coursesAliasesArray [];
+
 function classroomCoursesStudents(courseId) {
   return gapi.client.classroom.courses.students.list({
     "courseId": courseId
@@ -14,6 +21,7 @@ function classroomCoursesStudents(courseId) {
       console.log(courseId+"-getStudentsCount:", data.length);
       $("#"+courseId+"-students").html(data.length);
       for(i=0; i<data.length; i++){
+        coursesStudentsArray.push(data[i]);
         print+='<p onclick="popStudentDetails('+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small"><span>'+data[i].profile.name.fullName+'<span></p>';
       }
     } else {
@@ -39,6 +47,7 @@ function classroomCoursesTeachers(courseId) {
       $("#"+courseId+"-teachers").html(data.length);
 
       for(i=0; i<data.length; i++){
+        coursesTeachersArray.push(data[i]);
         print+='<p onclick="popTeacherDetails('+data[i].courseId+','+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small">'+data[i].profile.name.fullName+'</p>';
       }
 
@@ -63,6 +72,7 @@ function classroomCoursesAnnouncements(courseId){
       $("#"+courseId+"-announcements").html(data.length);
 
       for(i=0; i<data.length; i++){
+        coursesAliasesArray.push(data[i]);
         print+='<p class="popUp" onclick="popAnouncement('+data[i].id+')"> '+(i+1)+' - '+data[i].id+' - '+data[i].state+'</p>';
       }
     } else {
@@ -88,6 +98,7 @@ function classroomCoursesTopics(courseId){
       $("#"+courseId+"-topics").html(data.length);
 
       for(i=0; i<data.length; i++){
+        coursesTopicsArray.push(data[i]);
         print+='<p class="popUp" onclick="Pop.fire({title:"'+data[i].name+'", text:"Updated: '+data[i].updateTime+'", icon: "success", })"> '+(i+1)+' - '+data[i].topicId+'</p>';
       }
     } else {
@@ -112,6 +123,7 @@ function classroomCoursesCourseWork(courseId){
       $("#"+courseId+"-courseWork").html(data.length);
 
       for(i=0; i<data.length; i++){
+        coursescourseWorkArray.push(data[i]);
         print+='<p class="popUp" onclick="popCourseWork('+data[i].id+')" data-toggle="tooltip" title="State: '+data[i].state+'"> '+(i+1)+' - '+data[i].id+' - '+data[i].workType+'</p>';
       }
     } else {
@@ -139,6 +151,7 @@ function classroomCoursesAliases(courseId) {
       $("#"+courseId+"-aliases").html(data.length);
 
       for(i=0; i<data.length; i++){
+        coursesAliasesArray.push(data[i]);
         print+='<p>'+data[i].alias+'</p>';
       }
     } else {
@@ -154,11 +167,17 @@ function classroomCoursesAliases(courseId) {
 function getCourseData(courseId) {
   classroomCoursesStudents(courseId);
   classroomCoursesTeachers(courseId);
-
   classroomCoursesAnnouncements(courseId);
   classroomCoursesCourseWork(courseId);
   classroomCoursesTopics(courseId);
   classroomCoursesAliases(courseId);
+
+  console.log(coursesTeachersArray);
+  console.log(coursesStudentsArray);
+  console.log(coursesAnnouncementsArray);
+  console.log(coursescourseWorkArray);
+  console.log(coursesTopicsArray);
+  console.log(coursesAliasesArray);
 }
 
 //Course Update Functionality

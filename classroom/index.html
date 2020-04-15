@@ -545,15 +545,13 @@
   }
 
 function coursesTeachersGet(courseId,userId) {
-  return gapi.client.classroom.courses.teachers.get({
-    "courseId": courseId,
-    "userId": userId
-  })
-  .then(function(response) {
-    // Handle the results here (response.result has the parsed body).
-    console.log("Response", response);
-  },
-  function(err) { console.error("Execute error", err); });
+  for (var i = 0; i < coursesTeachersArray.length; i++) {
+    if (coursesTeachersArray[i].courseId == courseId && coursesTeachersArray[i].userId == userId) {
+      console.log("Found");
+      console.log(coursesTeachersArray[i].profile);
+      return 0;
+    }
+  }
 }
 
 
