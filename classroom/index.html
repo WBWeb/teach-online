@@ -548,10 +548,9 @@
     "courseId": courseId,
     "userId": userId
   })
-  .then(function(newteacher) {
+  .then(function(response) {
     // Handle the results here (response.result has the parsed body).
-    console.log("Response", newteacher);
-    return response;
+    console.log("Response", response);
   },
   function(err) { console.error("Execute error", err); });
 }
