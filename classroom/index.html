@@ -313,6 +313,8 @@
             timerProgressBar: true
           });
 
+          printAllArrays();
+
         } else {
           Pop.fire({
             icon: 'error',
@@ -552,6 +554,16 @@ function coursesTeachersGet(courseId,userId) {
       return 0;
     }
   }
+}
+
+
+function printAllArrays() {
+  console.log(coursesTeachersArray);
+  console.log(coursesStudentsArray);
+  console.log(coursesAnnouncementsArray);
+  console.log(coursescourseWorkArray);
+  console.log(coursesTopicsArray);
+  console.log(coursesAliasesArray);
 }
 
 
