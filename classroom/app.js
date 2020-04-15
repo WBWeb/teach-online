@@ -1,11 +1,11 @@
 //Course counters Functionality
 
-var coursesTeachersArray [];
-var coursesStudentsArray [];
-var coursesAnnouncementsArray [];
-var coursescourseWorkArray [];
-var coursesTopicsArray [];
-var coursesAliasesArray [];
+var coursesTeachersArray = [];
+var coursesStudentsArray = [];
+var coursesAnnouncementsArray = [];
+var coursescourseWorkArray = [];
+var coursesTopicsArray = [];
+var coursesAliasesArray = [];
 
 function classroomCoursesStudents(courseId) {
   return gapi.client.classroom.courses.students.list({
@@ -171,6 +171,13 @@ function getCourseData(courseId) {
   classroomCoursesCourseWork(courseId);
   classroomCoursesTopics(courseId);
   classroomCoursesAliases(courseId);
+
+  coursesTeachersArray = [];
+  coursesStudentsArray = [];
+  coursesAnnouncementsArray = [];
+  coursescourseWorkArray = [];
+  coursesTopicsArray = [];
+  coursesAliasesArray = [];
 
   console.log(coursesTeachersArray);
   console.log(coursesStudentsArray);
