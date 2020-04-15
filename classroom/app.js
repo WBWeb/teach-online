@@ -707,3 +707,292 @@ function classroomAnnouncementAdd(courseId,data) {
       });
     });
   }
+  //Course add topics Functionality
+  function modalCourseAddTopic(courseId) {
+    console.log('Modal Clicked');
+    $('#apimodal').empty().html(initModalDOM());
+    $('#apimodaltitle').html('Add Topic');
+
+    print='<div class="row">'
+          +'<div class="col-md-12">'
+            +'<div class="form-group">'
+              +'<label>Topic Name</label>'
+              +'<input type="text" max="50" value="" id="topicName" class="form-control">'
+            +'</div>'
+          +'</div>'
+        +'</div>'
+        +'<div class="row">'
+          +'<div class="col-md-12 text-center">'
+            +'<div class="form-group">'
+              +'<input type="button" onclick="initclassroomTopicAdd('+courseId+')" value="Add Topic" class="btn btn-primary btn-md" >'
+            +'</div>'
+          +'</div>'
+        +'</div>';
+    $('#apimodalform').empty().html(print);
+    console.log('Modal Form print success');
+    $('#apimodal').modal('show');
+  }
+
+
+  function initclassroomTopicAdd(courseId) {
+    console.log('Modal Form init Submitted');
+    classroomTopicAdd(courseId,$('#topicName').val());
+  }
+
+
+  function classroomTopicAdd(courseId,topicName) {
+    return gapi.client.classroom.courses.topics.create({
+      "courseId": courseId,
+      "resource": {
+        "name": topicName
+      }
+    })
+    .then(function(response) {
+      console.log('Modal Form Submitted');
+      // Handle the results here (response.result has the parsed body).
+      console.log("Response", response);
+      Toast.fire({
+        title:"Topic Add Success",
+        icon: "success"
+      });
+      $('#apimodal').modal('hide');
+      initCourses();
+    },
+    function(err) {
+      console.error("Execute error", err);
+      Toast.fire({
+        title:"Error Adding Topic",
+        icon: "error"
+      });
+    });
+  }
+
+
+
+  //courses - delete
+  function deleteCourse(courseId) {
+    Pop.fire({
+      text: "Are you sure you want to delete the course ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        classroomCoursesDelete(courseId);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Pop.fire({
+          title: "Cancelled",
+          icon: 'error',
+          timer: 2000,
+          timerProgressBar: true
+        });
+      }
+    });
+  }
+
+  function classroomCoursesDelete(id) {
+    return gapi.client.classroom.courses.delete({"id": id})
+    .then(function(response) {
+      console.log("Deleted Course Response", response);
+      Pop.fire({
+        title: "Deleted!",
+        icon: 'success',
+        timer: 2000,
+        timerProgressBar: true
+      });
+    },
+    function(err) {
+      console.error("Execute error", err);
+      Toast.fire({
+        title: "An error occured",
+        icon: 'error'
+      });
+    });
+  }
+
+  //courses.student - delete
+  function deleteCoursesStudent(courseId,userId) {
+    Pop.fire({
+      text: "Are you sure you want to delete the student ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        classroomCoursesStudentDelete(courseId);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Pop.fire({
+          title: "Cancelled",
+          icon: 'error',
+          timer: 2000,
+          timerProgressBar: true
+        });
+      }
+    });
+  }
+
+  function classroomCoursesStudentDelete(courseId,userId) {
+    return gapi.client.classroom.courses.students.delete({
+      "courseId": courseId,
+      "userId": userId
+    })
+    .then(function(response) {
+      console.log("Response", response);
+      Pop.fire({
+        title: "Removed!",
+        icon: 'success',
+        timer: 2000,
+        timerProgressBar: true
+      });
+    },
+    function(err) {
+      console.error("Execute error", err);
+      Toast.fire({
+        title: "An error occured",
+        icon: 'error'
+      });
+    });
+  }
+
+
+  //Course teacher - delete
+  function deleteCoursesTeacher(courseId,userId) {
+    Pop.fire({
+      text: "Are you sure you want to remove teacher from this course ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, remove it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        classroomCoursesTeacherDelete(courseId,userId);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Pop.fire({
+          title: "Cancelled",
+          icon: 'error',
+          timer: 2000,
+          timerProgressBar: true
+        });
+      }
+    });
+  }
+
+  function classroomCoursesTeacherDelete(courseId,userId) {
+    return gapi.client.classroom.courses.teachers.delete({
+      "courseId": courseId,
+      "userId": userId
+    })
+    .then(function(response) {
+      console.log("Removed Teacher Response", response);
+      Pop.fire({
+        title: "Removed!",
+        icon: 'success',
+        timer: 2000,
+        timerProgressBar: true
+      });
+    },
+    function(err) {
+      console.error("Execute error", err);
+      Toast.fire({
+        title: "An error occured",
+        icon: 'error'
+      });
+    });
+  }
+
+  //courses.announcement - delete
+  function deleteCoursesAnnouncement(courseId,AnnouncementId) {
+    Pop.fire({
+      text: "Are you sure you want to delete the announcement ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        classroomCoursesAnnouncementDelete(courseId,AnnouncementId);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Pop.fire({
+          title: "Cancelled",
+          icon: 'error',
+          timer: 2000,
+          timerProgressBar: true
+        });
+      }
+    });
+  }
+
+  function classroomCoursesAnnouncementDelete(courseId,AnnouncementId) {
+    return gapi.client.classroom.courses.announcements.delete({
+      "courseId": courseId,
+      "id": AnnouncementId
+    })
+    .then(function(response) {
+      console.log("Deleted Announcement Response", response);
+      Pop.fire({
+        title: "Deleted!",
+        icon: 'success',
+        timer: 2000,
+        timerProgressBar: true
+      });
+    },
+    function(err) {
+      console.error("Execute error", err);
+      Toast.fire({
+        title: "An error occured",
+        icon: 'error'
+      });
+    });
+  }
+
+  //courses.topic - delete
+  function deleteCoursesTopic(courseId,topicId) {
+    Pop.fire({
+      text: "Are you sure you want to delete the topic ?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        classroomCoursesTopicDelete(courseId,topicId);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Pop.fire({
+          title: "Cancelled",
+          icon: 'error',
+          timer: 2000,
+          timerProgressBar: true
+        });
+      }
+    });
+  }
+
+  function classroomCoursesTopicDelete(courseId,topicId) {
+    return gapi.client.classroom.courses.topics.delete({
+      "courseId": courseId,
+      "id": topicId
+    })
+    .then(function(response) {
+      console.log("Deleted Topic Response", response);
+      Pop.fire({
+        title: "Deleted!",
+        icon: 'success',
+        timer: 2000,
+        timerProgressBar: true
+      });
+    },
+    function(err) {
+      console.error("Execute error", err);
+      Toast.fire({
+        title: "An error occured",
+        icon: 'error'
+      });
+    });
+  }
