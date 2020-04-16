@@ -310,7 +310,7 @@ function initModalDOM() {
 
 function initDOM() {
   print='<div class="row">'
-          +'<div class="col">'
+          +'<div class="col-12">'
             +'<div class="container-classroom" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
               +'<div class="course-container p-3" >'
                 +'<div class="row">'
@@ -334,22 +334,20 @@ function initDOM() {
               +'</div>'
             +'</div>'
           +'</div>'
-        +'</div>'
-        +'<div class="row">'
-            +'<div class="col">'
-              +'<div class="container-classroom pt-0" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
-                +'<div class="course-container p-3" >'
-                  +'<div class="row">'
-                    +'<div class="col text-left">'
-                      +'<span class="login100-form-title p-b-10" style="text-align: left;">Classroom ClassWork</span>'
-                    +'</div>'
+          +'<div class="col-12">'
+            +'<div class="container-classroom pt-0" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
+              +'<div class="course-container p-3" >'
+                +'<div class="row">'
+                  +'<div class="col text-left">'
+                    +'<span class="login100-form-title p-b-10" style="text-align: left;">Classroom ClassWork</span>'
                   +'</div>'
-                  +'<div class="row p-t-30 p-b-30" id="classWork-container" style="max-height:540px; overflow:scroll">'
-                  +'</div>'
+                +'</div>'
+                +'<div class="row p-t-30 p-b-30" id="classWork-container" style="max-height:540px; overflow:scroll">'
                 +'</div>'
               +'</div>'
             +'</div>'
-          +'</div>';
+          +'</div>'
+        +'</div>';
   return print;
 }
 
