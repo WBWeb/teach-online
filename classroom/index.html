@@ -588,7 +588,8 @@ function popAnouncement(courseId,announcementId) {
   console.log('Pop Announcement Clicked');
 
   $('#apimodal').empty().html(initModalDOM());
-  $('#apimodaltitle').html('Announcement Details');
+  $('#apimodaltitle').html('AnnouncementID - '+announcementId);
+  $('.modal-footer').hide();
   $('#apimodalform').empty().html(coursesAnnouncementsGet(courseId,announcementId));
   console.log('Modal Form print success');
   $('#apimodal').modal('show');
@@ -600,11 +601,35 @@ function coursesAnnouncementsGet(courseId,announcementId) {
     if (coursesAnnouncementsArray[i].courseId == courseId && coursesAnnouncementsArray[i].id == announcementId) {
       for (var j = 0; j < coursesTeachersArray.length; j++) {
         if(coursesTeachersArray[j].courseId == courseId && coursesTeachersArray[j].userId == coursesAnnouncementsArray[i].creatorUserId){
-          print='<form class="login100-form validate-form text-center">'
-                  +'<div class="login100-form-title">'+coursesAnnouncementsArray[i].text+'</div>'
-                    +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">'+coursesAnnouncementsArray[i].state+'<br>'+coursesAnnouncementsArray[i].creationTime+'</span><br>For '+coursesAnnouncementsArray[i].assigneeMode+'</div>'
-                  +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">Created By : '+coursesTeachersArray[i].profile.name.fullName+''
-                +'</form>';
+          print='<div class="card">'
+                  +'<div id="apimodal-card-title" class="card-title">'
+                    +'<div class="row">'
+                      +'<div class="col-2">'
+                        +'<img src="'+coursesTeachersArray[j].profile.photoUrl+'" height="25" width="25" class="img-card">'
+                      +'</div>'
+                      +'<div class="col-8">'
+                        +'<p>'+coursesTeachersArray[j].profile.name.fullName+'</p>'
+                        +'<p>'+coursesAnnouncementsArray[i].creationTime+'</p>'
+                      +'</div>'
+                    +'</div>'
+                    +'<div class="row">'
+                      +'<div class="col-12">'
+                      +'<p>'+coursesAnnouncementsArray[i].text+'</p>'
+                      +'</div>'
+                    +'</div>'
+                  +'</div>'
+                  +'<div id="apimodal-card-body" class="card-body">'
+                  +'</div>'
+                  +'<div id="apimodal-card-footer" class="card-footer">'
+                    +'<div class="col-2">'
+                      +'<img src="'+mPhotoUrl+'" height="25" width="25" class="img-card">'
+                    +'</div>'
+                    +'<div class="col-8">'
+                      +'<input value="" type="text" id="" class="form-control">'
+                    +'</div>'
+                    +'<div class="col-2"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>'
+                  +'</div>'
+                +'</div>';
           return print;
         }
       }
@@ -612,34 +637,6 @@ function coursesAnnouncementsGet(courseId,announcementId) {
   }
 }
 
-// <div class="card">
-//   <div class="card-title">
-//     <div class="row">
-//       <div class="col-md-3">
-//         <img src="'+creatorImg+'" height="40" width="40" class="img-card">
-//       </div>
-//       <div class="col-md-9">
-//         <p>'+creatorName+'</p>
-//         <p>'+coursesAnnouncementsArray[i].creationTime+'</p>
-//       </div>
-//     </div>
-//     <div class="row">
-//       <div class="col-md-12">'+coursesAnnouncementsArray[i].text+'</div>
-//     </div>
-//   </div>
-//   <div class="card-body">
-//   </div>
-//   <div class="card-footer">
-//     <div class="col-md-3">
-//       <img src="'+creatorImg+'" height="40" width="40" class="img-card">
-//     </div>
-//     <div class="col-md-8">
-//       <input value="" type="text" id="" class="form-control">
-//     </div>
-//     <div class="col-md-1"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
-//   </div>
-
-// </div>
 
 function printAllArrays() {
   console.log(coursesTeachersArray);
