@@ -4,6 +4,7 @@ var coursesTeachersArray = [];
 var coursesStudentsArray = [];
 var coursesAnnouncementsArray = [];
 var coursescourseWorkArray = [];
+var coursescourseWorkStudentSubmissionsArray = [];
 var coursesTopicsArray = [];
 var coursesAliasesArray = [];
 
@@ -124,6 +125,7 @@ function classroomCoursesCourseWork(courseId){
 
       for(i=0; i<data.length; i++){
         coursescourseWorkArray.push(data[i]);
+        classroomCoursesCourseWorkStudentSubmissions(courseId,data[i].id);
         print+='<p class="popUp" onclick="popCourseWork('+data[i].id+')" data-toggle="tooltip" title="State: '+data[i].state+'"> '+(i+1)+' - '+data[i].id+' - '+data[i].workType+'</p>';
       }
     } else {
@@ -132,6 +134,25 @@ function classroomCoursesCourseWork(courseId){
     print+='<span class="btn btn-info btn-sm my-2" onclick="modalCourseAddCourseWork('+courseId+')" style="padding: 2px 10px 2px 10px;text-align: center;">Add CourseWork</span>';
     $("#accordion-body-list-"+courseId+"-courseWork").html(print);
 
+  },function(err) { console.error("Execute error", err); });
+}
+
+function classroomCoursesCourseWorkStudentSubmissions(courseId,courseWorkId){
+  return gapi.client.classroom.courses.courseWork.studentSubmissions.list({
+    "courseId": courseId,
+    "courseWorkId": courseWorkId
+  }).then(function(response) {
+    // Handle the results here (response.result has the parsed body).
+    print="";
+    data=response.result.studentSubmissions;
+    if (typeof data !== 'undefined' && data.length > 0) {
+      console.log("data-getCourseWorkStudentSubmissionsCount:", data);
+      console.log(courseId+"-getCourseWorkStudentSubmissionsCount:", data.length);
+
+      for(i=0; i<data.length; i++){
+        coursescourseWorkStudentSubmissionsArray.push(data[i]);
+      }
+    }
   },function(err) { console.error("Execute error", err); });
 }
 
