@@ -594,7 +594,7 @@ function popAnouncement(courseId,announcementId) {
   console.log('Pop Teacher Clicked');
 
   $('#apimodal').empty().html(initModalDOM());
-  $('#apimodaltitle').html('Student Details');
+  $('#apimodaltitle').html('Announcement Details');
   $('#apimodalform').empty().html(coursesAnnouncementsGet(courseId,announcementId));
   console.log('Modal Form print success');
   $('#apimodal').modal('show');
@@ -605,7 +605,7 @@ function popAnouncement(courseId,announcementId) {
 
 function coursesAnnouncementsGet(courseId,announcementId) {
   for (var i = 0; i < coursesAnnouncementsArray.length; i++) {
-    if (coursesAnnouncementsArray[i].courseId == courseId && coursesAnnouncementsArray[i].userId == announcementId) {
+    if (coursesAnnouncementsArray[i].courseId == courseId && coursesAnnouncementsArray[i].id == announcementId) {
       if(coursesTeachersArray[i].courseId == courseId && coursesTeachersArray[i].userId == coursesAnnouncementsArray[i].creatorUserId){
         creatorName = coursesTeachersArray[i].profile.name.fullName;
       }
