@@ -602,6 +602,8 @@ function coursesAnnouncementsGet(courseId,announcementId) {
     if (coursesAnnouncementsArray[i].courseId == courseId && coursesAnnouncementsArray[i].id == announcementId) {
       for (var j = 0; j < coursesTeachersArray.length; j++) {
         if(coursesTeachersArray[j].courseId == courseId && coursesTeachersArray[j].userId == coursesAnnouncementsArray[i].creatorUserId){
+          tempDate = new Date(coursesAnnouncementsArray[i].creationTime);
+
           print='<div class="card">'
                   +'<div id="apimodal-card-title" class="card-title" style="border-bottom: 1px solid #eaeaea;">'
                     +'<div class="row">'
@@ -610,7 +612,7 @@ function coursesAnnouncementsGet(courseId,announcementId) {
                       +'</div>'
                       +'<div class="col-8 p-1">'
                         +'<p>'+coursesTeachersArray[j].profile.name.fullName+'</p>'
-                        +'<p>'+coursesAnnouncementsArray[i].creationTime+'</p>'
+                        +'<p>'+tempDate.toString().substring(0,15)+'</p>'
                       +'</div>'
                     +'</div>'
                     +'<div class="row py-2">'
@@ -629,7 +631,7 @@ function coursesAnnouncementsGet(courseId,announcementId) {
                       +'<div class="col-10">'
                         +'<input value="" type="text" id="" class="form-control" placeholder="Add class comments">'
                       +'</div>'
-                      +'<div class="col-1 col-1 pt-2 p-0><i style="" class="fa fa-paper-plane" aria-hidden="true"></i></div>'
+                      +'<div class="col-1 col-1 pt-2 p-0"><i style="color: #1b6cb5; font-size: 22px;" class="fa fa-paper-plane" aria-hidden="true"></i></div>'
                     +'</div>'
                   +'</div>'
                 +'</div>';
