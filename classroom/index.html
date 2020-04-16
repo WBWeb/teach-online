@@ -309,12 +309,9 @@
           //print courses in page
           $('#course-container').empty().html(print);
 
-          Pop.fire({
+          Toast.fire({
             icon: 'success',
-            title: data.length+' Courses Found',
-            text: 'Welcome to Teach online Classroom!',
-            timer: 2000,
-            timerProgressBar: true
+            title: data.length+' Courses Loaded',
           });
 
           printAllArrays();
@@ -347,6 +344,8 @@
                     +'<div class="dropleft">'
                       +'<a data-toggle="dropdown" title="menu" aria-haspopup="true" aria-expanded="false"><img src="'+current.Pt.QK+'" height="50px" width="50px" class="img-card"></button>'
                       +'<div class="dropdown-menu">'
+                        +'<a class="for-student" class="dropdown-item" href="javascript:void(0)" onclick="popTo-do" style="display:none">To Do</a>'
+                        +'<a class="dropdown-item" href="javascript:void(0)" onclick="Toast.fire({title:'+"'Feature Coming Soon',icon:'success'"+'})">My Calendar</a>'
                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="history.go(-1)">Go Back</a>'
                         +'<a class="dropdown-item" href="javascript:void(0)" id="sign-in-or-out-button"> <i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>'
                       +'</div>'
@@ -410,14 +409,14 @@
                          +'<div class="dropup">'
                            +'<button class="login100-button-a" data-toggle="dropdown" title="Manage Online Classes" aria-haspopup="true" aria-expanded="false"><i class="fa fa-video-camera"></i></button>'
                            +'<div class="dropdown-menu">'
-                             +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalGmeetAdd('+courses[i].id+')">Google Meet</a>'
+                             +'<a class="dropdown-item" href="javascript:void(0)" onclick="Toast.fire({title:'+"'Feature Coming Soon',icon:'success'"+'})">Google Meet</a>'
                              +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalYoutubeAdd('+courses[i].id+')">Youtube</a>'
-                             +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalZoomAdd('+courses[i].id+')">Zoom</a>'
+                             +'<a class="dropdown-item" href="javascript:void(0)" onclick="Toast.fire({title:'+"'Feature Coming Soon',icon:'success'"+'})">Zoom</a>'
                            +'</div>'
                          +'</div>'
                          +'<a class="login100-button-a" href="javascript:void(0)" data-toggle="tooltip" title="View Class contents in Google Drive"><i class="fa fa-folder"></i></a>'
                          +'<div class="dropup">'
-                           +'<button class="login100-button-a" data-toggle="dropdown" title="Manage Invitations" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i></button>'
+                           +'<button class="login100-button-a for-teacher" data-toggle="dropdown" title="Manage Members" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i></button>'
                            +'<div class="dropdown-menu">'
                              +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationStudents('+courses[i].id+')">Students</a>'
                              +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationTeachers('+courses[i].id+')">Teachers</a>'
