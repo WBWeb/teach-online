@@ -624,14 +624,14 @@ function printAllArrays() {
 }
   function setDesigCourse() {
   for (var i = 0; i < coursesStudentsArray.length; i++) {
-    if (coursesStudentsArray[i].courseId == courseId && coursesStudentsArray[i].userId == mid) {
-      $('#desigCourse-'+coursesStudentsArray[i].courseId).html("(Student)");
+    if (coursesStudentsArray[i].userId == mid) {
+      $('#desigCourse-'+coursesStudentsArray[i].courseId).empty().html("(Student)");
     }
   }
 
   for (var i = 0; i < coursesTeachersArray.length; i++) {
-    if (coursesTeachersArray[i].courseId == courseId && coursesTeachersArray[i].userId == mid) {
-      $('#desigCourse-'+coursesTeachersArray[i].courseId).html("(Teacher)");
+    if (coursesTeachersArray[i].userId == mid) {
+      $('#desigCourse-'+coursesTeachersArray[i].courseId).empty().html("(Teacher)");
     }
   }
 }
