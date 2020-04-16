@@ -309,8 +309,8 @@ function initModalDOM() {
 }
 
 function initDOM() {
-  print='<div class="row">'
-          +'<div class="col-12">'
+  print='<div class="row" style="margin-right: 0;">'
+          +'<div class="col-12" style="padding-right: 0;">'
             +'<div class="container-classroom" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
               +'<div class="course-container p-3" >'
                 +'<div class="row">'
@@ -334,7 +334,7 @@ function initDOM() {
               +'</div>'
             +'</div>'
           +'</div>'
-          +'<div class="col-12">'
+          +'<div class="col-12" style="padding-right: 0;">'
             +'<div class="container-classroom pt-0" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
               +'<div class="course-container p-3" >'
                 +'<div class="row">'
