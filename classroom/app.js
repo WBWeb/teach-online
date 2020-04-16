@@ -73,7 +73,7 @@ function classroomCoursesAnnouncements(courseId){
 
       for(i=0; i<data.length; i++){
         coursesAliasesArray.push(data[i]);
-        print+='<p class="popUp" onclick="popAnouncement('+data[i].courseId+','+data[i].id+')"> '+(i+1)+' - '+data[i].id+' - '+data[i].state+'</p>';
+        print+='<p class="popUp" onclick="popAnouncement('+data[i].id+')"> '+(i+1)+' - '+data[i].id+' - '+data[i].state+'</p>';
       }
     } else {
       $("#"+courseId+"-announcements").html("0");
@@ -309,29 +309,47 @@ function initModalDOM() {
 }
 
 function initDOM() {
-  print='<div class="container-classroom" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
-          +'<div class="course-container p-3" >'
-            +'<div class="row">'
-              +'<div class="col text-left">'
-                +'<span class="login100-form-title p-b-10" style="text-align: left;">Classroom Courses</span>'
-              +'</div>'
-              +'<div class="col-2">'
-                +'<div class="flex-c" style="justify-content: flex-end;">'
-                  +'<div class="dropleft">'
-                    +'<button class="login100-button-a" data-toggle="dropdown" title="Settings" type="button" id="dropdownCoursesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
-                    +'<div class="dropdown-menu" aria-labelledby="dropdownCoursesMenu">'
-                      +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalAddCourse()">Add New Course</a>'
-                      +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalJoinCourse()">Join New Course</a>'
+  print='<div class="row">'
+          +'<div class="col">'
+            +'<div class="container-classroom" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
+              +'<div class="course-container p-3" >'
+                +'<div class="row">'
+                  +'<div class="col text-left">'
+                    +'<span class="login100-form-title p-b-10" style="text-align: left;">Classroom Courses</span>'
+                  +'</div>'
+                  +'<div class="col-2">'
+                    +'<div class="flex-c" style="justify-content: flex-end;">'
+                      +'<div class="dropleft">'
+                        +'<button class="login100-button-a" data-toggle="dropdown" title="Settings" type="button" id="dropdownCoursesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
+                        +'<div class="dropdown-menu" aria-labelledby="dropdownCoursesMenu">'
+                          +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalAddCourse()">Add New Course</a>'
+                          +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalJoinCourse()">Join New Course</a>'
+                        +'</div>'
+                      +'</div>'
                     +'</div>'
+                  +'</div>'
+                +'</div>'
+                +'<div class="row p-t-30 p-b-30" id="course-container" style="max-height:540px; overflow:scroll">'
+                +'</div>'
+              +'</div>'
+            +'</div>'
+          +'</div>'
+        +'</div>'
+        +'<div class="row">'
+            +'<div class="col">'
+              +'<div class="container-classroom pt-0" style="background-image: url('+"'"+'../images/bg-01.jpg'+"'"+');">'
+                +'<div class="course-container p-3" >'
+                  +'<div class="row">'
+                    +'<div class="col text-left">'
+                      +'<span class="login100-form-title p-b-10" style="text-align: left;">Classroom ClassWork</span>'
+                    +'</div>'
+                  +'</div>'
+                  +'<div class="row p-t-30 p-b-30" id="classWork-container" style="max-height:540px; overflow:scroll">'
                   +'</div>'
                 +'</div>'
               +'</div>'
             +'</div>'
-            +'<div class="row p-t-30 p-b-30" id="course-container" style="max-height:540px; overflow:scroll">'
-            +'</div>'
-          +'</div>'
-        +'</div>';
-
+          +'</div>';
   return print;
 }
 
