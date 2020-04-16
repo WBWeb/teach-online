@@ -590,7 +590,30 @@ function coursesTeachersGet(courseId,userId) {
 }
 
 
+function printAllArrays() {
+  console.log(coursesTeachersArray);
+  console.log(coursesStudentsArray);
+  console.log(coursesAnnouncementsArray);
+  console.log(coursescourseWorkArray);
+  console.log(coursesTopicsArray);
+  console.log(coursesAliasesArray);
+  setDesigCourse();
+}
 
+function setDesigCourse() {
+  for (var i = 0; i < coursesStudentsArray.length; i++) {
+    if (coursesStudentsArray[i].courseId == courseId && coursesStudentsArray[i].userId == mid) {
+      $('#desigCourse-'+coursesStudentsArray[i].courseId).html("(Student)");
+    }
+  }
+
+  for (var i = 0; i < coursesTeachersArray.length; i++) {
+    if (coursesTeachersArray[i].courseId == courseId && coursesTeachersArray[i].userId == mid) {
+      $('#desigCourse-'+coursesTeachersArray[i].courseId).html("(Student)");
+    }
+  }
+
+}
 
 
 
