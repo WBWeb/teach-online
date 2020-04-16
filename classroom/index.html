@@ -537,10 +537,8 @@
             +'<center class="mb-4"><img src="'+coursesTeachersArray[i].profile.photoUrl+'" class="img-card" width="100"></center>'
             +'<div class="mb-3"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">'+coursesTeachersArray[i].profile.name.fullName+'<br>'+coursesTeachersArray[i].profile.emailAddress+'</span><br>(Teacher)</div>'
             +'<div class="flex-c">'
-              +'<a href="javascript:void(0);" onclick="startPreloader();" data-toggle="tooltip" class="login100-social-item" title="" data-original-title="Log Out"><i class="fa fa-sign-out" aria-hidden="true"></i></a>'
               +'<a href="mailto:'+coursesTeachersArray[i].profile.emailAddress+'" class="login100-social-item" data-toggle="tooltip" title="Contact"><i class="fa fa-envelope" aria-hidden="true"></i></a>'
             +'</div>'
-            +'<div class=" p-t-30 p-b-20"><span class="txt1">Please Give All Google permissions during Sign in with Google.</span></div>'
           +'</form>';
     $('#apimodalform').empty().html(print);
     console.log('Modal Form print success');
