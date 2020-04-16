@@ -529,18 +529,9 @@
     function popTeacherDetails(courseId,userId) {
     console.log('Pop Teacher Clicked');
 
-    $('#apimodal').empty();
-    $('#apimodal').html(initModalDOM());
+    $('#apimodal').empty().html(initModalDOM());
     $('#apimodaltitle').html('Teacher Details');
-
-    print='<form class="login100-form validate-form text-center">'
-            +'<center class="mb-4"><img src="'+coursesTeachersArray[i].profile.photoUrl+'" class="img-card" width="100"></center>'
-            +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">'+coursesTeachersArray[i].profile.name.fullName+'<br>'+coursesTeachersArray[i].profile.emailAddress+'</span><br>(Teacher)</div>'
-            +'<div class="flex-c">'
-              +'<a href="mailto:'+coursesTeachersArray[i].profile.emailAddress+'" class="login100-social-item" data-toggle="tooltip" title="Contact"><i class="fa fa-envelope" aria-hidden="true"></i></a>'
-            +'</div>'
-          +'</form>';
-    $('#apimodalform').empty().html(print);
+    $('#apimodalform').empty().html(coursesTeachersGet(courseId,userId));
     console.log('Modal Form print success');
     $('#apimodal').modal('show');
     console.log('Call to fetch data');
@@ -551,9 +542,14 @@
 function coursesTeachersGet(courseId,userId) {
   for (var i = 0; i < coursesTeachersArray.length; i++) {
     if (coursesTeachersArray[i].courseId == courseId && coursesTeachersArray[i].userId == userId) {
-      console.log("Found");
-      console.log(coursesTeachersArray[i].profile);
-      return 0;
+      print='<form class="login100-form validate-form text-center">'
+              +'<center class="mb-4"><img src="'+coursesTeachersArray[i].profile.photoUrl+'" class="img-card" width="100"></center>'
+              +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">'+coursesTeachersArray[i].profile.name.fullName+'<br>'+coursesTeachersArray[i].profile.emailAddress+'</span><br>(Teacher)</div>'
+              +'<div class="flex-c">'
+                +'<a href="mailto:'+coursesTeachersArray[i].profile.emailAddress+'" class="login100-social-item" data-toggle="tooltip" title="Contact"><i class="fa fa-envelope" aria-hidden="true"></i></a>'
+              +'</div>'
+            +'</form>';
+      return print;
     }
   }
 }
