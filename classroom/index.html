@@ -554,6 +554,35 @@ function coursesTeachersGet(courseId,userId) {
   }
 }
 
+//pop student modal
+function popStudentDetails(courseId,userId) {
+  console.log('Pop Teacher Clicked');
+
+  $('#apimodal').empty().html(initModalDOM());
+  $('#apimodaltitle').html('Student Details');
+  $('#apimodalform').empty().html(coursesTeachersGet(courseId,userId));
+  console.log('Modal Form print success');
+  $('#apimodal').modal('show');
+  console.log('Call to fetch data');
+  coursesTeachersGet(courseId,userId);
+  $('[data-toggle="tooltip"]').tooltip();
+}
+
+function coursesTeachersGet(courseId,userId) {
+  for (var i = 0; i < coursesStudentsArray.length; i++) {
+    if (coursesStudentsArray[i].courseId == courseId && coursesStudentsArray[i].userId == userId) {
+      print='<form class="login100-form validate-form text-center">'
+              +'<center class="mb-4"><img src="'+coursesStudentsArray[i].profile.photoUrl+'" class="img-card" width="100"></center>'
+              +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">'+coursesStudentsArray[i].profile.name.fullName+'<br>'+coursesStudentsArray[i].profile.emailAddress+'</span><br>(Student)</div>'
+              +'<div class="flex-c">'
+                +'<a href="mailto:'+coursesStudentsArray[i].profile.emailAddress+'" class="login100-social-item" data-toggle="tooltip" title="Contact"><i class="fa fa-envelope" aria-hidden="true"></i></a>'
+              +'</div>'
+            +'</form>';
+      return print;
+    }
+  }
+}
+
 
 function printAllArrays() {
   console.log(coursesTeachersArray);

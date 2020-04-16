@@ -22,7 +22,7 @@ function classroomCoursesStudents(courseId) {
       $("#"+courseId+"-students").html(data.length);
       for(i=0; i<data.length; i++){
         coursesStudentsArray.push(data[i]);
-        print+='<p class="popUp" onclick="popStudentDetails('+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small"><span>'+data[i].profile.name.fullName+'<span></p>';
+        print+='<p class="popUp" onclick="popStudentDetails('+data[i].courseId+','+data[i].profile.id+')"><img src="'+data[i].profile.photoUrl+'" class="img-card img-very-small"><span>'+data[i].profile.name.fullName+'<span></p>';
       }
     } else {
       $("#"+courseId+"-students").html("0");
