@@ -286,7 +286,7 @@
     $('.dropleft').hover(function(){
       $('.dropdown-toggle', this).trigger('click');
     });
-    var crs, mid;
+    var crs, mid, mPhotoUrl;
 
     $('#app').empty().html(initDOM());
 
@@ -334,6 +334,7 @@
     function initNavDOM() {
       var current = gapi.auth2.getAuthInstance().currentUser.get();
       mid=current.Pt.MU;
+      mPhotoUrl=current.Pt.QK;
       print ='<nav class="navbar sticky-top navbar-light">'
               +'<div class="card text-right navcard">'
                 +'<div class="row m-0" style="padding: 10px;">'
