@@ -370,7 +370,7 @@
                      +'<div class="card-header">'
                         +'<div class="row">'
                          +'<div class="col text-left">'
-                          +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+' <span class="small-span" id="desigCourse-'.courses[i].id.'"></span> </h5>'
+                         +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+' <span class="small-span" id="desigCourse-'+courses[i].id+'"></span> </h5>'
                          +'</i><span id="enrollmentCode-'+courses[i].id+'" code="'+courses[i].enrollmentCode+'" class="class-code bg-light" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
                          +'</div>'
                          +'<div class="col-2">'
@@ -637,7 +637,7 @@ function printAllArrays() {
 
   for (var i = 0; i < coursesTeachersArray.length; i++) {
     if (coursesTeachersArray[i].courseId == courseId && coursesTeachersArray[i].userId == mid) {
-      $('#desigCourse-'+coursesTeachersArray[i].courseId).html("(Student)");
+      $('#desigCourse-'+coursesTeachersArray[i].courseId).html("(Teacher)");
     }
   }
 }
