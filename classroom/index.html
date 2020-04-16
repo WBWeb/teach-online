@@ -529,11 +529,12 @@
     function popTeacherDetails(courseId,userId) {
     console.log('Pop Teacher Clicked');
 
-    $('#apimodal').empty().html(initModalDOM());
+    $('#apimodal').empty();
+    $('#apimodal').html(initModalDOM());
     $('#apimodaltitle').html('Teacher Details');
 
-    print='<form class="login100-form validate-form">'
-            +'<center class="mb-4"><img src="'+coursesTeachersArray[i].profile.photoUrl+'" class="img-card"></center>'
+    print='<form class="login100-form validate-form text-center">'
+            +'<center class="mb-4"><img src="'+coursesTeachersArray[i].profile.photoUrl+'" class="img-card" width="100"></center>'
             +'<div class="mb-3"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">'+coursesTeachersArray[i].profile.name.fullName+'<br>'+coursesTeachersArray[i].profile.emailAddress+'</span><br>(Teacher)</div>'
             +'<div class="flex-c">'
               +'<a href="javascript:void(0);" onclick="startPreloader();" data-toggle="tooltip" class="login100-social-item" title="" data-original-title="Log Out"><i class="fa fa-sign-out" aria-hidden="true"></i></a>'
