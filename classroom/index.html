@@ -605,7 +605,7 @@ function coursesAnnouncementsGet(courseId,announcementId) {
           tempDate = new Date(coursesAnnouncementsArray[i].creationTime);
 
           print='<div class="card">'
-                  +'<div id="apimodal-card-title p-2" class="card-title" style="background: #f7f7f7;border-radius: .5rem;">'
+                  +'<div id="apimodal-card-title" class="card-title" style="background: #f7f7f7;border-radius: .5rem; padding: 8px;">'
                     +'<div class="row">'
                       +'<div class="col-2 p-1 text-center">'
                         +'<img src="'+coursesTeachersArray[j].profile.photoUrl+'" width="45" class="img-card">'
@@ -617,7 +617,7 @@ function coursesAnnouncementsGet(courseId,announcementId) {
                     +'</div>'
                     +'<div class="row py-2">'
                       +'<div class="col-12">'
-                      +'<h5 style="color: #041d29; font-family: serif; font-size: 18px;">'+coursesAnnouncementsArray[i].text+'</h5>'
+                      +'<h5 style="color: #041d29; font-family: serif; font-size: 18px; padding-left: 10px;">'+coursesAnnouncementsArray[i].text+'</h5>'
                       +'</div>'
                     +'</div>'
                   +'</div>'
