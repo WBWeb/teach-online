@@ -599,15 +599,16 @@ function popAnouncement(courseId,announcementId) {
 function coursesAnnouncementsGet(courseId,announcementId) {
   for (var i = 0; i < coursesAnnouncementsArray.length; i++) {
     if (coursesAnnouncementsArray[i].courseId == courseId && coursesAnnouncementsArray[i].id == announcementId) {
-      if(coursesTeachersArray[i].courseId == courseId && coursesTeachersArray[i].userId == coursesAnnouncementsArray[i].creatorUserId){
-        creatorName = coursesTeachersArray[i].profile.name.fullName;
+      for (var j = 0; j < coursesTeachersArray.length; j++) {
+        if(coursesTeachersArray[j].courseId == courseId && coursesTeachersArray[j].userId == coursesAnnouncementsArray[i].creatorUserId){
+          print='<form class="login100-form validate-form text-center">'
+                  +'<div class="login100-form-title">'+coursesAnnouncementsArray[i].text+'</div>'
+                    +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">'+coursesAnnouncementsArray[i].state+'<br>'+coursesAnnouncementsArray[i].creationTime+'</span><br>For '+coursesAnnouncementsArray[i].assigneeMode+'</div>'
+                  +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">Created By : '+coursesTeachersArray[i].profile.name.fullName+''
+                +'</form>';
+          return print;
+        }
       }
-      print='<form class="login100-form validate-form text-center">'
-              +'<div class="login100-form-title">'+coursesAnnouncementsArray[i].text+'</div>'
-              +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">'+coursesAnnouncementsArray[i].state+'<br>'+coursesAnnouncementsArray[i].creationTime+'</span><br>For '+coursesAnnouncementsArray[i].assigneeMode+'</div>'
-              +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">Created By : '+creatorName+''
-            +'</form>';
-      return print;
     }
   }
 }
