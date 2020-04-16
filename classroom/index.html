@@ -525,19 +525,19 @@
       });
     }
 
-    //pop teacher modal
-    function popTeacherDetails(courseId,userId) {
-    console.log('Pop Teacher Clicked');
+//pop teacher modal
+function popTeacherDetails(courseId,userId) {
+  console.log('Pop Teacher Clicked');
 
-    $('#apimodal').empty().html(initModalDOM());
-    $('#apimodaltitle').html('Teacher Details');
-    $('#apimodalform').empty().html(coursesTeachersGet(courseId,userId));
-    console.log('Modal Form print success');
-    $('#apimodal').modal('show');
-    console.log('Call to fetch data');
-    coursesTeachersGet(courseId,userId);
-    $('[data-toggle="tooltip"]').tooltip();
-  }
+  $('#apimodal').empty().html(initModalDOM());
+  $('#apimodaltitle').html('Teacher Details');
+  $('#apimodalform').empty().html(coursesTeachersGet(courseId,userId));
+  console.log('Modal Form print success');
+  $('#apimodal').modal('show');
+  console.log('Call to fetch data');
+  coursesTeachersGet(courseId,userId);
+  $('[data-toggle="tooltip"]').tooltip();
+}
 
 function coursesTeachersGet(courseId,userId) {
   for (var i = 0; i < coursesTeachersArray.length; i++) {
