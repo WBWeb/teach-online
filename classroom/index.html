@@ -539,8 +539,6 @@ function popTeacherDetails(courseId,userId) {
   $('#apimodalform').empty().html(coursesTeachersGet(courseId,userId));
   console.log('Modal Form print success');
   $('#apimodal').modal('show');
-  console.log('Call to fetch data');
-  coursesTeachersGet(courseId,userId);
   $('[data-toggle="tooltip"]').tooltip();
 }
 
@@ -568,8 +566,6 @@ function popStudentDetails(courseId,userId) {
   $('#apimodalform').empty().html(coursesStudentsGet(courseId,userId));
   console.log('Modal Form print success');
   $('#apimodal').modal('show');
-  console.log('Call to fetch data');
-  coursesStudentsGet(courseId,userId);
   $('[data-toggle="tooltip"]').tooltip();
 }
 
@@ -597,8 +593,6 @@ function popAnouncement(courseId,announcementId) {
   $('#apimodalform').empty().html(coursesAnnouncementsGet(courseId,announcementId));
   console.log('Modal Form print success');
   $('#apimodal').modal('show');
-  console.log('Call to fetch data');
-  coursesAnnouncementsGet(courseId,announcementId);
   $('[data-toggle="tooltip"]').tooltip();
 }
 

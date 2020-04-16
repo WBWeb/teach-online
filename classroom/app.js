@@ -72,7 +72,7 @@ function classroomCoursesAnnouncements(courseId){
       $("#"+courseId+"-announcements").html(data.length);
 
       for(i=0; i<data.length; i++){
-        coursesAliasesArray.push(data[i]);
+        coursesAnnouncementsArray.push(data[i]);
         print+='<p class="popUp" onclick="popAnouncement('+data[i].courseId+','+data[i].id+')"> '+(i+1)+' - '+data[i].id+' - '+data[i].state+'</p>';
       }
     } else {
