@@ -591,7 +591,7 @@ function coursesStudentsGet(courseId,userId) {
 
 //pop announcement modal
 function popAnouncement(courseId,announcementId) {
-  console.log('Pop Teacher Clicked');
+  console.log('Pop Announcement Clicked');
 
   $('#apimodal').empty().html(initModalDOM());
   $('#apimodaltitle').html('Announcement Details');
@@ -599,7 +599,7 @@ function popAnouncement(courseId,announcementId) {
   console.log('Modal Form print success');
   $('#apimodal').modal('show');
   console.log('Call to fetch data');
-  coursesAnnouncementsGet(courseId,userId);
+  coursesAnnouncementsGet(courseId,announcementId);
   $('[data-toggle="tooltip"]').tooltip();
 }
 
