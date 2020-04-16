@@ -370,7 +370,7 @@
                      +'<div class="card-header">'
                         +'<div class="row">'
                          +'<div class="col text-left">'
-                         +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+' <span class="small-span" id="desigCourse-'.courses[i].id.'"></span> </h5>'
+                          +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+' <span class="small-span" id="desigCourse-'.courses[i].id.'"></span> </h5>'
                          +'</i><span id="enrollmentCode-'+courses[i].id+'" code="'+courses[i].enrollmentCode+'" class="class-code bg-light" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
                          +'</div>'
                          +'<div class="col-2">'
@@ -590,12 +590,12 @@ function coursesStudentsGet(courseId,userId) {
 }
 
 //pop announcement modal
-function popAnouncement(courseId,userId) {
+function popAnouncement(courseId,announcementId) {
   console.log('Pop Teacher Clicked');
 
   $('#apimodal').empty().html(initModalDOM());
   $('#apimodaltitle').html('Student Details');
-  $('#apimodalform').empty().html(coursesAnnouncementsGet(courseId,userId));
+  $('#apimodalform').empty().html(coursesAnnouncementsGet(courseId,announcementId));
   console.log('Modal Form print success');
   $('#apimodal').modal('show');
   console.log('Call to fetch data');
@@ -603,21 +603,21 @@ function popAnouncement(courseId,userId) {
   $('[data-toggle="tooltip"]').tooltip();
 }
 
-function coursesAnnouncementsGet(courseId,userId) {
+function coursesAnnouncementsGet(courseId,announcementId) {
   for (var i = 0; i < coursesAnnouncementsArray.length; i++) {
-    if (coursesAnnouncementsArray[i].courseId == courseId && coursesAnnouncementsArray[i].userId == userId) {
+    if (coursesAnnouncementsArray[i].courseId == courseId && coursesAnnouncementsArray[i].userId == announcementId) {
+      if(coursesTeachersArray[i].courseId == courseId && coursesTeachersArray[i].userId == coursesAnnouncementsArray[i].creatorUserId){
+        creatorName = coursesTeachersArray[i].profile.name.fullName;
+      }
       print='<form class="login100-form validate-form text-center">'
-              +'<center class="mb-4"><img src="'+coursesAnnouncementsArray[i].profile.photoUrl+'" class="img-card" width="100"></center>'
-              +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">'+coursesAnnouncementsArray[i].profile.name.fullName+'<br>'+coursesAnnouncementsArray[i].profile.emailAddress+'</span><br>(Student)</div>'
-              +'<div class="flex-c">'
-                +'<a href="mailto:'+coursesAnnouncementsArray[i].profile.emailAddress+'" class="login100-social-item" data-toggle="tooltip" title="Contact"><i class="fa fa-envelope" aria-hidden="true"></i></a>'
-              +'</div>'
+              +'<div class="login100-form-title">'+coursesAnnouncementsArray[i].text+'</div>'
+              +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">'+coursesAnnouncementsArray[i].state+'<br>'+coursesAnnouncementsArray[i].creationTime+'</span><br>For '+coursesAnnouncementsArray[i].assigneeMode+'</div>'
+              +'<div class="mb-3 text-center"><span class="txt1 p-b-37" style="font-size:14px; color: #4b2354;">Created By : '+creatorName+''
             +'</form>';
       return print;
     }
   }
 }
-
 
 function printAllArrays() {
   console.log(coursesTeachersArray);
@@ -628,8 +628,7 @@ function printAllArrays() {
   console.log(coursesAliasesArray);
   setDesigCourse();
 }
-
-function setDesigCourse() {
+  function setDesigCourse() {
   for (var i = 0; i < coursesStudentsArray.length; i++) {
     if (coursesStudentsArray[i].courseId == courseId && coursesStudentsArray[i].userId == mid) {
       $('#desigCourse-'+coursesStudentsArray[i].courseId).html("(Student)");
@@ -641,7 +640,6 @@ function setDesigCourse() {
       $('#desigCourse-'+coursesTeachersArray[i].courseId).html("(Student)");
     }
   }
-
 }
 
 
