@@ -144,11 +144,29 @@
           .login100-form-title {
             font-size: 16px;
           }
+          p{
+            font-size: 12px;
+          }
+          h5{
+            font-size: .8rem;
+          }
+          .class-code{
+            font-size: 10px;
+          }
         }
 
         @media screen and (max-width: 768px) {
           .login100-form-title {
             font-size: 20px;
+          }
+          p{
+            font-size: 16px;
+          }
+          h5{
+            font-size: .9rem;
+          }
+          .class-code{
+            font-size: 11px;
           }
         }
 
@@ -156,11 +174,29 @@
           .login100-form-title {
             font-size: 30px;
           }
+          p{
+            font-size: 20px;
+          }
+          h5{
+            font-size: 1rem;
+          }
+          .class-code{
+            font-size: 12px;
+          }
         }
 
         @media screen and (min-width: 993px) {
           .login100-form-title {
             font-size: 40px;
+          }
+          p{
+            font-size: 22px;
+          }
+          h5{
+            font-size: 1.25rem;
+          }
+          .class-code{
+            font-size: 13px;
           }
         }
 
@@ -464,15 +500,15 @@
                               +'<span class="class-code bg-light" data-toggle="tooltip">'+coursesArray[i].name+' - '+coursesArray[i].section+'</span>'
                               +'<p>'+creationTime.toString().substring(0,15)+'</p>'
                             +'</div>'
-                            +'<div class="col-2 p-2 text-left">'
+                            +'<div class="col-2 p-0 text-left">'
                               +'<h5 id="assigned-'+coursescourseWorkArray[j].id+'">-</h5>'
                               +'<p>Assigned</p>'
                             +'</div>'
-                            +'<div class="col-2 p-2 text-left">'
+                            +'<div class="col-2 p-0 text-left">'
                               +'<h5 id="turnedin-'+coursescourseWorkArray[j].id+'">-</h5>'
                               +'<p>Turned In</p>'
                             +'</div>'
-                            +'<div class="col-2 p-2 text-left">'
+                            +'<div class="col-2 p-0 text-left">'
                               +'<h5 id="graded-'+coursescourseWorkArray[j].id+'">-</h5>'
                               +'<p>Graded</p>'
                             +'</div>'
