@@ -372,7 +372,7 @@
       print=''; var domain = ["students","teachers","announcements","courseWork","aliases","topics"];
         for(i=0; i<courses.length; i++){
           console.log(courses[i]);
-            print+='<div class="col-sm-6 col-md-4 col-lg-3">'
+            print+='<div id="course-'+courseId+'" class="col-sm-6 col-md-4 col-lg-3">'
                     +'<div class="card bg-white mb-3" style="width: auto;">'
                       +'<div class="card-header">'
                         +'<div class="row">'
@@ -452,7 +452,7 @@
             console.log('coursescourseWorkArray courseid - '+i+' - '+coursescourseWorkArray[j].courseId);
             creationDate = new Date(coursescourseWorkArray[i].creationTime);
             if (coursescourseWorkArray[j].courseId == coursesArray[i].id and coursescourseWorkArray[i].creatorUserId==mid) {
-              print+='<div class="col-12 for-teacher-'+coursesArray[i].id+'">'
+              print+='<div id="courseWork-'+courseId+'" class="col-12">'
                       +'<div class="card bg-white mb-3" style="width: auto;">'
                         +'<div class="card-header">'
                           +'<div class="row">'
@@ -748,12 +748,15 @@ function  setDesigCourse(){
       console.log("setDesigCourse Sudent set success");
       $('#desigCourse-'+coursesStudentsArray[i].courseId).empty().html("(Student)");
       $('#coursesWork-'+coursesStudentsArray[i].courseId).addClass('for-student-'+coursesStudentsArray[i].courseId);
+      $('#course-'+coursesStudentsArray[i].courseId).addClass('for-student-'+coursesStudentsArray[i].courseId);
     }
   }
   for (var i = 0; i < coursesTeachersArray.length; i++) {
     if (coursesTeachersArray[i].userId == mid) {
       $('#desigCourse-'+coursesTeachersArray[i].courseId).empty().html("(Teacher)");
-      $('#coursesWork-'+coursesStudentsArray[i].courseId).addClass('for-teacher-'+coursesStudentsArray[i].courseId);
+      $('#coursesWork-'+coursesTeachersArray[i].courseId).addClass('for-teacher-'+coursesStudentsArray[i].courseId);
+      $('#course-'+coursesTeachersArray[i].courseId).addClass('for-teacher-'+coursesStudentsArray[i].courseId);
+
     }
   }
 
