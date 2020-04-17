@@ -505,16 +505,20 @@
                                          +'</p>'
                                        +'</div>'
                                        +'<div id="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="collapse show" aria-labelledby="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'" data-parent="#accordion-CourseWork-'+coursescourseWorkArray[j].id+'">'
-                                         +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="card-body course-accordion-body">';
+                                       +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="card-body course-accordion-body">';
                                         for (var l = 0; l < coursescourseWorkStudentSubmissionsArray[k].submissionHistory.length; l++) {
+                                          console.log('Datacheck1');
                                           for(var key in coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]){
+                                            console.log('Datacheck2');
                                               if(key=="gradeHistory"){
                                                 if (courseWorkNotCounted) {
                                                   courseWorkGraded++;
                                                 }
+                                                console.log('Datacheck3');
                                                 gradeTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["gradeTimestamp"]);
                                                 print+='<p>'+(l+1)+' - Graded '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["pointsEarned"]+'/'+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["maxPoints"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+gradeTimestamp.toString().substring(0,25)+'</p>';
                                               } else if (key=="stateHistory") {
+                                                console.log('Datacheck4');
                                                 stateTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["stateTimestamp"]);
                                                 if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="TURNED_IN") {
                                                    print+='<p>'+(l+1)+' - Turned In by '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
@@ -530,6 +534,7 @@
                                                   print+='<p>'+(l+1)+' - Assigned to '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
                                                 }
                                             } else {
+                                              console.log('Datacheck5');
                                               console.log(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]);
                                             }
                                           }
