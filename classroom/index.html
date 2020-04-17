@@ -307,14 +307,10 @@
         coursesArray=[];
 
         if (typeof data !== 'undefined' && data.length > 0) {
-          print=coursesDOM(response.result.courses);
           coursesArray.push(response.result.courses);
           //print courses in page
-          $('#course-container').empty().html(print);
-          $('#courseWork-container').empty().html(print);
-
-          coursesCourseWorkDOM
-
+          $('#course-container').empty().html(coursesDOM(response.result.courses));
+          $('#courseWork-container').empty().html(coursesCourseWorkDOM());
           Toast.fire({
             icon: 'success',
             title: data.length+' Courses Loaded',
