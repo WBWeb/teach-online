@@ -585,7 +585,7 @@
                         if (coursescourseWorkArray[j].dueDate != null) {
                           date = coursescourseWorkArray[j].dueDate.year+" "+coursescourseWorkArray[j].dueDate.month+" "+coursescourseWorkArray[j].dueDate.day;
                           date = new Date(date);
-                          print+='<p class="mb-0">Due on <span data-toggle="tooltip" title="Created On - '+creationTime.toString().substring(0,15)+', Last Modified - '+updateTime.toString().substring(0,15)+'"> '+date.toString().substring(0,15)+' '+coursescourseWorkArray[j].dueTime.hours+':'+coursescourseWorkArray[j].dueTime.minutes+' </span>  - <b style="position: absolute;right: 1.25rem;">'+coursescourseWorkArray[0].maxPoints+' Points</b> </p>';
+                          print+='<p class="mb-0">Due on <span data-toggle="tooltip" title="Created On - '+creationTime.toString().substring(0,15)+', Last Modified - '+updateTime.toString().substring(0,15)+'"> '+date.toString().substring(0,15)+' '+coursescourseWorkArray[j].dueTime.hours+':'+coursescourseWorkArray[j].dueTime.minutes+' </span>  <b style="position: absolute;right: 1.25rem;">'+coursescourseWorkArray[0].maxPoints+' Points</b> </p>';
                         } else {
                           print+='<p class="mb-0">Due on <span data-toggle="tooltip" title="Created On - '+creationTime.toString().substring(0,15)+', Last Modified - '+updateTime.toString().substring(0,15)+'"> No Due Date </span>  <b style="position: absolute;right: 1.25rem;">'+coursescourseWorkArray[0].maxPoints+' Points</b> </p>';
                         }
