@@ -481,11 +481,10 @@
                             for(k=0; k<coursescourseWorkStudentSubmissionsArray.length; k++){
                               console.log('coursescourseWorkArray courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
                               if (coursescourseWorkStudentSubmissionsArray[k].courseId == coursesArray[i].id && coursescourseWorkStudentSubmissionsArray[k].courseWorkId == coursescourseWorkArray[j].id) {
-                                studentName=getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].userId,'name');
                                 print+='<div class="card">'
                                        +'<div class="card-header" id="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
                                          +'<h2 class="popUp" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" aria-expanded="true" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
-                                          +'<img src="'+studentName.fullName+'" class="img-card img-very-small">'
+                                          +'<img src="'+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].userId,'name').fullName+'" class="img-card img-very-small">'
                                           +'<span>'+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].userId,'photoUrl')+'</span>'
                                          +'</h2>'
                                        +'</div>'
@@ -493,13 +492,12 @@
                                          +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="card-body course-accordion-body">';
                                          for (var l = 0; l < coursescourseWorkStudentSubmissionsArray[k].submissionHistory.length; l++) {
                                            for(var key in coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]){
-                                            teacherName=getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name');
                                              if (key=="stateHistory") {
                                                stateTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["stateTimestamp"]);
-                                               print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray[3].submissionHistory[l][key]["state"]+' by '+teacherName.fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
+                                               print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray[3].submissionHistory[l][key]["state"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
                                              } else if(key=="gradeHistory"){
                                                gradeTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["gradeTimestamp"]);
-                                               print+='<p>'+(l+1)+' - Graded '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["pointsEarned"]+'/'+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["maxPoints"]+' by '+teacherName.fullName+' on '+gradeTimestamp.toString().substring(0,15)+'</p>';
+                                               print+='<p>'+(l+1)+' - Graded '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["pointsEarned"]+'/'+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["maxPoints"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+gradeTimestamp.toString().substring(0,15)+'</p>';
                                              } else {
                                                console.log(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]);
                                              }
