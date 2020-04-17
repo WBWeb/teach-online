@@ -1,5 +1,5 @@
 //Course counters Functionality
-
+var coursesArray = [];
 var coursesTeachersArray = [];
 var coursesStudentsArray = [];
 var coursesAnnouncementsArray = [];

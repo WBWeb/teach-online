@@ -304,8 +304,11 @@
         console.log(response);
         data=response.result.courses;
 
+        coursesArray=[];
+
         if (typeof data !== 'undefined' && data.length > 0) {
           print=coursesDOM(response.result.courses);
+          coursesArray.push(response.result.courses);
           //print courses in page
           $('#course-container').empty().html(print);
 
@@ -343,7 +346,7 @@
                   +'</div>'
                   +'<div class="text-right" style="width:70px">'
                     +'<div class="dropleft">'
-                      +'<a data-toggle="dropdown" title="menu" aria-haspopup="true" aria-expanded="false"><img src="'+current.Pt.QK+'" height="50px" width="50px" class="img-card"></button>'
+                      +'<a data-toggle="dropdown" title="menu" aria-haspopup="true" aria-expanded="false"><img src="'+current.Pt.QK+'" width="50px" class="img-card" style="pointer:cursor;"></button>'
                       +'<div class="dropdown-menu">'
                         +'<a class="for-student" class="dropdown-item" href="javascript:void(0)" onclick="popTo-do" style="display:none">To Do</a>'
                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="Toast.fire({title:'+"'Feature Coming Soon',icon:'success'"+'})">My Calendar</a>'
@@ -366,25 +369,25 @@
           console.log(courses[i]);
             print+='<div class="col-sm-6 col-md-4 col-lg-3">'
                     +'<div class="card bg-white mb-3" style="width: auto;">'
-                     +'<div class="card-header">'
+                      +'<div class="card-header">'
                         +'<div class="row">'
-                         +'<div class="col text-left">'
-                         +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+' <span class="small-span" id="desigCourse-'+courses[i].id+'"></span> </h5>'
-                         +'</i><span id="enrollmentCode-'+courses[i].id+'" code="'+courses[i].enrollmentCode+'" class="class-code bg-light" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
-                         +'</div>'
-                         +'<div class="col-2">'
-                          +'<div class="flex-c" style="justify-content: flex-end;">'
-                            +'<div class="dropleft">'
-                              +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
-                              +'<div class="dropdown-menu">'
-                                +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>'
-                                +'<a class="dropdown-item" href="javascript:void(0)" onclick="deleteCourse('+courses[i].id+')">Delete Course</a>'
+                          +'<div class="col text-left">'
+                            +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+' <span class="small-span" id="desigCourse-'+courses[i].id+'"></span> </h5>'
+                            +'</i><span id="enrollmentCode-'+courses[i].id+'" code="'+courses[i].enrollmentCode+'" class="class-code bg-light" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
+                          +'</div>'
+                          +'<div class="col-2">'
+                            +'<div class="flex-c" style="justify-content: flex-end;">'
+                              +'<div class="dropleft">'
+                                +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
+                                +'<div class="dropdown-menu">'
+                                  +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>'
+                                  +'<a class="dropdown-item" href="javascript:void(0)" onclick="deleteCourse('+courses[i].id+')">Delete Course</a>'
+                                +'</div>'
                               +'</div>'
                             +'</div>'
                           +'</div>'
-                          +'</div>'
                         +'</div>'
-                     +'</div>'
+                      +'</div>'
                      +'<div id="card-body-'+courses[i].id+'" class="card-body">'
                       +'<div class="accordion" id="accordion-'+courses[i].id+'">';
                          for (item of domain) {
@@ -429,6 +432,56 @@
                   +'</div>';
                   getCourseData(courses[i].id);
           }
+      return print;
+    }
+
+    function coursesCourseWorkDOM() {
+      console.log('dom call success');
+      print='';
+        for(i=0; i<coursesArray.length; i++){
+          for(j=0; j<coursescourseWorkArray.length; j++){
+            if (coursescourseWorkArray[j].courseId == coursesArray[i].id) {
+              console.log(coursescourseWorkArray[j]);
+              print+='<div class="col-12">'
+                      +'<div class="card bg-white mb-3" style="width: auto;">'
+                        +'<div class="card-header">'
+                          +'<div class="row">'
+                            +'<div class="col-4 text-left">'
+                              +'<h5 class="card-title mb-0">'+coursescourseWorkArray[j].title+'</h5>'
+                              +'<span class="class-code bg-light" data-toggle="tooltip">'+coursesArray[i].name+' - '+coursesArray[i].section+'</span>'
+                            +'</div>'
+                            +'<div class="col-2 text-left">'
+                            +'</div>'
+                            +'<div class="col-2 text-left">'
+                            +'</div>'
+                            +'<div class="col-2 text-left">'
+                            +'</div>'
+                            +'<div class="col-2">'
+                              +'<div class="flex-c" style="justify-content: flex-end;">'
+                                +'<div class="dropleft">'
+                                  +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
+                                  +'<div class="dropdown-menu">'
+                                    +'<a class="dropdown-item" href="javascript:void(0)" onclick="">View Submmissions</a>'
+                                  +'</div>'
+                                +'</div>'
+                              +'</div>'
+                            +'</div>'
+                          +'</div>'
+                        +'</div>';
+                        +'<div id="card-body-'+coursescourseWorkArray[j].id+'" class="card-body">'
+                         +'<div class="accordion" id="accordion-CourseWork'+coursescourseWorkArray[j].id+'">';
+                            for(k=0; k<coursescourseWorkStudentSubmissionsArray.length; k++){
+                              if (coursescourseWorkStudentSubmissionsArray[j].courseId == coursescourseWorkArray[j].courseId && coursescourseWorkStudentSubmissionsArray[j].courseWorkId == coursescourseWorkArray[j].id) {
+                                print+='<p>'+coursescourseWorkStudentSubmissionsArray[j].id+'</p>';
+                              }
+                           }
+                           print+='</div>'
+                        +'</div>'
+                      +'</div>'
+                    +'</div>';
+            }
+          }
+        }
       return print;
     }
 
