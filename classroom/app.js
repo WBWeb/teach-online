@@ -363,7 +363,7 @@ function initDOM() {
                     +'<span class="login100-form-title p-b-10" style="text-align: left;">Classroom ClassWork</span>'
                   +'</div>'
                 +'</div>'
-                +'<div class="row p-t-15 p-b-30" id="classWork-container" style="max-height:540px; overflow:scroll">'
+                +'<div class="row p-t-15 p-b-30" id="courseWork-container" style="max-height:540px; overflow:scroll">'
                 +'</div>'
               +'</div>'
             +'</div>'
