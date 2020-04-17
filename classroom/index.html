@@ -452,6 +452,8 @@
             console.log('coursescourseWorkArray courseid - '+i+' - '+coursescourseWorkArray[j].courseId);
             creationTime = new Date(coursescourseWorkArray[j].creationTime);
             updateTime = new Date(coursescourseWorkArray[j].updateTime);
+            dueDate = coursescourseWorkArray[j].dueDate;
+            dueTime = coursescourseWorkArray[j].dueTime;
             if (coursescourseWorkArray[j].courseId == coursesArray[i].id && coursescourseWorkArray[j].creatorUserId==mid) {
               print+='<div id="courseWork-'+coursescourseWorkArray[j].courseId+'" class="col-12">'
                       +'<div class="card bg-white mb-3" style="width: auto;">'
@@ -492,7 +494,7 @@
                         +'</div>'
                         +'<div id="card-footer-'+coursescourseWorkArray[j].id+'" class="card-footer">'
                         +'<p class="mb-0">Due on <span data-toggle="tooltip" title="Created On - '+creationTime.toString().substring(0,15)+', Last Modified - '+updateTime.toString().substring(0,15)+'"> - </span>  <b>'+coursescourseWorkArray[j].maxPoints+' Points</b> </p>'
-                        +'<p class="mb-0">Due on <span>'+coursescourseWorkArray[j].dueDate["year"]+' - '+coursescourseWorkArray[j].dueDate["month"]+' - '+coursescourseWorkArray[j].dueDate["date"]+' '+coursescourseWorkArray[j].dueTime["hours"]+' : '+coursescourseWorkArray[j].dueTime["minutes"]+' </span> </p>'
+                        +'<p class="mb-0">Due on <span>'+dueDate.year+' - '+dueDate.month+' - '+dueDate.date+' '+dueTime.hours+' : '+dueTime.minutes+' </span> </p>'
                         +'</div>'
                       +'</div>'
                     +'</div>';
