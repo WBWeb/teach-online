@@ -25,7 +25,7 @@ function classroomCoursesAnnouncementsGet(courseId,id) {
 
 //courses.announcements - delete
 function classroomCoursesAnnouncementsDelete(courseId,id) {
-  return gapi.client.classroom.courses.delete({
+  return gapi.client.classroom.courses.announcements.delete({
     "courseId": courseId,
     "id": id
   })

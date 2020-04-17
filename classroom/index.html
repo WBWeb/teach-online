@@ -719,7 +719,7 @@ function coursesAnnouncementsGet(courseId,announcementId) {
                           +'<div class="dropleft">'
                             +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
                             +'<div class="dropdown-menu">'
-                              +'<a class="dropdown-item" href="javascript:void(0)" onclick="deleteAnnouncement('+coursesAnnouncementsArray[i].courseId+','+coursesAnnouncementsArray[i].id+')">Delete Announcement</a>'
+                              +'<a class="dropdown-item" href="javascript:void(0)" onclick="deleteCoursesAnnouncement('+coursesAnnouncementsArray[i].courseId+','+coursesAnnouncementsArray[i].id+')">Delete Announcement</a>'
                             +'</div>'
                           +'</div>'
                         +'</div>'
@@ -830,20 +830,6 @@ function toggleAccordion(id) {
     $('#card-body-'+id).slideUp();
     $('#'+event.id +' span').empty().html('Show');
   }
-
-//courses.announcements - delete
-function deleteAnnouncement(courseId,id) {
-  return gapi.client.classroom.courses.delete({
-    "courseId": courseId,
-    "id": id
-  })
-  .then(function(response) {
-    // Handle the results here (response.result has the parsed body).
-    console.log("Response", response);
-  },
-  function(err) { console.error("Execute error", err); });
-
-}
 
 handleClientLoad();
 
