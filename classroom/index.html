@@ -381,9 +381,17 @@
                             +'<div class="flex-c" style="justify-content: flex-end;">'
                               +'<div class="dropleft">'
                                 +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
-                                +'<div class="dropdown-menu">'
-                                  +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>'
-                                  +'<a class="dropdown-item" href="javascript:void(0)" onclick="deleteCourse('+courses[i].id+')">Delete Course</a>'
+                                print+='<div class="dropdown-menu">';
+                                if (courses[i].status=='PROVISIONED') {
+                                  print+='<a class="dropdown-item" href="javascript:void(0)" onclick="activateCourse('+courses[i].id+')">Activate Course</a>';
+                                } else {
+                                  if (courses[i].status=='ARCHIVED') {
+                                    print+='<a class="dropdown-item" href="javascript:void(0)" onclick="deleteCourse('+courses[i].id+')">Delete Course</a>';
+                                  } else if (true) {
+                                    print+='<a class="dropdown-item" href="javascript:void(0)" onclick="archiveCourse('+courses[i].id+')">Archive Course</a>';
+                                  }
+                                  print+'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>';
+                                }
                                 +'</div>'
                               +'</div>'
                             +'</div>'
