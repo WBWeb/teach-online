@@ -825,10 +825,10 @@ function toggleAccordion(id) {
   status=$('#toggle-span-'+id).html();
   if (status=='Show') {
     $('#card-body-'+id).slideDown();
-    $('#toggle-span-'+id+' span').empty().html('Hide');
+    $('#toggle-span-'+id).empty().html('Hide');
   } else {
     $('#card-body-'+id).slideUp();
-    $('#toggle-span-'+id+' span').empty().html('Show');
+    $('#toggle-span-'+id).empty().html('Show');
   }
 }
 handleClientLoad();
