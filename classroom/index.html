@@ -496,6 +496,7 @@
                             for(k=0; k<coursescourseWorkStudentSubmissionsArray.length; k++){
                               console.log('coursescourseWorkArray courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
                               if (coursescourseWorkStudentSubmissionsArray[k].courseId == coursesArray[i].id && coursescourseWorkStudentSubmissionsArray[k].courseWorkId == coursescourseWorkArray[j].id) {
+                                console.log('Found Success courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
                                 courseWorkNotCounted=false;
                                 print+='<div class="card">'
                                        +'<div class="card-header" id="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
@@ -506,6 +507,7 @@
                                        +'</div>'
                                        +'<div id="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="collapse show" aria-labelledby="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'" data-parent="#accordion-CourseWork-'+coursescourseWorkArray[j].id+'">'
                                        +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="card-body course-accordion-body">';
+                                       console.log('Print Success courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
                                         for (var l = 0; l < coursescourseWorkStudentSubmissionsArray[k].submissionHistory.length; l++) {
                                           console.log('Datacheck1');
                                           for(var key in coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]){
