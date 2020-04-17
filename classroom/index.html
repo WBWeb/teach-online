@@ -494,10 +494,10 @@
                                            for(var key in coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]){
                                              if (key=="stateHistory") {
                                                stateTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["stateTimestamp"]);
-                                               if (coursescourseWorkStudentSubmissionsArray[3].submissionHistory[l][key]["state"]=="CREATED") {
-                                                 print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray[3].submissionHistory[l][key]["state"]+' by '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
+                                               if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="CREATED") {
+                                                 print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]+' by '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
                                                } else{
-                                                 print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray[3].submissionHistory[l][key]["state"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
+                                                 print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
                                                }
                                              } else if(key=="gradeHistory"){
                                                gradeTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["gradeTimestamp"]);
