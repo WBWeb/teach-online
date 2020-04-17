@@ -503,7 +503,7 @@
                                        +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="card-body course-accordion-body">';
                                        console.log('Print Success courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
                                        console.log('Datacheck1');courseWorkNotCounted=true;
-                                        for (var l = 0; l < coursescourseWorkStudentSubmissionsArray[k].submissionHistory.length; l++) {
+                                        for (var l = coursescourseWorkStudentSubmissionsArray[k].submissionHistory.length; l >0 ; l--) {
                                           for(var key in coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]){
                                             console.log('Datacheck2');
                                               if(key=="gradeHistory"){
