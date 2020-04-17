@@ -469,8 +469,8 @@
                                 +'<div class="dropleft">'
                                   +'<button class="login100-button-a" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
                                   +'<div class="dropdown-menu">'
-                                    +'<a class="dropdown-item" href="javascript:void(0)" onclick="">View Submmissions</a>'
-                                    +'<a class="dropdown-item" href="'+coursescourseWorkArray[j].alternateLink+'" onclick="">Open in Google Classroom</a>'
+                                    +'<a class="dropdown-item" href="javascript:void(0)" onclick="toggleAccordion('+coursescourseWorkArray[j].id+')"><span id="toggle-span-'+coursescourseWorkArray[j].id+'">Show</span> Submmissions</a>'
+                                    +'<a class="dropdown-item" href="'+coursescourseWorkArray[j].alternateLink+'" target="_blank">Open in Google Classroom</a>'
                                   +'</div>'
                                 +'</div>'
                               +'</div>'
@@ -817,6 +817,17 @@ function getTeacherInfo(id,key) {
     if (coursesTeachersArray[i].userId==id) {
       return coursesTeachersArray[i].profile[key];
     }
+  }
+}
+
+function toggleAccordion(id) {
+  status=$('#toggle-span-'+id).html();
+  if (status=='View') {
+    $('#card-body-'+id).slideDown();
+    $('#'+event.id +' span').empty().html('Hide');
+  } else {
+    $('#card-body-'+id).slideUp();
+    $('#'+event.id +' span').empty().html('Show');
   }
 }
 
