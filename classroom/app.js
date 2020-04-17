@@ -388,31 +388,21 @@ function modalAddCourse() {
         +'</div>'
       +'</div>'
       +'<div class="row">'
-        +'<div class="col-md-4">'
+        +'<div class="col-md-6">'
           +'<div class="form-group">'
             +'<label>Section</label>'
             +'<input value="" type="text" max="10" id="courseSection" class="form-control">'
           +'</div>'
         +'</div>'
-        +'<div class="col-md-4">'
+        +'<div class="col-md-6">'
           +'<div class="form-group">'
             +'<label>Room</label>'
             +'<input value="" type="text" max="10" id="courseRoom" class="form-control">'
-          +'</div>'
-        +'</div>'
-        +'<div class="col-md-4">'
-          +'<div class="form-group">'
-            +'<label>Course State</label>'
-            +'<select id="courseState" class="form-control">'
-              +'<option>ACTIVE</option>'
-              +'<option>ARCHIVED</option>'
-              +'<option>PROVISIONED</option>'
-              +'<option>DECLINED</option>'
-              +'<option>SUSPENDED</option>'
+            +'<select style="display:none" id="courseState" class="form-control">'
+              +'<option selected>PROVISIONED</option>'
             +'</select>'
           +'</div>'
         +'</div>'
-      +'</div>'
       +'<div class="row">'
         +'<div class="col-md-12">'
           +'<div class="form-group">'
@@ -820,6 +810,8 @@ function classroomAnnouncementAdd(courseId,data) {
 
   //courses - delete
   function deleteCourse(courseId) {
+    //first archive courseSection
+    //then delete
     Pop.fire({
       text: "Are you sure you want to delete the course ?",
       icon: 'warning',
