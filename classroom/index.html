@@ -288,6 +288,7 @@
       $('.dropdown-toggle', this).trigger('click');
     });
     var crs, mid, mPhotoUrl;
+    courseWorkAssigned=courseWorkTurnedin=courseWorkGraded=0;
 
     $('#app').empty().html(initDOM());
 
@@ -458,6 +459,7 @@
             creationTime = new Date(coursescourseWorkArray[j].creationTime);
             updateTime = new Date(coursescourseWorkArray[j].updateTime);
             if (coursescourseWorkArray[j].courseId == coursesArray[i].id && coursescourseWorkArray[j].creatorUserId==mid) {
+              courseWorkGraded=courseWorkAssigned=courseWorkTurnedin=0;
               print+='<div id="courseWork-'+coursescourseWorkArray[j].id+'" class="col-12 col-md-6 col-lg-4">'
                       +'<div class="card bg-white mb-3" style="width: auto;">'
                         +'<div class="card-header">'
@@ -468,10 +470,13 @@
                               +'<p>Created On '+creationTime.toString().substring(0,15)+'</p>'
                             +'</div>'
                             +'<div class="col-1 text-left">'
+                              +'<span id="assigned-'+coursescourseWorkArray[j].id+'"></span>'
                             +'</div>'
                             +'<div class="col-1 text-left">'
+                              +'<span id="turnedin-'+coursescourseWorkArray[j].id+'"></span>'
                             +'</div>'
                             +'<div class="col-1 text-left">'
+                              +'<span id="graded-'+coursescourseWorkArray[j].id+'"></span>'
                             +'</div>'
                             +'<div class="col-1 text-right px-0">'
                               +'<div class="flex-c" style="justify-content: flex-end;">'
@@ -491,6 +496,7 @@
                             for(k=0; k<coursescourseWorkStudentSubmissionsArray.length; k++){
                               console.log('coursescourseWorkArray courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
                               if (coursescourseWorkStudentSubmissionsArray[k].courseId == coursesArray[i].id && coursescourseWorkStudentSubmissionsArray[k].courseWorkId == coursescourseWorkArray[j].id) {
+                                courseWorkNotCounted=false;
                                 print+='<div class="card">'
                                        +'<div class="card-header" id="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
                                          +'<p class="popUp" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" aria-expanded="false" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" style="padding: 6px 8px 12px 6px;">'
@@ -500,27 +506,34 @@
                                        +'</div>'
                                        +'<div id="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="collapse show" aria-labelledby="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'" data-parent="#accordion-CourseWork-'+coursescourseWorkArray[j].id+'">'
                                          +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="card-body course-accordion-body">';
-                                         for (var l = 0; l < coursescourseWorkStudentSubmissionsArray[k].submissionHistory.length; l++) {
-                                           for(var key in coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]){
-                                             if (key=="stateHistory") {
-                                               stateTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["stateTimestamp"]);
-                                               console.log(stateTimestamp.toString());
-                                               if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="CREATED") {
-                                                 print+='<p>'+(l+1)+' - Assigned to '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
-                                               } else if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="RETURNED"){
-                                                 print+='<p>'+(l+1)+' - Returned by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
-                                               } else if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="TURNED_IN") {
-                                                 print+='<p>'+(l+1)+' - Turned In by '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
-                                               }
-                                             } else if(key=="gradeHistory"){
-                                               gradeTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["gradeTimestamp"]);
-                                               print+='<p>'+(l+1)+' - Graded '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["pointsEarned"]+'/'+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["maxPoints"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+gradeTimestamp.toString().substring(0,25)+'</p>';
-                                             } else {
-                                               console.log(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]);
-                                             }
-                                           }
-                                         }
-
+                                        for (var l = 0; l < coursescourseWorkStudentSubmissionsArray[k].submissionHistory.length; l++) {
+                                          for(var key in coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]){
+                                              if(key=="gradeHistory"){
+                                                if (courseWorkNotCounted) {
+                                                  courseWorkGraded++;
+                                                }
+                                                gradeTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["gradeTimestamp"]);
+                                                print+='<p>'+(l+1)+' - Graded '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["pointsEarned"]+'/'+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["maxPoints"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+gradeTimestamp.toString().substring(0,25)+'</p>';
+                                              } else if (key=="stateHistory") {
+                                                stateTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["stateTimestamp"]);
+                                                if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="TURNED_IN") {
+                                                   print+='<p>'+(l+1)+' - Turned In by '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
+                                                    if (courseWorkNotCounted) {
+                                                      courseWorkTurnedin++;
+                                                    }
+                                                } else if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="RETURNED"){
+                                                  print+='<p>'+(l+1)+' - Returned by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
+                                                } else if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="CREATED") {
+                                                  if (courseWorkNotCounted) {
+                                                   courseWorkAssigned++;
+                                                  }
+                                                  print+='<p>'+(l+1)+' - Assigned to '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
+                                                }
+                                            } else {
+                                              console.log(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]);
+                                            }
+                                          }
+                                        }
                                   print+='</div>'
                                        +'</div>'
                                      +'</div>';
@@ -534,6 +547,10 @@
                         +'</div>'
                       +'</div>'
                     +'</div>';
+
+                    $('#assigned-'+coursescourseWorkArray[j].id).html(courseWorkAssigned);
+                    $('#turnedin-'+coursescourseWorkArray[j].id).html(courseWorkTurnedin);
+                    $('#graded-'+coursescourseWorkArray[j].id).html(courseWorkGraded);
             }
           }
         }
