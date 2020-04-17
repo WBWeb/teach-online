@@ -496,7 +496,7 @@
                                             teacherName=getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name');
                                              if (key=="stateHistory") {
                                                stateTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["stateTimestamp"]);
-                                               print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]+' by '+teacherName.fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
+                                               print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray[3].submissionHistory[l][key]["state"]+' by '+teacherName.fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
                                              } else if(key=="gradeHistory"){
                                                gradeTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["gradeTimestamp"]);
                                                print+='<p>'+(l+1)+' - Graded '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["pointsEarned"]+'/'+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["maxPoints"]+' by '+teacherName.fullName+' on '+gradeTimestamp.toString().substring(0,15)+'</p>';
