@@ -482,6 +482,20 @@
                               console.log('coursescourseWorkArray courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
                               if (coursescourseWorkStudentSubmissionsArray[k].courseId == coursesArray[i].id && coursescourseWorkStudentSubmissionsArray[k].courseWorkId == coursescourseWorkArray[j].id) {
                                 print+='<p>'+coursescourseWorkStudentSubmissionsArray[k].id+'</p>';
+                                print+='<div class="card">'
+                                       +'<div class="card-header" id="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[i].id+'">'
+                                         +'<h2 class="mb-0">'
+                                           +'<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[i].id+'" aria-expanded="true" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[i].id+'">'
+                                            +ucFirst(item)+': <span id="'+coursescourseWorkStudentSubmissionsArray[i].id+'">0<span>'
+                                           +'</button>'
+                                         +'</h2>'
+                                       +'</div>'
+                                       +'<div id="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[i].id+'" class="collapse show" aria-labelledby="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[i].id+'" data-parent="#accordion-'+courses[i].id+'">'
+                                         +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[i].id+'" class="card-body course-accordion-body">'
+                                         
+                                         +'</div>'
+                                       +'</div>'
+                                     +'</div>';
                               }
                            }
                      print+='</div>'
