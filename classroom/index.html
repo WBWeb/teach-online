@@ -449,7 +449,7 @@
             creationTime = new Date(coursescourseWorkArray[j].creationTime);
             updateTime = new Date(coursescourseWorkArray[j].updateTime);
             if (coursescourseWorkArray[j].courseId == coursesArray[i].id && coursescourseWorkArray[j].creatorUserId==mid) {
-              print+='<div id="courseWork-'+coursescourseWorkArray[j].courseId+'" class="col-12">'
+              print+='<div id="courseWork-'+coursescourseWorkArray[j].id+'" class="col-4">'
                       +'<div class="card bg-white mb-3" style="width: auto;">'
                         +'<div class="card-header">'
                           +'<div class="row">'
@@ -481,19 +481,30 @@
                             for(k=0; k<coursescourseWorkStudentSubmissionsArray.length; k++){
                               console.log('coursescourseWorkArray courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
                               if (coursescourseWorkStudentSubmissionsArray[k].courseId == coursesArray[i].id && coursescourseWorkStudentSubmissionsArray[k].courseWorkId == coursescourseWorkArray[j].id) {
-                                print+='<p>'+coursescourseWorkStudentSubmissionsArray[k].id+'</p>';
                                 print+='<div class="card">'
                                        +'<div class="card-header" id="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
-                                         +'<h2 class="mb-0">'
-                                           +'<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" aria-expanded="true" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
-                                            +ucFirst(item)+': <span id="'+coursescourseWorkStudentSubmissionsArray[k].id+'">0<span>'
-                                           +'</button>'
+                                         +'<h2 class="popUp" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" aria-expanded="true" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
+                                          +'<img src="'+getStudentInfo(coursescourseWorkStudentSubmissionsArray.userId,'name').fullName+'" class="img-card img-very-small">'
+                                          +'<span>'+getStudentFullName(coursescourseWorkStudentSubmissionsArray.userId,'photoUrl')+'</span>'
                                          +'</h2>'
                                        +'</div>'
-                                       +'<div id="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="collapse show" aria-labelledby="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'" data-parent="#accordion-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
-                                         +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="card-body course-accordion-body">'
+                                       +'<div id="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="collapse show" aria-labelledby="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'" data-parent="#accordion-CourseWork'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
+                                         +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="card-body course-accordion-body">';
+                                         for (var l = 0; l < coursescourseWorkStudentSubmissionsArray.submissionHistory.length; l++) {
+                                           for(var key in coursescourseWorkStudentSubmissionsArray.submissionHistory[l]){
+                                             if (key=="stateHistory") {
+                                               stateTimestamp=new Date(coursescourseWorkStudentSubmissionsArray.submissionHistory[l][key]["stateTimestamp"]);
+                                               print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray.submissionHistory[l][key]["state"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray.submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
+                                             } else if(key=="gradeHistory"){
+                                               gradeTimestamp=new Date(coursescourseWorkStudentSubmissionsArray.submissionHistory[l][key]["gradeTimestamp"]);
+                                               print+='<p>'+(l+1)+' - Graded '+coursescourseWorkStudentSubmissionsArray.submissionHistory[l][key]["pointsEarned"]+'/'+coursescourseWorkStudentSubmissionsArray.submissionHistory[l][key]["maxPoints"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray.submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+gradeTimestamp.toString().substring(0,15)+'</p>';
+                                             } else {
+                                               console.log(coursescourseWorkStudentSubmissionsArray.submissionHistory[l]);
+                                             }
+                                           }
+                                         }
 
-                                         +'</div>'
+                                  print+='</div>'
                                        +'</div>'
                                      +'</div>';
                               }
@@ -780,6 +791,22 @@ function  setDesigCourse(){
   for (var i = 0; i < coursesTeachersArray.length; i++) {
     if (coursesTeachersArray[i].userId == mid) {
       $('.for-student-'+coursesTeachersArray[i].courseId).remove();
+    }
+  }
+}
+
+function getStudentInfo(id,key) {
+  for (var i = 0; i < coursesStudentsArray.length; i++) {
+    if (coursesStudentsArray[i].userId==id) {
+      return coursesStudentsArray[i].profile[key];
+    }
+  }
+}
+
+function getTeacherInfo(id,key) {
+  for (var i = 0; i < coursesTeachersArray.length; i++) {
+    if (coursesTeachersArray[i].userId==id) {
+      return coursesTeachersArray[i].profile[key];
     }
   }
 }
