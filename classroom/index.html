@@ -450,7 +450,7 @@
           console.log('coursesArray - '+i+' - '+coursesArray[i].id);
           for(j=0; j<coursescourseWorkArray.length; j++){
             console.log('coursescourseWorkArray courseid - '+i+' - '+coursescourseWorkArray[j].courseId);
-            creationDate = new Date(coursescourseWorkArray[i].creationTime);
+            creationDate = new Date(coursescourseWorkArray[j].creationTime);
             if (coursescourseWorkArray[j].courseId == coursesArray[i].id && coursescourseWorkArray[i].creatorUserId==mid) {
               print+='<div id="courseWork-'+courseId+'" class="col-12">'
                       +'<div class="card bg-white mb-3" style="width: auto;">'
