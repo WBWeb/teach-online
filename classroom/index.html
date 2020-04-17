@@ -392,7 +392,7 @@
                                     print+='<a class="dropdown-item" href="javascript:void(0)" onclick="archiveCourse('+courses[i].id+')">Archive Course</a>';
                                   }
                                 }
-                                print+'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>';
+                                print+='<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>';
                                 print+='</div>'
                               +'</div>'
                             +'</div>'
@@ -554,10 +554,9 @@
                         +'</div>'
                       +'</div>'
                     +'</div>';
-
-                    $('#assigned-'+coursescourseWorkArray[j].id).html(courseWorkAssigned);
-                    $('#turnedin-'+coursescourseWorkArray[j].id).html(courseWorkTurnedin);
-                    $('#graded-'+coursescourseWorkArray[j].id).html(courseWorkGraded);
+                    console.log("courseWorkAssigned--------"+courseWorkAssigned);
+                    console.log("courseWorkTurnedin--------"+courseWorkTurnedin);
+                    console.log("courseWorkGraded----------"+courseWorkGraded);
             }
           }
         }
