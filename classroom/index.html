@@ -310,7 +310,6 @@
           coursesArray.push(response.result.courses);
           //print courses in page
           $('#course-container').empty().html(coursesDOM(response.result.courses));
-          $('#courseWork-container').empty().html(coursesCourseWorkDOM());
           Toast.fire({
             icon: 'success',
             title: data.length+' Courses Loaded',
@@ -435,7 +434,7 @@
     }
 
     function coursesCourseWorkDOM() {
-      console.log('dom call success');
+      console.log('coursesCourseWorkDOM call success');
       print='';
         for(i=0; i<coursesArray.length; i++){
           for(j=0; j<coursescourseWorkArray.length; j++){
@@ -703,16 +702,20 @@ function printAllArrays() {
   console.log(coursesTopicsArray);
   console.log(coursesAliasesArray);
   setDesigCourse();
+  $('#courseWork-container').empty().html(coursesCourseWorkDOM());
 }
-  function setDesigCourse() {
+function setDesigCourse() {
+  console.log("setDesigCourse call success");
   for (var i = 0; i < coursesStudentsArray.length; i++) {
     if (coursesStudentsArray[i].userId == mid) {
+      console.log("setDesigCourse Sudent set success");
       $('#desigCourse-'+coursesStudentsArray[i].courseId).empty().html("(Student)");
     }
   }
 
   for (var i = 0; i < coursesTeachersArray.length; i++) {
     if (coursesTeachersArray[i].userId == mid) {
+      console.log("setDesigCourse Teacher set success");
       $('#desigCourse-'+coursesTeachersArray[i].courseId).empty().html("(Teacher)");
     }
   }
