@@ -483,16 +483,16 @@
                               if (coursescourseWorkStudentSubmissionsArray[k].courseId == coursesArray[i].id && coursescourseWorkStudentSubmissionsArray[k].courseWorkId == coursescourseWorkArray[j].id) {
                                 print+='<p>'+coursescourseWorkStudentSubmissionsArray[k].id+'</p>';
                                 print+='<div class="card">'
-                                       +'<div class="card-header" id="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[i].id+'">'
+                                       +'<div class="card-header" id="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
                                          +'<h2 class="mb-0">'
-                                           +'<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[i].id+'" aria-expanded="true" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[i].id+'">'
-                                            +ucFirst(item)+': <span id="'+coursescourseWorkStudentSubmissionsArray[i].id+'">0<span>'
+                                           +'<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" aria-expanded="true" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
+                                            +ucFirst(item)+': <span id="'+coursescourseWorkStudentSubmissionsArray[k].id+'">0<span>'
                                            +'</button>'
                                          +'</h2>'
                                        +'</div>'
-                                       +'<div id="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[i].id+'" class="collapse show" aria-labelledby="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[i].id+'" data-parent="#accordion-'+courses[i].id+'">'
+                                       +'<div id="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="collapse show" aria-labelledby="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'" data-parent="#accordion-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
                                          +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[i].id+'" class="card-body course-accordion-body">'
-                                         
+
                                          +'</div>'
                                        +'</div>'
                                      +'</div>';
