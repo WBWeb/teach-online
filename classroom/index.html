@@ -449,7 +449,7 @@
             creationTime = new Date(coursescourseWorkArray[j].creationTime);
             updateTime = new Date(coursescourseWorkArray[j].updateTime);
             if (coursescourseWorkArray[j].courseId == coursesArray[i].id && coursescourseWorkArray[j].creatorUserId==mid) {
-              print+='<div id="courseWork-'+coursescourseWorkArray[j].id+'" class="col-4">'
+              print+='<div id="courseWork-'+coursescourseWorkArray[j].id+'" class="col-6">'
                       +'<div class="card bg-white mb-3" style="width: auto;">'
                         +'<div class="card-header">'
                           +'<div class="row">'
@@ -483,10 +483,10 @@
                               if (coursescourseWorkStudentSubmissionsArray[k].courseId == coursesArray[i].id && coursescourseWorkStudentSubmissionsArray[k].courseWorkId == coursescourseWorkArray[j].id) {
                                 print+='<div class="card">'
                                        +'<div class="card-header" id="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
-                                         +'<h2 class="popUp" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" aria-expanded="true" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
+                                         +'<p class="popUp" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" aria-expanded="false" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
                                           +'<img src="'+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].userId,'photoUrl')+'" class="img-card img-very-small">'
                                           +'<span>'+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].userId,'name').fullName+'</span>'
-                                         +'</h2>'
+                                         +'</p>'
                                        +'</div>'
                                        +'<div id="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="collapse show" aria-labelledby="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'" data-parent="#accordion-CourseWork'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
                                          +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="card-body course-accordion-body">';
