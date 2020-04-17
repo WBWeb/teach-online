@@ -57,13 +57,8 @@
           align-items: center;
           width: 30px;
           height: 30px;
-          background-color: #ffffff;
+          background-color: #ffffff00;
           margin: 5px;
-          box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
-          -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
-          -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
-          -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
-          -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
 
           -webkit-transform: perspective(1px) translateZ(0);
           transform: perspective(1px) translateZ(0);
@@ -467,7 +462,7 @@
                             +'<div class="col pr-0 text-left">'
                               +'<h5 class="card-title mb-0">'+coursescourseWorkArray[j].title+'</h5>'
                               +'<span class="class-code bg-light" data-toggle="tooltip">'+coursesArray[i].name+' - '+coursesArray[i].section+'</span>'
-                              +'<p>Created On '+creationTime.toString().substring(0,15)+'</p>'
+                              +'<p>'+creationTime.toString().substring(0,15)+'</p>'
                             +'</div>'
                             +'<div class="col-1 p-2 text-left">'
                               +'<span id="assigned-'+coursescourseWorkArray[j].id+'">-</span>'
@@ -497,7 +492,6 @@
                               console.log('coursescourseWorkArray courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
                               if (coursescourseWorkStudentSubmissionsArray[k].courseId == coursesArray[i].id && coursescourseWorkStudentSubmissionsArray[k].courseWorkId == coursescourseWorkArray[j].id) {
                                 console.log('Found Success courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
-                                courseWorkNotCounted=true;
                                 print+='<div class="card">'
                                        +'<div class="card-header" id="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
                                          +'<p class="popUp" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" aria-expanded="false" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" style="padding: 6px 8px 12px 6px;">'
@@ -509,7 +503,7 @@
                                        +'<div id="accordion-body-list-'+coursescourseWorkStudentSubmissionsArray[k].id+'" class="card-body course-accordion-body">';
                                        console.log('Print Success courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
                                         for (var l = 0; l < coursescourseWorkStudentSubmissionsArray[k].submissionHistory.length; l++) {
-                                          console.log('Datacheck1');
+                                          console.log('Datacheck1');courseWorkNotCounted=true;
                                           for(var key in coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]){
                                             console.log('Datacheck2');
                                               if(key=="gradeHistory"){
