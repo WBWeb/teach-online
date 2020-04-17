@@ -514,7 +514,7 @@
                                             console.log('Datacheck2');
                                               if(key=="gradeHistory"){
                                                 if (courseWorkNotCounted) {
-                                                  courseWorkGraded++;
+                                                  courseWorkGraded++; courseWorkNotCounted=false;
                                                 }
                                                 console.log('Datacheck3');
                                                 gradeTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["gradeTimestamp"]);
@@ -525,13 +525,13 @@
                                                 if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="TURNED_IN") {
                                                    print+='<p>'+(l+1)+' - Turned In by '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
                                                     if (courseWorkNotCounted) {
-                                                      courseWorkTurnedin++;
+                                                      courseWorkTurnedin++; courseWorkNotCounted=false;
                                                     }
                                                 } else if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="RETURNED"){
                                                   print+='<p>'+(l+1)+' - Returned by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
                                                 } else if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="CREATED") {
                                                   if (courseWorkNotCounted) {
-                                                   courseWorkAssigned++;
+                                                   courseWorkAssigned++; courseWorkNotCounted=false;
                                                   }
                                                   print+='<p>'+(l+1)+' - Assigned to '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
                                                 }
