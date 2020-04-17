@@ -754,8 +754,8 @@ function  setDesigCourse(){
   for (var i = 0; i < coursesTeachersArray.length; i++) {
     if (coursesTeachersArray[i].userId == mid) {
       $('#desigCourse-'+coursesTeachersArray[i].courseId).empty().html("(Teacher)");
-      $('#coursesWork-'+coursesTeachersArray[i].courseId).addClass('for-teacher-'+coursesStudentsArray[i].courseId);
-      $('#course-'+coursesTeachersArray[i].courseId).addClass('for-teacher-'+coursesStudentsArray[i].courseId);
+      $('#coursesWork-'+coursesTeachersArray[i].courseId).addClass('for-teacher-'+coursesTeachersArray[i].courseId);
+      $('#course-'+coursesTeachersArray[i].courseId).addClass('for-teacher-'+coursesTeachersArray[i].courseId);
 
     }
   }
