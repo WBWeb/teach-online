@@ -823,15 +823,12 @@ function getTeacherInfo(id,key) {
 
 function toggleAccordion(id) {
   status=$('#toggle-span-'+id).html();
-  console.log("toggleAccordion called");
-  console.log(id);
-  console.log(status);
   if (status=='Show') {
     $('#card-body-'+id).slideDown();
-    $('#'+event.id +' span').empty().html('Hide');
+    $('#'+id +' span').empty().html('Hide');
   } else {
     $('#card-body-'+id).slideUp();
-    $('#'+event.id +' span').empty().html('Show');
+    $('#'+id +' span').empty().html('Show');
   }
 }
 handleClientLoad();
