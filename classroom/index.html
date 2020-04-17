@@ -311,7 +311,10 @@
         coursesArray=[];
 
         if (typeof data !== 'undefined' && data.length > 0) {
-          coursesArray.push(response.result.courses);
+          for(i=0; i<response.result.courses.length; i++){
+            coursesArray.push(response.result.courses[i]);
+          }
+
           //print courses in page
           $('#course-container').empty().html(coursesDOM(response.result.courses));
           Toast.fire({
@@ -440,8 +443,8 @@
     function coursesCourseWorkDOM() {
       console.log('coursesCourseWorkDOM call success');
       console.log('coursesArray'+coursesArray.length);
-      console.log('coursesArray'+coursescourseWorkArray.length);
-      console.log('coursesArray'+coursescourseWorkStudentSubmissionsArray.length);
+      console.log('coursescourseWorkArray'+coursescourseWorkArray.length);
+      console.log('coursescourseWorkStudentSubmissionsArray'+coursescourseWorkStudentSubmissionsArray.length);
       print='';
         for(i=0; i<coursesArray.length; i++){
           console.log('coursesArray - '+i+' - '+coursesArray[i].id);
