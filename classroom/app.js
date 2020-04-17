@@ -843,6 +843,8 @@ function classroomAnnouncementAdd(courseId,data) {
         timer: 2000,
         timerProgressBar: true
       });
+      $('#apimodal').modal('hide');
+      initCourses();
     },
     function(err) {
       console.error("Execute error", err);
@@ -889,6 +891,8 @@ function classroomAnnouncementAdd(courseId,data) {
         timer: 2000,
         timerProgressBar: true
       });
+      $('#apimodal').modal('hide');
+      initCourses();
     },
     function(err) {
       console.error("Execute error", err);
@@ -936,6 +940,8 @@ function classroomAnnouncementAdd(courseId,data) {
         timer: 2000,
         timerProgressBar: true
       });
+      $('#apimodal').modal('hide');
+      initCourses();
     },
     function(err) {
       console.error("Execute error", err);
@@ -982,6 +988,8 @@ function classroomAnnouncementAdd(courseId,data) {
         timer: 2000,
         timerProgressBar: true
       });
+      $('#apimodal').modal('hide');
+      initCourses();
     },
     function(err) {
       console.error("Execute error", err);
@@ -1028,6 +1036,8 @@ function classroomAnnouncementAdd(courseId,data) {
         timer: 2000,
         timerProgressBar: true
       });
+      $('#apimodal').modal('hide');
+      initCourses();
     },
     function(err) {
       console.error("Execute error", err);
