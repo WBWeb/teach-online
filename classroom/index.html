@@ -497,7 +497,7 @@
                                                if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="CREATED") {
                                                  print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]+' by '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
                                                } else{
-                                                 print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
+                                                 //print+='<p>'+(l+1)+' - '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
                                                }
                                              } else if(key=="gradeHistory"){
                                                gradeTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["gradeTimestamp"]);
