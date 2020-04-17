@@ -315,7 +315,7 @@
             title: data.length+' Courses Loaded',
           });
 
-          printAllArrays();
+          setTimeout(initAfterDataLoad, 5000);
 
         } else {
           Pop.fire({
@@ -701,19 +701,29 @@ function printAllArrays() {
   console.log(coursescourseWorkArray);
   console.log(coursesTopicsArray);
   console.log(coursesAliasesArray);
+}
+
+function initAfterDataLoad() {
+  printAllArrays();
   setDesigCourse();
   $('#courseWork-container').empty().html(coursesCourseWorkDOM());
 }
+
 function setDesigCourse() {
   console.log("setDesigCourse call success");
+  console.log("coursesStudentsArray="coursesStudentsArray.length);
+  console.log(mid);
   for (var i = 0; i < coursesStudentsArray.length; i++) {
+    console.log(coursesStudentsArray[i].userId);
     if (coursesStudentsArray[i].userId == mid) {
       console.log("setDesigCourse Sudent set success");
       $('#desigCourse-'+coursesStudentsArray[i].courseId).empty().html("(Student)");
     }
   }
-
+  console.log("coursesTeachersArray="+coursesTeachersArray.length);
+  console.log(mid);
   for (var i = 0; i < coursesTeachersArray.length; i++) {
+    console.log(coursesTeachersArray[i].userId);
     if (coursesTeachersArray[i].userId == mid) {
       console.log("setDesigCourse Teacher set success");
       $('#desigCourse-'+coursesTeachersArray[i].courseId).empty().html("(Teacher)");
@@ -721,19 +731,12 @@ function setDesigCourse() {
   }
 }
 
+handleClientLoad();
 
-
-  handleClientLoad();
-
-  function ucFirst(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-
-
-
-
-    </script>
+function ucFirst(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+</script>
 
 
 
