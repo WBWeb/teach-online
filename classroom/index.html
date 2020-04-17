@@ -484,7 +484,7 @@
                               if (coursescourseWorkStudentSubmissionsArray[k].courseId == coursesArray[i].id && coursescourseWorkStudentSubmissionsArray[k].courseWorkId == coursescourseWorkArray[j].id) {
                                 print+='<div class="card">'
                                        +'<div class="card-header" id="accordion-heading-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
-                                         +'<p class="popUp" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" aria-expanded="false" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'">'
+                                         +'<p class="popUp" data-toggle="collapse" data-target="#accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" aria-expanded="false" aria-controls="accordion-collapse-'+coursescourseWorkStudentSubmissionsArray[k].id+'" style="padding: 6px 8px 12px 6px;">'
                                           +'<img src="'+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].userId,'photoUrl')+'" class="img-card img-very-small">'
                                           +'<span>'+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].userId,'name').fullName+'</span>'
                                          +'</p>'
@@ -497,13 +497,15 @@
                                                stateTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["stateTimestamp"]);
                                                console.log(stateTimestamp.toString());
                                                if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="CREATED") {
-                                                 print+='<p>'+(l+1)+' - Assigned to '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
+                                                 print+='<p>'+(l+1)+' - Assigned to '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
                                                } else if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="RETURNED"){
-                                                 print+='<p>'+(l+1)+' - Returned by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,15)+'</p>';
+                                                 print+='<p>'+(l+1)+' - Returned by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
+                                               } else if (coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["state"]=="TURNED_IN") {
+                                                 print+='<p>'+(l+1)+' - Turned In by '+getStudentInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+stateTimestamp.toString().substring(0,25)+'</p>';
                                                }
                                              } else if(key=="gradeHistory"){
                                                gradeTimestamp=new Date(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["gradeTimestamp"]);
-                                               print+='<p>'+(l+1)+' - Graded '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["pointsEarned"]+'/'+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["maxPoints"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+gradeTimestamp.toString().substring(0,15)+'</p>';
+                                               print+='<p>'+(l+1)+' - Graded '+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["pointsEarned"]+'/'+coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["maxPoints"]+' by '+getTeacherInfo(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l][key]["actorUserId"],'name').fullName+' on '+gradeTimestamp.toString().substring(0,25)+'</p>';
                                              } else {
                                                console.log(coursescourseWorkStudentSubmissionsArray[k].submissionHistory[l]);
                                              }
