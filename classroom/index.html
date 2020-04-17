@@ -288,7 +288,7 @@
       $('.dropdown-toggle', this).trigger('click');
     });
     var crs, mid, mPhotoUrl;
-    courseWorkAssigned=courseWorkTurnedin=courseWorkGraded=0;
+    var courseWorkCounter=[];
 
     $('#app').empty().html(initDOM());
 
@@ -558,9 +558,13 @@
                     console.log('#turnedin-'+coursescourseWorkArray[j].id+"-----"+courseWorkTurnedin);
                     console.log('#graded-'+coursescourseWorkArray[j].id+"-----"+courseWorkGraded);
 
-                    $('#assigned-'+coursescourseWorkArray[j].id).empty().html(courseWorkAssigned);
-                    $('#turnedin-'+coursescourseWorkArray[j].id).empty().html(courseWorkTurnedin);
-                    $('#graded-'+coursescourseWorkArray[j].id).empty().html(courseWorkGraded);
+                    courseWorkCounter.push({
+                      "courseid" : coursescourseWorkArray[j].id,
+                      "assigned" : courseWorkAssigned,
+                      "turnedin" : courseWorkTurnedin,
+                      "graded" : courseWorkGraded
+                    });
+
             }
           }
         }
@@ -801,9 +805,12 @@ function printAllArrays() {
 function initAfterDataLoad() {
   printAllArrays();
   allotPermissions();
+
   $('#courseWork-container').empty().html(coursesCourseWorkDOM());
   $('[data-toggle="tooltip"]').tooltip();
   $('.collapse').collapse();
+
+  setTimeout(setCourseWorkCounter,2000)
 }
 
 function allotPermissions() {
@@ -837,6 +844,14 @@ function  setDesigCourse(){
     if (coursesTeachersArray[i].userId == mid) {
       $('.for-student-'+coursesTeachersArray[i].courseId).remove();
     }
+  }
+}
+
+function setCourseWorkCounter() {
+  for (var i = 0; i < courseWorkCounter.length; i++) {
+    $('#assigned-'+courseWorkCounter[i].courseId).empty().html(courseWorkCounter[i].assigned);
+    $('#turnedin-'+courseWorkCounter[i].courseId).empty().html(courseWorkCounter[i].turnedin);
+    $('#graded-'+courseWorkCounter[i].courseId).empty().html(courseWorkCounter[i].graded);
   }
 }
 
