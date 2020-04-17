@@ -142,43 +142,43 @@
 
         @media screen and (max-width: 375px) {
           .login100-form-title {
-            font-size: 16px;
+            font-size: 22px;
           }
           p{
-            font-size: 12px;
+            font-size: 8px;
           }
           h5{
             font-size: 14px;
+          }
+          .class-code{
+            font-size: 8px;
+          }
+        }
+
+        @media screen and (min-width: 375px) {
+          .login100-form-title {
+            font-size: 28px;
+          }
+          p{
+            font-size: 10px;
+          }
+          h5{
+            font-size: 18px;
           }
           .class-code{
             font-size: 10px;
           }
         }
 
-        @media screen and (min-width: 375px) {
-          .login100-form-title {
-            font-size: 20px;
-          }
-          p{
-            font-size: 16px;
-          }
-          h5{
-            font-size: 16px;
-          }
-          .class-code{
-            font-size: 11px;
-          }
-        }
-
         @media screen and (min-width: 768px) {
           .login100-form-title {
-            font-size: 30px;
+            font-size: 34px;
           }
           p{
-            font-size: 20px;
+            font-size: 12px;
           }
           h5{
-            font-size: 18px;
+            font-size: 22px;
           }
           .class-code{
             font-size: 12px;
@@ -190,13 +190,13 @@
             font-size: 40px;
           }
           p{
-            font-size: 22px;
+            font-size: 16px;
           }
           h5{
-            font-size: 20px;
+            font-size: 24px;
           }
           .class-code{
-            font-size: 13px;
+            font-size: 14px;
           }
         }
 
@@ -492,10 +492,10 @@
             if (coursescourseWorkArray[j].courseId == coursesArray[i].id && coursescourseWorkArray[j].creatorUserId==mid) {
               courseWorkGraded=courseWorkAssigned=courseWorkTurnedin=0;
               print+='<div id="courseWork-'+coursescourseWorkArray[j].id+'" class="col-12 col-md-6">'
-                      +'<div class="card bg-white mb-3" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">'
+                      +'<div class="card bg-white pt-1 mb-3" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">'
                         +'<div class="card-header" style="background: white; ">'
                           +'<div class="row">'
-                            +'<div class="col-5 px-1 text-left">'
+                            +'<div class="col-5 px-2 text-left">'
                               +'<h5 class="card-title mb-0">'+coursescourseWorkArray[j].title+'</h5>'
                               +'<span class="class-code bg-light" data-toggle="tooltip">'+coursesArray[i].name+' - '+coursesArray[i].section+'</span>'
                               +'<p>'+creationTime.toString().substring(0,15)+'</p>'
