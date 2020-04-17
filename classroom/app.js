@@ -100,7 +100,7 @@ function classroomCoursesTopics(courseId){
 
       for(i=0; i<data.length; i++){
         coursesTopicsArray.push(data[i]);
-        print+='<p class="popUp" onclick="Pop.fire({title:"'+data[i].name+'", text:"Updated: '+data[i].updateTime+'", icon: "success", })"> '+(i+1)+' - '+data[i].topicId+'</p>';
+        print+='<p class="popUp" onclick="Pop.fire({title:'+"'"+data[i].name+"'"+', text:'+"' Updated: "+data[i].updateTime+"'"+', icon: '+"'"+'success'+"'"+' })"> '+(i+1)+' - '+data[i].topicId+'</p>';
       }
     } else {
       $("#"+courseId+"-topics").html("0");
