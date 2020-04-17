@@ -380,7 +380,7 @@
                             +'<h5 class="card-title mb-0">'+courses[i].name+' - '+courses[i].section+' <span class="small-span" id="desigCourse-'+courses[i].id+'"></span> </h5>'
                             +'</i><span id="enrollmentCode-'+courses[i].id+'" code="'+courses[i].enrollmentCode+'" class="class-code bg-light" onclick="Toast.fire({title:'+"'"+courses[i].enrollmentCode+"',icon:'success'"+'})"  data-toggle="tooltip" title="Class Code">'+courses[i].enrollmentCode+'</span></i>'
                           +'</div>'
-                          +'<div class="col-2">'
+                          +'<div class="col-1 text-right px-0">'
                             +'<div class="flex-c" style="justify-content: flex-end;">'
                               +'<div class="dropleft">'
                                 +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
@@ -425,7 +425,7 @@
                          +'</div>'
                          +'<a class="login100-button-a" href="javascript:void(0)" data-toggle="tooltip" title="View Class contents in Google Drive"><i class="fa fa-folder"></i></a>'
                          +'<div class="dropup">'
-                           +'<button class="login100-button-a for-teacher" data-toggle="dropdown" title="Manage Members" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i></button>'
+                           +'<button class="login100-button-a for-teacher-'+courses[i].id+'" data-toggle="dropdown" title="Manage Members" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i></button>'
                            +'<div class="dropdown-menu">'
                              +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationStudents('+courses[i].id+')">Students</a>'
                              +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationTeachers('+courses[i].id+')">Teachers</a>'
@@ -450,27 +450,29 @@
           console.log('coursesArray - '+i+' - '+coursesArray[i].id);
           for(j=0; j<coursescourseWorkArray.length; j++){
             console.log('coursescourseWorkArray courseid - '+i+' - '+coursescourseWorkArray[j].courseId);
-            if (coursescourseWorkArray[j].courseId == coursesArray[i].id) {
-              print+='<div class="col-12">'
+            creationDate = new Date(coursescourseWorkArray[i].creationTime);
+            if (coursescourseWorkArray[j].courseId == coursesArray[i].id and coursescourseWorkArray[i].creatorUserId==mid) {
+              print+='<div class="col-12 for-teacher-'+coursesArray[i].id+'">'
                       +'<div class="card bg-white mb-3" style="width: auto;">'
                         +'<div class="card-header">'
                           +'<div class="row">'
-                            +'<div class="col-4 text-left">'
+                            +'<div class="col pr-0 text-left">'
                               +'<h5 class="card-title mb-0">'+coursescourseWorkArray[j].title+'</h5>'
                               +'<span class="class-code bg-light" data-toggle="tooltip">'+coursesArray[i].name+' - '+coursesArray[i].section+'</span>'
                             +'</div>'
-                            +'<div class="col-2 text-left">'
+                            +'<div class="col-1 text-left">'
                             +'</div>'
-                            +'<div class="col-2 text-left">'
+                            +'<div class="col-1 text-left">'
                             +'</div>'
-                            +'<div class="col-2 text-left">'
+                            +'<div class="col-1 text-left">'
                             +'</div>'
-                            +'<div class="col-2">'
+                            +'<div class="col-1 text-right px-0">'
                               +'<div class="flex-c" style="justify-content: flex-end;">'
                                 +'<div class="dropleft">'
-                                  +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
+                                  +'<button class="login100-button-a" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
                                   +'<div class="dropdown-menu">'
                                     +'<a class="dropdown-item" href="javascript:void(0)" onclick="">View Submmissions</a>'
+                                    +'<a class="dropdown-item" href="'+coursescourseWorkArray[j].alternateLink+'" onclick="">Open in Google Classroom</a>'
                                   +'</div>'
                                 +'</div>'
                               +'</div>'
@@ -478,14 +480,18 @@
                           +'</div>'
                         +'</div>';
                         +'<div id="card-body-'+coursescourseWorkArray[j].id+'" class="card-body">'
-                         +'<div class="accordion" id="accordion-CourseWork'+coursescourseWorkArray[j].id+'">';
+                          +'<div class="accordion" id="accordion-CourseWork'+coursescourseWorkArray[j].id+'">';
                             for(k=0; k<coursescourseWorkStudentSubmissionsArray.length; k++){
                               console.log('coursescourseWorkArray courseid - '+k+' - '+coursescourseWorkStudentSubmissionsArray[k].courseId);
                               if (coursescourseWorkStudentSubmissionsArray[k].courseId == coursesArray[i].id && coursescourseWorkStudentSubmissionsArray[k].courseWorkId == coursescourseWorkArray[j].id) {
-                                print+='<p>'+coursescourseWorkStudentSubmissionsArray[j].id+'</p>';
+                                print+='<p>'+coursescourseWorkStudentSubmissionsArray[k].id+'</p>';
                               }
                            }
-                           print+='</div>'
+                     print+='</div>'
+                        +'</div>'
+                        +'<div id="card-footer-'+coursescourseWorkArray[j].id+'" class="card-footer">'
+                        +'<p class="mb-0">'+coursescourseWorkArray[j].title+' - <span data-toggle="tooltip" title="Created On">'+creationDate.toString().substring(0,15)+' - </span>  <b date-toggle="Grade Max Points">'+coursescourseWorkArray[j].maxPoints+'</b> </p>'
+                        +'<p class="mb-0">Due on <span>'+coursescourseWorkArray[j].dueDate.year+' - '+coursescourseWorkArray[j].dueDate.month+' - '+coursescourseWorkArray[j].dueDate.date+' '+coursescourseWorkArray[j].dueTime.hours+' : '+coursescourseWorkArray[j].dueTime.minutes+' </span> </p>'
                         +'</div>'
                       +'</div>'
                     +'</div>';
@@ -670,12 +676,22 @@ function coursesAnnouncementsGet(courseId,announcementId) {
           print='<div class="card">'
                   +'<div id="apimodal-card-title" class="card-title" style="background: #f7f7f7;border-radius: .5rem; padding: 8px;">'
                     +'<div class="row">'
-                      +'<div class="col-2 p-1 text-center">'
+                      +'<div class="col-2 pl-3 p-t-1 text-center">'
                         +'<img src="'+coursesTeachersArray[j].profile.photoUrl+'" width="45" class="img-card">'
                       +'</div>'
-                      +'<div class="col-8 p-1">'
+                      +'<div class="col p-1">'
                         +'<h5>'+coursesTeachersArray[j].profile.name.fullName+'</h5>'
                         +'<p style="font-weight: 100; font-size: 12px; ">'+tempDate.toString().substring(0,15)+'</p>'
+                      +'</div>'
+                      +'<div class="col-1 text-right px-0 for-teacher-'+courseId+'">'
+                        +'<div class="flex-c" style="justify-content: flex-end;">'
+                          +'<div class="dropleft">'
+                            +'<button class="login100-button-a" data-toggle="dropdown" title="Course Settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></button>'
+                            +'<div class="dropdown-menu">'
+                              +'<a class="dropdown-item" href="javascript:void(0)" onclick="">Delete Announcement</a>'
+                            +'</div>'
+                          +'</div>'
+                        +'</div>'
                       +'</div>'
                     +'</div>'
                     +'<div class="row py-2">'
@@ -718,20 +734,37 @@ function printAllArrays() {
 
 function initAfterDataLoad() {
   printAllArrays();
-  setDesigCourse();
+  allotPermissions();
   $('#courseWork-container').empty().html(coursesCourseWorkDOM());
 }
 
-function setDesigCourse() {
+function allotPermissions() {
+  setDesigCourse();
+}
+
+function  setDesigCourse(){
   for (var i = 0; i < coursesStudentsArray.length; i++) {
     if (coursesStudentsArray[i].userId == mid) {
       console.log("setDesigCourse Sudent set success");
       $('#desigCourse-'+coursesStudentsArray[i].courseId).empty().html("(Student)");
+      $('#coursesWork-'+coursesStudentsArray[i].courseId).addClass('for-student-'+coursesStudentsArray[i].courseId);
     }
   }
   for (var i = 0; i < coursesTeachersArray.length; i++) {
     if (coursesTeachersArray[i].userId == mid) {
       $('#desigCourse-'+coursesTeachersArray[i].courseId).empty().html("(Teacher)");
+      $('#coursesWork-'+coursesStudentsArray[i].courseId).addClass('for-teacher-'+coursesStudentsArray[i].courseId);
+    }
+  }
+
+  for (var i = 0; i < coursesStudentsArray.length; i++) {
+    if (coursesStudentsArray[i].userId == mid) {
+      $('.for-teacher-'+coursesStudentsArray[i].courseId).remove();
+    }
+  }
+  for (var i = 0; i < coursesTeachersArray.length; i++) {
+    if (coursesTeachersArray[i].userId == mid) {
+      $('.for-student-'+coursesTeachersArray[i].courseId).remove();
     }
   }
 }
