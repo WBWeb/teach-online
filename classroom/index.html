@@ -526,7 +526,6 @@
           }
         }
       return print;
-      $('.collapse').collapse();
     }
 
     function modalYoutubeAdd(courseId) {
@@ -765,6 +764,7 @@ function initAfterDataLoad() {
   allotPermissions();
   $('#courseWork-container').empty().html(coursesCourseWorkDOM());
   $('[data-toggle="tooltip"]').tooltip();
+  $('.collapse').collapse();
 }
 
 function allotPermissions() {
