@@ -319,7 +319,7 @@
             title: data.length+' Courses Loaded',
           });
 
-          setTimeout(initAfterDataLoad, 5000);
+          setTimeout(initAfterDataLoad, 3000);
 
         } else {
           Pop.fire({
@@ -390,8 +390,8 @@
                                   } else {
                                     print+='<a class="dropdown-item" href="javascript:void(0)" onclick="archiveCourse('+courses[i].id+')">Archive Course</a>';
                                   }
-                                  print+'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>';
                                 }
+                                print+'<a class="dropdown-item" href="javascript:void(0)" onclick="modalEditCourse('+courses[i].id+')">Edit Course</a>';
                                 print+='</div>'
                               +'</div>'
                             +'</div>'
