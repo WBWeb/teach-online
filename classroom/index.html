@@ -460,7 +460,7 @@
             updateTime = new Date(coursescourseWorkArray[j].updateTime);
             if (coursescourseWorkArray[j].courseId == coursesArray[i].id && coursescourseWorkArray[j].creatorUserId==mid) {
               courseWorkGraded=courseWorkAssigned=courseWorkTurnedin=0;
-              print+='<div id="courseWork-'+coursescourseWorkArray[j].id+'" class="col-12 col-md-6 col-lg-4">'
+              print+='<div id="courseWork-'+coursescourseWorkArray[j].id+'" class="col-12 col-md-6">'
                       +'<div class="card bg-white mb-3" style="width: auto;">'
                         +'<div class="card-header">'
                           +'<div class="row">'
@@ -469,13 +469,13 @@
                               +'<span class="class-code bg-light" data-toggle="tooltip">'+coursesArray[i].name+' - '+coursesArray[i].section+'</span>'
                               +'<p>Created On '+creationTime.toString().substring(0,15)+'</p>'
                             +'</div>'
-                            +'<div class="col-1 text-left">'
+                            +'<div class="col-1 p-2 text-left">'
                               +'<span id="assigned-'+coursescourseWorkArray[j].id+'">-</span>'
                             +'</div>'
-                            +'<div class="col-1 text-left">'
+                            +'<div class="col-1 p-2 text-left">'
                               +'<span id="turnedin-'+coursescourseWorkArray[j].id+'">-</span>'
                             +'</div>'
-                            +'<div class="col-1 text-left">'
+                            +'<div class="col-1 p-2 text-left">'
                               +'<span id="graded-'+coursescourseWorkArray[j].id+'">-</span>'
                             +'</div>'
                             +'<div class="col-1 text-right px-0">'
@@ -554,9 +554,9 @@
                         +'</div>'
                       +'</div>'
                     +'</div>';
-                    console.log("courseWorkAssigned---"+coursescourseWorkArray[j].id+"-----"+courseWorkAssigned);
-                    console.log("courseWorkTurnedin---"+coursescourseWorkArray[j].id+"-----"+courseWorkTurnedin);
-                    console.log("courseWorkGraded-----"+coursescourseWorkArray[j].id+"-----"+courseWorkGraded);
+                    console.log('#assigned-'+coursescourseWorkArray[j].id+"-----"+courseWorkAssigned);
+                    console.log('#turnedin-'+coursescourseWorkArray[j].id+"-----"+courseWorkTurnedin);
+                    console.log('#graded-'+coursescourseWorkArray[j].id+"-----"+courseWorkGraded);
 
                     $('#assigned-'+coursescourseWorkArray[j].id).empty().html(courseWorkAssigned);
                     $('#turnedin-'+coursescourseWorkArray[j].id).empty().html(courseWorkTurnedin);
