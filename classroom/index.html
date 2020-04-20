@@ -849,6 +849,7 @@ function printAllArrays() {
 function initAfterDataLoad() {
   printAllArrays();
   allotPermissions();
+  initCharts();
 
   $('#courseWork-container').empty().html(coursesCourseWorkDOM());
   $('[data-toggle="tooltip"]').tooltip();
@@ -992,60 +993,64 @@ function dashboardDOM(courses) {
   return print;
 }
 
-coursesStatus = [1,1,1,1];
+function initCharts(){
+  coursesStatus = [1,1,1,1];
 
-var coursesStatusCtx = document.getElementById('coursesStatusCanvas').getContext('2d');
-var cschart = new Chart(coursesStatusCtx, {
-// The type of chart we want to create
-type: 'doughnut',
-// The data for our dataset
-    data: {
-        labels: [
-					'Active',
-					'Provisioned',
-					'Archived',
-					'Others'
-				],
-				borderColor: [
-					chartColors.green,
-  				chartColors.orange,
-    			chartColors.red,
-    			chartColors.grey
-				],
-				backgroundColor: [
-					chartColors.green,
-  				chartColors.orange,
-    			chartColors.red,
-    			chartColors.grey
-				],
-        datasets: [
-                    {
-                      label: 'Courses',
-                      borderColor: chartColors.green,
-                      backgroundColor: chartColors.green,
-                      data: coursesStatus
-                    }
-                  ]
-    },
+  var coursesStatusCtx = document.getElementById('coursesStatusCanvas').getContext('2d');
+  var cschart = new Chart(coursesStatusCtx, {
+  // The type of chart we want to create
+  type: 'doughnut',
+  // The data for our dataset
+      data: {
+          labels: [
+  					'Active',
+  					'Provisioned',
+  					'Archived',
+  					'Others'
+  				],
+  				borderColor: [
+  					chartColors.green,
+    				chartColors.orange,
+      			chartColors.red,
+      			chartColors.grey
+  				],
+  				backgroundColor: [
+  					chartColors.green,
+    				chartColors.orange,
+      			chartColors.red,
+      			chartColors.grey
+  				],
+          datasets: [
+                      {
+                        label: 'Courses',
+                        borderColor: chartColors.green,
+                        backgroundColor: chartColors.green,
+                        data: coursesStatus
+                      }
+                    ]
+      },
 
-    // Configuration options go here
-    options: {
-      responsive: true,
-      title: {
-        display: true,
-        text: 'Courses Stats'
-      },
-      legend:{
-        position: 'top'
-      },
-      animation: {
-					animateScale: true,
-					animateRotate: true
-			},
-      circumference: Math.PI,
-      rotation: -Math.PI
-    }
-});
+      // Configuration options go here
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Courses Stats'
+        },
+        legend:{
+          position: 'top'
+        },
+        animation: {
+  					animateScale: true,
+  					animateRotate: true
+  			},
+        circumference: Math.PI,
+        rotation: -Math.PI
+      }
+  });
+}
+
+
 
 
 
