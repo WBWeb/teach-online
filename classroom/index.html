@@ -908,7 +908,7 @@ function initAfterDataLoad() {
   setTimeout(setCourseWorkCounter,2000);
   setTimeout(setCoursesStatusCharts,2000);
   setTimeout(setCoursesWorkStatusCharts,2000);
-  setTimeout(setCoursesWorkStatusCharts,2000);
+  setTimeout(setCoursesCourseWorkSubmissionCharts,2000);
   setTimeout(setCoursesStudentTeacherCountCharts,2000);
 
 }
@@ -1007,25 +1007,26 @@ function setCoursesWorkStatusCharts() {
   cwwtchart.update();
 }
 
-//coursework worktype chart
-// function setCoursesWorkStatusCharts() {
-//   var courseWorkWorktypeDataset = [0,0,0,0];
-//   console.log("setCoursesWorkTypeCharts called");
-//   coursescourseWorkArray.forEach(function (item){
-//     if(item.workType == "ASSIGNMENT"){
-//       courseWorkWorktypeDataset[0]++;
-//     } else if(item.workType == "SHORT_ANSWER_QUESTION"){
-//       courseWorkWorktypeDataset[1]++;
-//     } else if(item.workType == "MULTIPLE_CHOICE_QUESTION"){
-//       courseWorkWorktypeDataset[2]++;
-//     }else{
-//       courseWorkWorktypeDataset[3]++;
-//     }
-//   });
-//   console.log(courseWorkWorktypeDataset);
-//   cwwtchart.data.datasets[0].data=courseWorkWorktypeDataset;
-//   cwwtchart.update();
-// }
+//coursework submission report chart
+function setCoursesCourseWorkSubmissionCharts() {
+  console.log("setCoursesCourseWorkSubmissionChartss called");
+  var courseWorkDataset = {
+    "courseworkName": [],
+    "assigned": [],
+    "turnedIn": [],
+    "graded": []
+  };
+  courseWorkCounter.forEach(function(item){
+    courseWorkDataset.courseworkName.push(item.name);
+    courseWorkDataset.assigned.push(item.assigned)
+    courseWorkDataset.turnedIn.push(item.turnedin)
+    courseWorkDataset.graded.push(item.graded)
+
+  })
+  console.log(courseWorkDataset);
+  cwsrchart.data.datasets[0].data=courseWorkWorktypeDataset;
+  cwsrchart.update();
+}
 
 //student-teacher count chart
 function setCoursesStudentTeacherCountCharts() {
@@ -1130,7 +1131,7 @@ function chartsDOM() {
               +'<div class="col-12 col-sm-6 col-md-3">'
                 +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin: 6px 0 6px 0px;">'
                     +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
-                      +'<canvas id="coursesWorkSubmission"></canvas>'
+                      +'<canvas id="courseworkSubmissionReportCanvas"></canvas>'
                     +'</div>'
                     //+'<div class="card-footer"></div>'
                 +'</div>'
@@ -1348,6 +1349,36 @@ function initCharts(){
 			title: {
 				display: true,
 				text: 'Student-Teacher Chart'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: true
+			}
+		}
+  });
+
+  //coursework submission report
+  courseWorkSubmissionReportCtx = document.getElementById('courseworkSubmissionReportCanvas').getContext('2d');
+  cwsrchart = new Chart(courseWorkSubmissionReportCtx, {
+		type: 'doughnut',
+		data: {
+      labels: [
+        'Assigned',
+        'Turned In',
+        'Graded'
+      ],
+  		datasets: [{
+  			type: 'doughnut',
+  			label: 'Course Work Name',
+        backgroundColor: chartColors.orange,
+        data: [1,1,1]
+      }]
+    },
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Classwork Status Report'
 			},
 			tooltips: {
 				mode: 'index',
