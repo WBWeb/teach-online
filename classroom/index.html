@@ -899,6 +899,11 @@ function initAfterDataLoad() {
   $('[data-toggle="tooltip"]').tooltip();
   $('.collapse').collapse();
 
+  Toast.fire({
+    title: "Please wait a sec !",
+    icon: "success"
+  });
+
   setTimeout(setCourseWorkCounter,2000);
   setTimeout(setCoursesStatusCharts,2000);
 }
@@ -964,11 +969,6 @@ function setCoursesStatusCharts() {
   console.log(courseStateDataset);
   cschart.data.datasets[0].data=courseStateDataset;
   cschart.update();
-
-  Toast.fire({
-    title: "Courses Status Chart Loaded!",
-    icon: "success"
-  });
 }
 
 function getStudentInfo(id,key) {
