@@ -44,7 +44,7 @@
           -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
         }
 
-        .dashboard-container-container {
+        .dashboard-container {
           width: 100%;
           border-radius: 10px;
           overflow: hidden;
@@ -855,6 +855,7 @@ function initAfterDataLoad() {
   $('.collapse').collapse();
 
   setTimeout(setCourseWorkCounter,2000);
+  setTimeout(setcoursesStatusCharts,2000);
 }
 
 function allotPermissions() {
@@ -901,6 +902,39 @@ function setCourseWorkCounter() {
   }
 }
 
+function setcoursesStatusCharts() {
+
+  var courseStateActive = 0;
+  var courseStateProvisioned = 0;
+  var courseStateArchive = 0;
+  var courseStateOthers=0;
+  var courseStateDataset = [];
+
+  for(var i=0; i<coursesArray.length; i++){
+    if(coursesArray[i].courseState == "ACTIVE")
+        courseStateActive++;
+    else if(coursesArray[i].courseState == "PROVISIONED")
+        courseStateProvisioned++;
+    else if(coursesArray[i].courseState == "ARCHIVED")
+        courseStateArchive++;
+    } else {
+      courseStateOthers++;
+    }
+
+    courseStateDataset.push(courseStateActive);
+    courseStateDataset.push(courseStateProvisioned);
+    courseStateDataset.push(courseStateArchive);
+    courseStateDataset.push(courseStateOthers);
+
+    cschart.data.datasets[0].data=courseStateDataset;
+    cschart.update();
+
+    Toast.fire({
+        title: "Courses Status Chart Loaded!",
+        icon: "success"
+      });
+}
+
 function getStudentInfo(id,key) {
   for (var i = 0; i < coursesStudentsArray.length; i++) {
     if (coursesStudentsArray[i].userId==id) {
@@ -932,6 +966,95 @@ handleClientLoad();
 function ucFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+function dashboardDOM(courses) {
+  console.log('dashboard dom call success');
+        print+='<div class="col-sm-6 col-md-4 col-lg-3">'
+                +'<div class="card bg-transparent mb-3" style="width: auto;">'
+                 +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
+                  +'<canvas id="coursesStatusCanvas" height="200"></canvas>'
+                 +'</div>'
+                 +'<div class="card-footer">'
+                   +'<div class="flex-c">'
+                     +'<a class="login100-button-a" href="'+courses[i].alternateLink+'" target="_blank" class="card-text" data-toggle="tooltip" title="Open in google Classroom"><i class="fa fa-link"></i></a>'
+                     +'<div class="dropup">'
+                       +'<button class="login100-button-a" data-toggle="dropdown" title="Manage Online Classes" aria-haspopup="true" aria-expanded="false"><i class="fa fa-video-camera"></i></button>'
+                       +'<div class="dropdown-menu">'
+                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="Toast.fire({title:'+"'Feature Coming Soon',icon:'success'"+'})">Google Meet</a>'
+                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalYoutubeAdd('+courses[i].id+')">Youtube</a>'
+                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="Toast.fire({title:'+"'Feature Coming Soon',icon:'success'"+'})">Zoom</a>'
+                       +'</div>'
+                     +'</div>'
+                     +'<a class="login100-button-a" href="javascript:void(0)" data-toggle="tooltip" title="View Class contents in Google Drive"><i class="fa fa-folder"></i></a>'
+                     +'<div class="dropup">'
+                       +'<button class="login100-button-a for-teacher-'+courses[i].id+'" data-toggle="dropdown" title="Manage Members" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i></button>'
+                       +'<div class="dropdown-menu">'
+                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationStudents('+courses[i].id+')">Students</a>'
+                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationTeachers('+courses[i].id+')">Teachers</a>'
+                       +'</div>'
+                     +'</div>'
+                   +'</div>'
+                 +'</div>'
+                +'</div>'
+              +'</div>';
+              getCourseData(courses[i].id);
+  return print;
+}
+
+coursesStatus = {1,1,1}
+
+var coursesStatusCtx = document.getElementById('coursesStatusCanvas').getContext('2d');
+var cschart = new Chart(coursesStatusCtx, {
+// The type of chart we want to create
+type: 'doughnut',
+// The data for our dataset
+    data: {
+        labels: [
+					'Active',
+					'Provisioned',
+					'Archived'
+				],
+				borderColor: [
+					chartColors.green,
+  				chartColors.orange,
+    			chartColors.red
+				],
+				backgroundColor: [
+					chartColors.green,
+  				chartColors.orange,
+    			chartColors.red
+				],
+        datasets: [
+                    {
+                      label: 'Courses',
+                      borderColor: chartColors.green,
+                      backgroundColor: chartColors.green,
+                      data: coursesStatus
+                    }
+                  ]
+    },
+
+    // Configuration options go here
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: 'Courses Stats'
+      },
+      legend:{
+        position: 'top'
+      },
+      animation: {
+					animateScale: true,
+					animateRotate: true
+			},
+      circumference: Math.PI,
+      rotation: -Math.PI
+    }
+});
+
+
+
 </script>
 
 
@@ -954,7 +1077,7 @@ for(var i=0; i<coursesArray.length; i++){
       courseStateActive+=1;
   else if(coursesArray[i].courseState == "PROVISIONED")
       courseStateProvisioned+=1;
-  else
+  else if(coursesArray[i].courseState == "ARCHIVED")
       courseStateArchive+=1;
   }
 console.log(courseStateActive);
