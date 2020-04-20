@@ -336,6 +336,7 @@
     function startApp() {
       $('#nav').empty().html(initNavDOM());
       initCourses();
+
     }
 
     function initCourses() {
@@ -354,8 +355,13 @@
             coursesArray.push(response.result.courses[i]);
           }
 
-          //print courses in page
+
+          //Print Dashboard
           $('#course-container').empty().html(coursesDOM(response.result.courses));
+
+          //print courses in page
+          $('#chart-container').empty().html(chartsDOM());
+
           Toast.fire({
             icon: 'success',
             title: data.length+' Courses Loaded',
@@ -377,6 +383,7 @@
       },
       function(err) { console.error("Execute error", err); });
     }
+
 
     function initNavDOM() {
       var current = gapi.auth2.getAuthInstance().currentUser.get();
@@ -963,37 +970,17 @@ function ucFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function dashboardDOM(courses) {
-  console.log('dashboard dom call success');
-        print+='<div class="col-sm-6 col-md-4 col-lg-3">'
+function chartsDOM() {
+  console.log('Charts dom call success');
+        print+='<div class="col-sm-6 col-md-3">'
                 +'<div class="card bg-transparent mb-3" style="width: auto;">'
                  +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
                   +'<canvas id="coursesStatusCanvas" height="200"></canvas>'
                  +'</div>'
                  +'<div class="card-footer">'
-                   +'<div class="flex-c">'
-                     +'<a class="login100-button-a" href="'+courses[i].alternateLink+'" target="_blank" class="card-text" data-toggle="tooltip" title="Open in google Classroom"><i class="fa fa-link"></i></a>'
-                     +'<div class="dropup">'
-                       +'<button class="login100-button-a" data-toggle="dropdown" title="Manage Online Classes" aria-haspopup="true" aria-expanded="false"><i class="fa fa-video-camera"></i></button>'
-                       +'<div class="dropdown-menu">'
-                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="Toast.fire({title:'+"'Feature Coming Soon',icon:'success'"+'})">Google Meet</a>'
-                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalYoutubeAdd('+courses[i].id+')">Youtube</a>'
-                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="Toast.fire({title:'+"'Feature Coming Soon',icon:'success'"+'})">Zoom</a>'
-                       +'</div>'
-                     +'</div>'
-                     +'<a class="login100-button-a" href="javascript:void(0)" data-toggle="tooltip" title="View Class contents in Google Drive"><i class="fa fa-folder"></i></a>'
-                     +'<div class="dropup">'
-                       +'<button class="login100-button-a for-teacher-'+courses[i].id+'" data-toggle="dropdown" title="Manage Members" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i></button>'
-                       +'<div class="dropdown-menu">'
-                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationStudents('+courses[i].id+')">Students</a>'
-                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="modalInvitationTeachers('+courses[i].id+')">Teachers</a>'
-                       +'</div>'
-                     +'</div>'
-                   +'</div>'
                  +'</div>'
                 +'</div>'
               +'</div>';
-              getCourseData(courses[i].id);
   return print;
 }
 
