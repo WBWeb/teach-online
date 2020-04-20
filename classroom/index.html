@@ -1359,7 +1359,7 @@ function initCharts(){
 
   //coursework submission report
   courseWorkSubmissionReportCtx = document.getElementById('courseworkSubmissionReportCanvas').getContext('2d');
-  cwsrchart = new Chart(courseWorkSubmissionReportCtx, {
+  ccwsrchart = new Chart(courseWorkSubmissionReportCtx, {
 		type: 'doughnut',
 		data: {
       labels: [
@@ -1393,7 +1393,7 @@ function initCharts(){
 
   //student-coursework grading count
   coursesCourseWorkGradingCtx = document.getElementById('coursesCourseWorkGradingCanvas').getContext('2d');
-  cstcchart = new Chart(coursesCourseWorkGradingCtx, {
+  ccwgchart = new Chart(coursesCourseWorkGradingCtx, {
 		type: 'horizontalBar',
 		data: {
       labels: ['Student 1', 'Student 2', 'Student 3'],
