@@ -332,7 +332,7 @@ function initModalDOM() {
 function initDOM() {
   print='<div class="row" style="margin-right: 0;">'
           +'<div class="col-12" style="padding-right: 0;">'
-            +'<div class="container-dashboard pt-0" style="background: url('+"'"+'../images/bg-01.jpg'+"'"+') no-repeat center center fixed; webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">'
+            +'<div class="container-dashboard" style="background: url('+"'"+'../images/bg-01.jpg'+"'"+') no-repeat center center fixed; webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">'
               +'<div class="chart-container p-3" >'
                 +'<div class="row p-t-15 p-b-30" id="chart-container">'
                 +'</div>'
