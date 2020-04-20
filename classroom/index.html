@@ -1025,6 +1025,8 @@ function setCoursesCourseWorkSubmissionCharts() {
   })
   console.log(courseWorkDataset);
   cwsrchart.data.datasets[0].data=courseWorkWorktypeDataset;
+  cwsrchart.data.dataset.pop();
+  cwsrchart.data.label.push();
   cwsrchart.update();
 }
 
@@ -1409,7 +1411,7 @@ function initCharts(){
         backgroundColor: chartColors.green,
   			borderWidth: 2,
         data: [3,2,3]
-  		}]
+      }]
     }
 		options: {
 			responsive: true,
@@ -1422,7 +1424,7 @@ function initCharts(){
 				intersect: true
 			}
 		}
-  });
+	});
 }
 </script>
 
