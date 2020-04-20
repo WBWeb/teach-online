@@ -953,7 +953,7 @@ function setCoursesStatusCharts() {
     } else{
       courseStateDataset[3]++;
     }
-  }
+  });
   console.log(courseStateDataset);
   cschart.data.datasets[0].data=courseStateDataset;
   cschart.update();
