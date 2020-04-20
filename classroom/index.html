@@ -1019,18 +1019,24 @@ function initCharts(){
   type: 'doughnut',
   // The data for our dataset
       data: {
-          datasets: [
-                      {
-                        label: 'Courses',
-                				backgroundColor: [
-                					chartColors.green,
-                  				chartColors.orange,
-                    			chartColors.red,
-                    			chartColors.grey
-                				],
-                        data: coursesStatus
-                      }
-                    ]
+        labels: [
+          'Active',
+          'Provisioned',
+          'Archived',
+          'Others'
+        ],
+        datasets: [
+                    {
+                      label: 'Courses',
+              				backgroundColor: [
+              					chartColors.green,
+                				chartColors.orange,
+                  			chartColors.red,
+                  			chartColors.grey
+              				],
+                      data: coursesStatus
+                    }
+                  ]
       },
 
       // Configuration options go here
