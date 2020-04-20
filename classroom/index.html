@@ -361,8 +361,17 @@
 
     function startApp() {
       $('#nav').empty().html(initNavDOM());
-      initCourses();
+      coursesArray=[];
+      coursesArray = [];
+      coursesTeachersArray = [];
+      coursesStudentsArray = [];
+      coursesAnnouncementsArray = [];
+      coursescourseWorkArray = [];
+      coursescourseWorkStudentSubmissionsArray = [];
+      coursesTopicsArray = [];
+      coursesAliasesArray = [];
 
+      initCourses();
     }
 
     function initCourses() {
@@ -373,8 +382,6 @@
         //get DOM of courses
         console.log(response);
         data=response.result.courses;
-
-        coursesArray=[];
 
         if (typeof data !== 'undefined' && data.length > 0) {
           for(i=0; i<response.result.courses.length; i++){
@@ -1011,13 +1018,12 @@ function chartsDOM() {
 }
 
 function initCharts(){
-  coursesStatus = [1,1,1,1];
 
+  //courses
+  coursesStatus = [1,1,1,1];
   coursesStatusCtx = document.getElementById('coursesStatusCanvas').getContext('2d');
   cschart = new Chart(coursesStatusCtx, {
-  // The type of chart we want to create
   type: 'doughnut',
-  // The data for our dataset
       data: {
         labels: [
           'Active',
