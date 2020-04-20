@@ -1010,21 +1010,16 @@ function setCoursesWorkStatusCharts() {
 //coursework submission report chart
 function setCoursesCourseWorkSubmissionCharts() {
   console.log("setCoursesCourseWorkSubmissionChartss called");
-  var courseWorkDataset = {
-    "courseworkName": [],
-    "assigned": [],
-    "turnedIn": [],
-    "graded": []
-  };
-  courseWorkCounter.forEach(function(item){
-    courseWorkDataset.courseworkName.push(item.name);
-    courseWorkDataset.assigned.push(item.assigned)
-    courseWorkDataset.turnedIn.push(item.turnedin)
-    courseWorkDataset.graded.push(item.graded)
 
-  })
+  courseWorkCounter.forEach(function(item){
+    cwsrchart.data.datasets.push({
+      "label": ,
+      "data": [item.assigned,item.turnedin,item.graded],
+    });
+  });
+
   console.log(courseWorkDataset);
-  cwsrchart.data.datasets[0].data=courseWorkWorktypeDataset;
+  cwsrchart.data.datasets.data=courseWorkWorktypeDataset;
   cwsrchart.update();
 }
 
@@ -1280,48 +1275,6 @@ function initCharts(){
       }
   });
 
-  //courseswork worktype chart
-  coursesWorkGradingCtx = document.getElementById('coursesWorkGradingCanvas').getContext('2d');
-  cwwtchart = new Chart(coursesWorkGradingCtx, {
-  type: 'doughnut',
-      data: {
-        labels: [
-          'Assigned',
-          'Turned In',
-          'Graded'
-        ],
-        datasets: [
-                    {
-                      label: 'CourseWork Name',
-              				backgroundColor: [
-              					chartColors.green,
-                				chartColors.orange,
-                  			chartColors.red
-              				],
-                      data: [1,1,1]
-                    }
-                  ]
-      },
-
-      // Configuration options go here
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Courses Work Submission Report'
-        },
-        legend:{
-          position: 'left'
-        },
-        animation: {
-  					animateScale: true,
-  					animateRotate: true
-  			},
-        circumference: Math.PI,
-        rotation: -Math.PI
-      }
-  });
-
   //student-teacher count
   coursesStudentTeacherCountCtx = document.getElementById('coursesStudentTeacherCountCanvas').getContext('2d');
   cstcchart = new Chart(coursesStudentTeacherCountCtx, {
@@ -1373,7 +1326,6 @@ function initCharts(){
         chartColors.green
       ],
   		datasets: [{
-  			type: 'doughnut',
   			label: 'Course Work Name',
         data: [1,1,1]
       }]
@@ -1382,12 +1334,18 @@ function initCharts(){
 			responsive: true,
 			title: {
 				display: true,
-				text: 'Classwork Status Report'
+				text: 'Classwork Submission Report'
 			},
 			tooltips: {
 				mode: 'index',
 				intersect: true
-			}
+			},
+      animation: {
+          animateScale: true,
+          animateRotate: true
+      },
+      circumference: Math.PI,
+      rotation: -Math.PI
 		}
 	});
 
