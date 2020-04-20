@@ -1139,7 +1139,7 @@ function chartsDOM() {
               +'<div class="col-12 col-sm-6 col-md-3">'
                 +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin: 6px 0 6px 0px;">'
                     +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
-                      +'<canvas id="coursesWorkGrading"></canvas>'
+                      +'<canvas id="coursesCourseWorkGradingCanvas"></canvas>'
                     +'</div>'
                     //+'<div class="card-footer"></div>'
                 +'</div>'
@@ -1348,6 +1348,32 @@ function initCharts(){
 			title: {
 				display: true,
 				text: 'Student-Teacher Chart'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: true
+			}
+		}
+	});
+
+  //student-coursework grading count
+  coursesCourseWorkGradingCtx = document.getElementById('coursesCourseWorkGradingCanvas').getContext('2d');
+  cstcchart = new Chart(coursesCourseWorkGradingCtx, {
+		type: 'horizontalBar',
+		data: {
+      labels: ['Student 1', 'Student 2', 'Student 3'],
+  		datasets: [{
+  			label: 'CourseWork 1',
+  			borderColor: chartColors.green,
+        backgroundColor: chartColors.green,
+  			borderWidth: 2,
+        data: [3,2,3]
+  		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'CourseWork Grading Chart'
 			},
 			tooltips: {
 				mode: 'index',
