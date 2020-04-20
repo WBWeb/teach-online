@@ -977,6 +977,7 @@ function setCoursesStatusCharts() {
 //coursework status chart
 function setCoursesWorkStatusCharts() {
   var courseWorkStateDataset = [0,0,0];
+  var courseWorkWorktypeDataset = [0,0,0,0];
   console.log("setCoursesWorkStatusCharts called");
   coursescourseWorkArray.forEach(function (item){
     if(item.state == "PUBLISHED"){
@@ -986,10 +987,22 @@ function setCoursesWorkStatusCharts() {
     } else{
       courseStateDataset[2]++;
     }
+    if(item.workType == "ASSIGNMENT"){
+      courseWorkWorktypeDataset[0]++;
+    } else if(item.workType == "SHORT_ANSWER_QUESTION"){
+      courseWorkWorktypeDataset[1]++;
+    } else if(item.workType == "MULTIPLE_CHOICE_QUESTION"){
+      courseWorkWorktypeDataset[2]++;
+    }else{
+      courseWorkWorktypeDataset[3]++;
+    }
   });
   console.log(courseWorkStateDataset);
+  console.log(courseWorkWorktypeDataset);
   cwschart.data.datasets[0].data=courseWorkStateDataset;
   cwschart.update();
+  cwwtchart.data.datasets[0].data=courseWorkWorktypeDataset;
+  cwwthart.update();
 }
 
 //student-teacher count chart
@@ -1054,6 +1067,14 @@ function chartsDOM() {
                     //+'<div class="card-footer"></div>'
                   +'</div>'
                 +'</div>'
+              +'<div class="col-12 col-sm-6 col-md-3">'
+                +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">'
+                    +'<div id="card-body-chart-coursesWorkWorktype" class="card-body p-0">'
+                      +'<canvas id="coursesWorkWorktypeCanvas"></canvas>'
+                    +'</div>'
+                    //+'<div class="card-footer"></div>'
+                +'</div>'
+              +'</div>'
               +'<div class="col-12 col-sm-6 col-md-3">'
                 +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">'
                     +'<div id="card-body-chart-coursesStudentTeacherCount" class="card-body p-0">'
@@ -1142,6 +1163,51 @@ function initCharts(){
         title: {
           display: true,
           text: 'CoursesWork Status Report'
+        },
+        legend:{
+          position: 'left'
+        },
+        animation: {
+  					animateScale: true,
+  					animateRotate: true
+  			},
+        circumference: Math.PI,
+        rotation: -Math.PI
+      }
+  });
+
+  //courseswork worktype chart
+  coursesWorkWorktype = [1,1,1,1];
+  coursesWorkWorktypeCtx = document.getElementById('coursesWorkWorktypeCanvas').getContext('2d');
+  cschart = new Chart(coursesWorkWorktypeCtx, {
+  type: 'doughnut',
+      data: {
+        labels: [
+          'Assignment',
+          'Short Answere Questions',
+          'MCQ',
+          'Others'
+        ],
+        datasets: [
+                    {
+                      label: 'Courses',
+              				backgroundColor: [
+              					chartColors.green,
+                				chartColors.orange,
+                  			chartColors.red,
+                  			chartColors.grey
+              				],
+                      data: coursesWorkWorktype
+                    }
+                  ]
+      },
+
+      // Configuration options go here
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Courses Status Report'
         },
         legend:{
           position: 'left'
