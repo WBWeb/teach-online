@@ -903,36 +903,27 @@ function setCourseWorkCounter() {
 }
 
 function setcoursesStatusCharts() {
-
-  var courseStateActive = 0;
-  var courseStateProvisioned = 0;
-  var courseStateArchive = 0;
-  var courseStateOthers=0;
-  var courseStateDataset = [];
+  var courseStateDataset = [0,0,0,0];
 
   for(var i=0; i<coursesArray.length; i++){
-    if(coursesArray[i].courseState == "ACTIVE")
-        courseStateActive++;
-    else if(coursesArray[i].courseState == "PROVISIONED")
-        courseStateProvisioned++;
-    else if(coursesArray[i].courseState == "ARCHIVED")
-        courseStateArchive++;
-    } else {
-      courseStateOthers++;
+    if(item.courseState == "ACTIVE"){
+      courseStateDataset[0]++;
+    } else if(item.courseState == "PROVISIONED"){
+      courseStateDataset[1]++;
+    } else if(item.courseState == "ARCHIVED"){
+      courseStateDataset[2]++;
+    } else{
+      courseStateDataset[3]++;
     }
+  }
 
-    courseStateDataset.push(courseStateActive);
-    courseStateDataset.push(courseStateProvisioned);
-    courseStateDataset.push(courseStateArchive);
-    courseStateDataset.push(courseStateOthers);
+  cschart.data.datasets[0].data=courseStateDataset;
+  cschart.update();
 
-    cschart.data.datasets[0].data=courseStateDataset;
-    cschart.update();
-
-    Toast.fire({
-        title: "Courses Status Chart Loaded!",
-        icon: "success"
-      });
+  Toast.fire({
+    title: "Courses Status Chart Loaded!",
+    icon: "success"
+  });
 }
 
 function getStudentInfo(id,key) {
@@ -1001,7 +992,7 @@ function dashboardDOM(courses) {
   return print;
 }
 
-coursesStatus = {1,1,1}
+coursesStatus = [1,1,1,1];
 
 var coursesStatusCtx = document.getElementById('coursesStatusCanvas').getContext('2d');
 var cschart = new Chart(coursesStatusCtx, {
@@ -1012,17 +1003,20 @@ type: 'doughnut',
         labels: [
 					'Active',
 					'Provisioned',
-					'Archived'
+					'Archived',
+					'Others'
 				],
 				borderColor: [
 					chartColors.green,
   				chartColors.orange,
-    			chartColors.red
+    			chartColors.red,
+    			chartColors.grey
 				],
 				backgroundColor: [
 					chartColors.green,
   				chartColors.orange,
-    			chartColors.red
+    			chartColors.red,
+    			chartColors.grey
 				],
         datasets: [
                     {
