@@ -1038,12 +1038,12 @@ function setCoursesStudentTeacherCountCharts() {
     courseDataset.name.push(item.name);
     teachers=students=0;
     for (var i = 0; i < coursesStudentsArray.length; i++) {
-      if (coursesStudentsArray.coursesId==item.id) {
+      if (coursesStudentsArray.courseId==item.id) {
         students++;
       }
     }
     for (var i = 0; i < coursesTeachersArray.length; i++) {
-      if (coursesTeachersArray.coursesId==item.id) {
+      if (coursesTeachersArray.courseId==item.id) {
         teachers++;
       }
     }
