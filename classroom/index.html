@@ -1367,10 +1367,14 @@ function initCharts(){
         'Turned In',
         'Graded'
       ],
+      backgroundColor: [
+        chartColors.green,
+        chartColors.orange,
+        chartColors.red
+      ],
   		datasets: [{
   			type: 'doughnut',
   			label: 'Course Work Name',
-        backgroundColor: chartColors.orange,
         data: [1,1,1]
       }]
     },
@@ -1405,7 +1409,8 @@ function initCharts(){
         backgroundColor: chartColors.green,
   			borderWidth: 2,
         data: [3,2,3]
-  		},
+  		}]
+    }
 		options: {
 			responsive: true,
 			title: {
@@ -1417,7 +1422,7 @@ function initCharts(){
 				intersect: true
 			}
 		}
-	});
+  });
 }
 </script>
 
