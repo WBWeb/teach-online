@@ -906,6 +906,8 @@ function initAfterDataLoad() {
 
   setTimeout(setCourseWorkCounter,2000);
   setTimeout(setCoursesStatusCharts,2000);
+  setTimeout(setCoursesWorkStatusCharts,2000);
+  
 }
 
 function allotPermissions() {
@@ -971,6 +973,23 @@ function setCoursesStatusCharts() {
   cschart.update();
 }
 
+function setCoursesWorkStatusCharts() {
+  var courseWorkStateDataset = [0,0,0];
+  console.log("setCoursesWorkStatusCharts called");
+  coursescourseWorkArray.forEach(function (item){
+    if(item.state == "PUBLISHED"){
+      courseWorkStateDataset[0]++;
+    } else if(item.state == "DRAFT"){
+      courseWorkStateDataset[1]++;
+    } else{
+      courseStateDataset[2]++;
+    }
+  });
+  console.log(courseWorkStateDataset);
+  cwschart.data.datasets[0].data=courseWorkStateDataset;
+  cwschart.update();
+}
+
 function getStudentInfo(id,key) {
   for (var i = 0; i < coursesStudentsArray.length; i++) {
     if (coursesStudentsArray[i].userId==id) {
@@ -1013,7 +1032,15 @@ function chartsDOM() {
                   +'</div>'
                   //+'<div class="card-footer"></div>'
                 +'</div>'
-              +'</div>';
+              +'</div>'
+              +'<div class="col-12 col-sm-6 col-md-3">'
+                +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">'
+                    +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
+                      +'<canvas id="coursesWorkStatusCanvas"></canvas>'
+                    +'</div>'
+                    //+'<div class="card-footer"></div>'
+                  +'</div>'
+                +'</div>';
   return print;
 }
 
@@ -1051,6 +1078,49 @@ function initCharts(){
         title: {
           display: true,
           text: 'Courses Status Report'
+        },
+        legend:{
+          position: 'left'
+        },
+        animation: {
+  					animateScale: true,
+  					animateRotate: true
+  			},
+        circumference: Math.PI,
+        rotation: -Math.PI
+      }
+  });
+
+  //coursesWork
+  coursesWorkStatus = [1,1,1];
+  coursesWorkStatusCtx = document.getElementById('coursesWorkStatusCanvas').getContext('2d');
+  cwschart = new Chart(coursesWorkStatusCtx, {
+  type: 'doughnut',
+      data: {
+        labels: [
+          'Published',
+          'Draft',
+          'Others'
+        ],
+        datasets: [
+                    {
+                      label: 'Courses',
+              				backgroundColor: [
+              					chartColors.green,
+                				chartColors.orange,
+                  			chartColors.grey
+              				],
+                      data: coursesWorkStatus
+                    }
+                  ]
+      },
+
+      // Configuration options go here
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'CoursesWork Status Report'
         },
         legend:{
           position: 'left'
