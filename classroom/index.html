@@ -1010,17 +1010,14 @@ function setCoursesWorkStatusCharts() {
 //coursework submission report chart
 function setCoursesCourseWorkSubmissionCharts() {
   console.log("setCoursesCourseWorkSubmissionChartss called");
-
+  ccwsrchart.data.dataset.pop();
   courseWorkCounter.forEach(function(item){
-    cwsrchart.data.datasets.push({
+    ccwsrchart.data.datasets.push({
       "label": ,
       "data": [item.assigned,item.turnedin,item.graded],
     });
   });
-
-  console.log(courseWorkDataset);
-  cwsrchart.data.datasets.data=courseWorkWorktypeDataset;
-  cwsrchart.update();
+  ccwsrchart.update();
 }
 
 //student-teacher count chart
@@ -1339,10 +1336,10 @@ function initCharts(){
 			tooltips: {
 				mode: 'index',
 				intersect: true
-			},
+      },
       animation: {
-          animateScale: true,
-          animateRotate: true
+  					animateScale: true,
+  					animateRotate: true
       },
       circumference: Math.PI,
       rotation: -Math.PI
@@ -1374,7 +1371,7 @@ function initCharts(){
 				intersect: true
 			}
 		}
-  });
+	});
 }
 </script>
 
