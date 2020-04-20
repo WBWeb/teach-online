@@ -1066,6 +1066,11 @@ function getStudentInfo(id,key) {
   }
 }
 
+//student-teacher count chart
+// function setCoursesCourseWorkGradingCharts() {
+//
+// }
+
 function getTeacherInfo(id,key) {
   for (var i = 0; i < coursesTeachersArray.length; i++) {
     if (coursesTeachersArray[i].userId==id) {
@@ -1331,7 +1336,7 @@ function initCharts(){
 				text: 'Classwork Submission Report'
 			},
       legend:{
-        position: left
+        display: false
       },
       tooltips: {
         callbacks: {
