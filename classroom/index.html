@@ -893,7 +893,7 @@ function initAfterDataLoad() {
   $('.collapse').collapse();
 
   setTimeout(setCourseWorkCounter,2000);
-  setTimeout(setCoursesStatusCharts,2000);
+  setTimeout(setCoursesStatusCharts,4000);
 }
 
 function allotPermissions() {
@@ -942,7 +942,7 @@ function setCourseWorkCounter() {
 
 function setCoursesStatusCharts() {
   var courseStateDataset = [0,0,0,0];
-
+  console.log("setCoursesStatusCharts called");
   for(var i=0; i<coursesArray.length; i++){
     if(item.courseState == "ACTIVE"){
       courseStateDataset[0]++;
@@ -954,7 +954,7 @@ function setCoursesStatusCharts() {
       courseStateDataset[3]++;
     }
   }
-
+  console.log(courseStateDataset);
   cschart.data.datasets[0].data=courseStateDataset;
   cschart.update();
 
