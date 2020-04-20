@@ -44,6 +44,12 @@
           -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
         }
 
+        .dashboard-container-container {
+          width: 100%;
+          border-radius: 10px;
+          overflow: hidden;
+        }
+
         .login100-button-a {
           font-size: 16px;
           border-radius: 50%;
@@ -945,34 +951,34 @@ var courseStateProvisioned = 0;
 var courseStateArchive = 0;
 for(var i=0; i<coursesArray.length; i++){
   if(coursesArray[i].courseState == "ACTIVE")
-      courseStateActive+=1; 
+      courseStateActive+=1;
   else if(coursesArray[i].courseState == "PROVISIONED")
       courseStateProvisioned+=1;
   else
       courseStateArchive+=1;
-  } 
+  }
 console.log(courseStateActive);
 console.log(courseStateProvisioned);
 console.log(courseStateArchive); -->
 
 //courseWorkState and courseWorkworkType dataset
 <!-- var courseworkstatePublished = 0;
-var courseworkstateDraft = 0; 
-var courseworkworkTypeAssignment = 0; 
-var courseworkworkTypeSAQ = 0; 
-var courseworkworkTypeMCQ = 0; 
+var courseworkstateDraft = 0;
+var courseworkworkTypeAssignment = 0;
+var courseworkworkTypeSAQ = 0;
+var courseworkworkTypeMCQ = 0;
 for(var i=0; i<coursescourseWorkArray.length; i++){
   if(coursescourseWorkArray[i].state == "PUBLISHED")
-    courseworkstatePublished+=1; 
+    courseworkstatePublished+=1;
   else
-    courseworkstateDraft+=1; 
+    courseworkstateDraft+=1;
   if(coursescourseWorkArray[i].workType == "ASSIGNMENT")
-    courseworkworkTypeAssignment+=1; 
+    courseworkworkTypeAssignment+=1;
   else if(coursescourseWorkArray[i].workType == "SHORT_ANSWER_QUESTION")
-    courseworkworkTypeSAQ+=1; 
+    courseworkworkTypeSAQ+=1;
   else courseworkworkTypeMCQ+=1;
 }
-console.log(courseworkstatePublished); 
+console.log(courseworkstatePublished);
 console.log(courseworkstateDraft);
 console.log(courseworkworkTypeAssignment);
 console.log(courseworkworkTypeSAQ);
@@ -980,10 +986,10 @@ console.log(courseworkworkTypeMCQ);  -->
 
 //course-announcement-state dataset
 <!-- var coursesAnnouncementStatePublished = 0;
-var coursesAnnouncementStateDraft = 0; 
+var coursesAnnouncementStateDraft = 0;
 for(var i=0; i<coursescourseWorkArray.length; i++){
   if(coursesAnnouncementsArray[i].state == "PUBLISHED")
-    coursesAnnouncementStatePublished+=1; 
+    coursesAnnouncementStatePublished+=1;
   else
   coursesAnnouncementStateDraft+=1
 } -->
