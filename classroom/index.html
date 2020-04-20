@@ -647,7 +647,7 @@
                     console.log('#graded-'+coursescourseWorkArray[j].id+"-----"+courseWorkGraded);
 
                     courseWorkCounter.push({
-                      "courseWorkId" : coursescourseWorkArray[j].id,
+                      "id" : coursescourseWorkArray[j].id,
                       "name" : coursescourseWorkArray[j].title,
                       "assigned" : courseWorkAssigned,
                       "turnedin" : courseWorkTurnedin,
@@ -949,9 +949,9 @@ function  setDesigCourse(){
 
 function setCourseWorkCounter() {
   for (var i = 0; i < courseWorkCounter.length; i++) {
-    $('#assigned-'+courseWorkCounter[i].courseId).empty().html(courseWorkCounter[i].assigned);
-    $('#turnedin-'+courseWorkCounter[i].courseId).empty().html(courseWorkCounter[i].turnedin);
-    $('#graded-'+courseWorkCounter[i].courseId).empty().html(courseWorkCounter[i].graded);
+    $('#assigned-'+courseWorkCounter[i].id).empty().html(courseWorkCounter[i].assigned);
+    $('#turnedin-'+courseWorkCounter[i].id).empty().html(courseWorkCounter[i].turnedin);
+    $('#graded-'+courseWorkCounter[i].id).empty().html(courseWorkCounter[i].graded);
     console.log("courseWorkCounter called");
     console.log(courseWorkCounter);
   }
@@ -1337,7 +1337,7 @@ function initCharts(){
   		}, {
   			type: 'bar',
   			label: 'Teachers',
-  			borderColor: chartColors.red,
+  			backgroundColor: chartColors.red,
         backgroundColor: chartColors.red,
   			borderWidth: 2,
   			data: [1,2,3]
