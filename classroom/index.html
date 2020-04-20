@@ -1,223 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-      <title>Teach Online - Classroom</title>
-      <meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teach Online - Classroom</title>
+    <meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Favicon -->
-        <link rel="icon" type="image/png" href="//wbweb.co.in/assets/images/favicon.png">
+  <!-- Favicon -->
+    <link rel="icon" type="image/png" href="//wbweb.co.in/assets/images/favicon.png">
 
-      <!-- Onpage SEO -->
-        <meta name="title" content="">
-        <meta name="keyword" content="">
-        <meta name="description" content="">
+  <!-- Onpage SEO -->
+    <meta name="title" content="">
+    <meta name="keyword" content="">
+    <meta name="description" content="">
 
-      <!-- Dependencies -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" id="theme-styles">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-        <link rel="stylesheet" href="../main.css">
+  <!-- Dependencies -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" id="theme-styles">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../main.css">
 
-      <!-- Theme -->
-        <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="../fonts/iconic/css/material-design-iconic-font.min.css">
-        <link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
-        <link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
-        <link rel="stylesheet" type="text/css" href="../vendor/animsition/css/animsition.min.css">
-        <link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
-        <link rel="stylesheet" type="text/css" href="../vendor/daterangepicker/daterangepicker.css">
-        <link rel="stylesheet" type="text/css" href="../css/util.css">
-        <link rel="stylesheet" type="text/css" href="../css/main.css">
+  <!-- Theme -->
+    <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="../css/util.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
 
-        <style media="screen">
-        .course-container {
-          width: 100%;
-          background: #fff;
-          border-radius: 10px;
-          overflow: hidden;
-          box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-          -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-          -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-          -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-          -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-        }
+    <style media="screen">
+      .course-container {
+        width: 100%;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+        -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+        -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+      }
 
-        .dashboard-container {
-          width: 100%;
-          border-radius: 10px;
-          overflow: hidden;
-        }
+      .dashboard-container {
+        padding: 100px 15px 15px 15px;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+      }
 
-        .login100-button-a {
-          font-size: 16px;
-          border-radius: 50%;
-          color: #3b5998;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -moz-box;
-          display: -ms-flexbox;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 30px;
-          height: 30px;
-          background-color: #ffffff00;
-          margin: 5px;
-
-          -webkit-transform: perspective(1px) translateZ(0);
-          transform: perspective(1px) translateZ(0);
-          -webkit-transition-duration: 0.5s;
-          transition-duration: 0.5s;
-          cursor: pointer;
-        }
-
-        .login100-button-a:hover, .login100-button-a:focus, .login100-button-a:active {
-          box-shadow: -1px 1px 18px 0 #007bffa8;
-          -moz-box-shadow: -1px 1px 18px 0 #007bffa8;
-          -webkit-box-shadow: -1px 1px 18px 0 #007bffa8;
-          -o-box-shadow: -1px 1px 18px 0 #007bffa8;
-          -ms-box-shadow: -1px 1px 18px 0 #007bffa8;
-
-          -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-          -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
-          transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
-        }
-
-        .class-code {
-          font-weight: 600;
-          letter-spacing: 2px;
-          font-size: 14px;
-          padding: 2px 8px;
-          border-radius: 20px;
-          color: white;
-          -webkit-transform: perspective(1px) translateZ(0);
-          transform: perspective(1px) translateZ(0);
-          -webkit-transition-duration: 0.5s;
-          transition-duration: 0.5s;
-          cursor: pointer;
-        }
-
-        .class-code:hover, .class-code:focus, .class-code:active {
-          -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-          -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
-          transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
-        }
-
-        .dropdown-menu.show {
-          box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
-          border: 0;
-        }
-
-        dropdown-item:focus, .dropdown-item:hover {
-          background-color: rgba(115, 127, 140, 0.25);
-        }
-
-        .card-title{
-          font-weight: 600;
-        }
-
-        .sticky-top {
-          position: fixed;
-          top: 0;
-          z-index: 1020;
-        }
-        .navbar {
-          padding: 15px;
-          width: 100%;
-        }
-        .navcard{
-          width=auto: ;
-          width: 100%;
-          background: #fffffff0;
-          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        }
-        .h5-responsive{
-          line-height: 50px;
-        }
-
-        .accordion>.card>.card-header {
-          border-radius: 0;
-          padding: 2px;
-          margin-bottom: -10px;
-          margin-top: -10px;
-        }
-
-        @media screen and (max-width: 375px) {
-          .login100-form-title {
-            font-size: 22px;
-          }
-          p{
-            font-size: 8px;
-          }
-          h5{
-            font-size: 14px;
-          }
-          .class-code{
-            font-size: 8px;
-          }
-        }
-
-        @media screen and (min-width: 375px) {
-          .login100-form-title {
-            font-size: 28px;
-          }
-          p{
-            font-size: 10px;
-          }
-          h5{
-            font-size: 18px;
-          }
-          .class-code{
-            font-size: 10px;
-          }
-        }
-
-        @media screen and (min-width: 768px) {
-          .login100-form-title {
-            font-size: 34px;
-          }
-          p{
-            font-size: 12px;
-          }
-          h5{
-            font-size: 22px;
-          }
-          .class-code{
-            font-size: 12px;
-          }
-        }
-
-        @media screen and (min-width: 992px) {
-          .login100-form-title {
-            font-size: 40px;
-          }
-          p{
-            font-size: 16px;
-          }
-          h5{
-            font-size: 24px;
-          }
-          .class-code{
-            font-size: 14px;
-          }
-        }
-
-        .container-classroom {
-          width: 100%;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -moz-box;
-          display: -ms-flexbox;
-          padding: 100px 15px 15px 15px;
-          background-repeat: no-repeat;
-          background-size: cover;
-          background-position: center;
-          position: relative;
-          z-index: 1;
+      .container-classroom {
+        width: 100%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        padding: 0px 15px 15px 15px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        z-index: 1;
       }
 
       .container-classroom::before {
@@ -239,6 +84,162 @@
 
       .course-container{
         height: 460px;
+      }
+
+      .login100-button-a {
+        font-size: 16px;
+        border-radius: 50%;
+        color: #3b5998;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        background-color: #ffffff00;
+        margin: 5px;
+
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        -webkit-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      .login100-button-a:hover, .login100-button-a:focus, .login100-button-a:active {
+        box-shadow: -1px 1px 18px 0 #007bffa8;
+        -moz-box-shadow: -1px 1px 18px 0 #007bffa8;
+        -webkit-box-shadow: -1px 1px 18px 0 #007bffa8;
+        -o-box-shadow: -1px 1px 18px 0 #007bffa8;
+        -ms-box-shadow: -1px 1px 18px 0 #007bffa8;
+
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+        -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+        transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+      }
+
+      .class-code {
+        font-weight: 600;
+        letter-spacing: 2px;
+        font-size: 14px;
+        padding: 2px 8px;
+        border-radius: 20px;
+        color: white;
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        -webkit-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+        cursor: pointer;
+      }
+
+      .class-code:hover, .class-code:focus, .class-code:active {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+        -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+        transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+      }
+
+      .dropdown-menu.show {
+        box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.42);
+        border: 0;
+      }
+
+      dropdown-item:focus, .dropdown-item:hover {
+        background-color: rgba(115, 127, 140, 0.25);
+      }
+
+      .card-title{
+        font-weight: 600;
+      }
+
+      .sticky-top {
+        position: fixed;
+        top: 0;
+        z-index: 1020;
+      }
+      .navbar {
+        padding: 15px;
+        width: 100%;
+      }
+      .navcard{
+        width=auto: ;
+        width: 100%;
+        background: #fffffff0;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      }
+      .h5-responsive{
+        line-height: 50px;
+      }
+
+      .accordion>.card>.card-header {
+        border-radius: 0;
+        padding: 2px;
+        margin-bottom: -10px;
+        margin-top: -10px;
+      }
+
+      @media screen and (max-width: 375px) {
+        .login100-form-title {
+          font-size: 22px;
+        }
+        p{
+          font-size: 8px;
+        }
+        h5{
+          font-size: 14px;
+        }
+        .class-code{
+          font-size: 8px;
+        }
+      }
+
+      @media screen and (min-width: 375px) {
+        .login100-form-title {
+          font-size: 28px;
+        }
+        p{
+          font-size: 10px;
+        }
+        h5{
+          font-size: 18px;
+        }
+        .class-code{
+          font-size: 10px;
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        .login100-form-title {
+          font-size: 34px;
+        }
+        p{
+          font-size: 12px;
+        }
+        h5{
+          font-size: 22px;
+        }
+        .class-code{
+          font-size: 12px;
+        }
+      }
+
+      @media screen and (min-width: 992px) {
+        .login100-form-title {
+          font-size: 40px;
+        }
+        p{
+          font-size: 16px;
+        }
+        h5{
+          font-size: 24px;
+        }
+        .class-code{
+          font-size: 14px;
+        }
       }
 
       .img-very-small{
@@ -269,8 +270,7 @@
       .popUp:hover{
         text-decoration: underline;
       }
-
-        </style>
+    </style>
   </head>
   <body class="loading">
     <div id="nav">
