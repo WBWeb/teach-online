@@ -907,6 +907,7 @@ function initAfterDataLoad() {
   setTimeout(setCourseWorkCounter,2000);
   setTimeout(setCoursesStatusCharts,2000);
   setTimeout(setCoursesWorkStatusCharts,2000);
+  setTimeout(setCoursesStudentTeacherCountCharts,2000);
   
 }
 
@@ -973,6 +974,7 @@ function setCoursesStatusCharts() {
   cschart.update();
 }
 
+//coursework status chart
 function setCoursesWorkStatusCharts() {
   var courseWorkStateDataset = [0,0,0];
   console.log("setCoursesWorkStatusCharts called");
@@ -988,6 +990,17 @@ function setCoursesWorkStatusCharts() {
   console.log(courseWorkStateDataset);
   cwschart.data.datasets[0].data=courseWorkStateDataset;
   cwschart.update();
+}
+
+//student-teacher count chart
+function setCoursesStudentTeacherCountCharts() {
+  var courseStudentTeacherCountDataset = [0,0];
+  console.log("etCoursesStudentTeacherCountCharts called");
+  courseStudentTeacherCountDataset[0] = coursesStudentsArray.length;
+  courseStudentTeacherCountDataset[1] = coursesTeachersArray.length;
+  console.log(setCoursesStudentTeacherCountCharts);
+  cstcchart.data.datasets[0].data=setCoursesStudentTeacherCountCharts;
+  cstcchart.update();
 }
 
 function getStudentInfo(id,key) {
@@ -1035,12 +1048,20 @@ function chartsDOM() {
               +'</div>'
               +'<div class="col-12 col-sm-6 col-md-3">'
                 +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">'
-                    +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
+                    +'<div id="card-body-chart-coursesWorkStatus" class="card-body p-0">'
                       +'<canvas id="coursesWorkStatusCanvas"></canvas>'
                     +'</div>'
                     //+'<div class="card-footer"></div>'
                   +'</div>'
-                +'</div>';
+                +'</div>'
+              +'<div class="col-12 col-sm-6 col-md-3">'
+                +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">'
+                    +'<div id="card-body-chart-coursesStudentTeacherCount" class="card-body p-0">'
+                      +'<canvas id="coursesStudentTeacherCountCanvas"></canvas>'
+                    +'</div>'
+                    //+'<div class="card-footer"></div>'
+                  +'</div>'
+              +'</div>';
   return print;
 }
 
@@ -1131,6 +1152,41 @@ function initCharts(){
   			},
         circumference: Math.PI,
         rotation: -Math.PI
+      }
+  });
+
+  //student-teacher count
+  coursesStudentTeacherCount = [1,1];
+  coursesStudentTeacherCountCtx = document.getElementById('coursesStudentTeacherCountCanvas').getContext('2d');
+  cstcchart = new Chart(coursesStudentTeacherCountCtx, {
+  type: 'bar',
+      data: {
+        labels: [
+          'Student',
+          'Teacher'
+        ],
+        datasets: [
+                    {
+                      label: 'Student-Teacher Count',
+              				backgroundColor: [
+              					chartColors.green,
+                				chartColors.orange
+              				],
+                      data: coursesStudentTeacherCount
+                    }
+                  ]
+      },
+
+      // Configuration options go here
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Student-Teacher Count'
+        },
+        legend:{
+          position: 'left'
+        },
       }
   });
 }
