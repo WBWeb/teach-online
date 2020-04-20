@@ -1002,7 +1002,7 @@ function chartsDOM() {
         print+='<div class="col-sm-6 col-md-3">'
                 +'<div class="card bg-white pt-1 mb-3" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">'
                   +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
-                    +'<canvas id="coursesStatusCanvas" height="200"></canvas>'
+                    +'<canvas id="coursesStatusCanvas"></canvas>'
                   +'</div>'
                   +'<div class="card-footer">'
                   +'</div>'
@@ -1011,62 +1011,53 @@ function chartsDOM() {
   return print;
 }
 
-function initCharts(){
-  coursesStatus = [1,1,1,1];
+window.onload = function() {
+	var coursesStatusCtx = document.getElementById('coursesStatusCanvas').getContext('2d');
+	window.myDoughnut = new Chart(coursesStatusCtx, config);
+};
 
-  coursesStatusCtx = document.getElementById('coursesStatusCanvas').getContext('2d');
-  cschart = new Chart(coursesStatusCtx, {
-  // The type of chart we want to create
-  type: 'doughnut',
-  // The data for our dataset
-      data: {
-          labels: [
-  					'Active',
-  					'Provisioned',
-  					'Archived',
-  					'Others'
-  				],
-  				borderColor: [
-  					chartColors.green,
-    				chartColors.orange,
-      			chartColors.red,
-      			chartColors.grey
-  				],
-  				backgroundColor: [
-  					chartColors.green,
-    				chartColors.orange,
-      			chartColors.red,
-      			chartColors.grey
-  				],
-          datasets: [
-                      {
-                        label: 'Courses',
-                        borderColor: chartColors.green,
-                        backgroundColor: chartColors.green,
-                        data: coursesStatus
-                      }
-                    ]
+
+var csconfig = {
+// The type of chart we want to create
+type: 'doughnut',
+// The data for our dataset
+    data: {
+        labels: [
+          'Active',
+          'Provisioned',
+          'Archived',
+          'Others'
+        ],
+        datasets: [ {
+          label: 'Courses',
+          backgroundColor: [
+						window.chartColors.green,
+						window.chartColors.orange,
+						window.chartColors.red,
+						window.chartColors.blue
+					],
+          data: [1,1,1,1]
+        }
+      ]},
+
+    // Configuration options go here
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: 'Courses Stats'
       },
-
-      // Configuration options go here
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Courses Stats'
-        },
-        legend:{
-          position: 'top'
-        },
-        animation: {
-  					animateScale: true,
-  					animateRotate: true
-  			},
-        circumference: Math.PI,
-        rotation: -Math.PI
-      }
-  });
-}
+      legend:{
+        position: 'top'
+      },
+      animation: {
+          animateScale: true,
+          animateRotate: true
+      },
+      circumference: Math.PI,
+      rotation: -Math.PI
+    }
+};
 
 
 
