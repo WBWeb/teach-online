@@ -647,7 +647,8 @@
                     console.log('#graded-'+coursescourseWorkArray[j].id+"-----"+courseWorkGraded);
 
                     courseWorkCounter.push({
-                      "courseId" : coursescourseWorkArray[j].id,
+                      "courseWorkId" : coursescourseWorkArray[j].id,
+                      "name" : coursescourseWorkArray[j].title,
                       "assigned" : courseWorkAssigned,
                       "turnedin" : courseWorkTurnedin,
                       "graded" : courseWorkGraded
@@ -1125,6 +1126,23 @@ function chartsDOM() {
                     +'</div>'
                     //+'<div class="card-footer"></div>'
                   +'</div>'
+              +'</div>'
+              +'<div class="col-12 col-sm-6 col-md-3">'
+                +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin: 6px 0 6px 0px;">'
+                    +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
+                      +'<canvas id="coursesWorkSubmission"></canvas>'
+                    +'</div>'
+                    //+'<div class="card-footer"></div>'
+                +'</div>'
+              +'</div>'
+
+              +'<div class="col-12 col-sm-6 col-md-3">'
+                +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin: 6px 0 6px 0px;">'
+                    +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
+                      +'<canvas id="coursesWorkGrading"></canvas>'
+                    +'</div>'
+                    //+'<div class="card-footer"></div>'
+                +'</div>'
               +'</div>';
   return print;
 }
@@ -1132,7 +1150,6 @@ function chartsDOM() {
 function initCharts(){
 
   //courses
-  coursesStatus = [1,1,1,1];
   coursesStatusCtx = document.getElementById('coursesStatusCanvas').getContext('2d');
   cschart = new Chart(coursesStatusCtx, {
   type: 'doughnut',
@@ -1152,7 +1169,7 @@ function initCharts(){
                   			chartColors.red,
                   			chartColors.grey
               				],
-                      data: coursesStatus
+                      data: [1,1,1,1]
                     }
                   ]
       },
@@ -1177,7 +1194,6 @@ function initCharts(){
   });
 
   //coursesWork
-  coursesWorkStatus = [1,1,1];
   coursesWorkStatusCtx = document.getElementById('coursesWorkStatusCanvas').getContext('2d');
   cwschart = new Chart(coursesWorkStatusCtx, {
   type: 'doughnut',
@@ -1195,7 +1211,7 @@ function initCharts(){
                 				chartColors.orange,
                   			chartColors.grey
               				],
-                      data: coursesWorkStatus
+                      data: [1,1,1]
                     }
                   ]
       },
@@ -1220,7 +1236,6 @@ function initCharts(){
   });
 
   //courseswork worktype chart
-  coursesWorkWorktype = [1,1,1,1];
   coursesWorkWorktypeCtx = document.getElementById('coursesWorkWorktypeCanvas').getContext('2d');
   cwwtchart = new Chart(coursesWorkWorktypeCtx, {
   type: 'doughnut',
@@ -1240,7 +1255,7 @@ function initCharts(){
                   			chartColors.red,
                   			chartColors.grey
               				],
-                      data: coursesWorkWorktype
+                      data: [1,1,1,1]
                     }
                   ]
       },
@@ -1264,8 +1279,49 @@ function initCharts(){
       }
   });
 
+  //courseswork worktype chart
+  coursesWorkGradingCtx = document.getElementById('coursesWorkGradingCanvas').getContext('2d');
+  cwwtchart = new Chart(coursesWorkGradingCtx, {
+  type: 'doughnut',
+      data: {
+        labels: [
+          'Assigned',
+          'Turned In',
+          'Graded'
+        ],
+        datasets: [
+                    {
+                      label: 'CourseWork Name',
+              				backgroundColor: [
+              					chartColors.green,
+                				chartColors.orange,
+                  			chartColors.red
+              				],
+                      data: [1,1,1]
+                    }
+                  ]
+      },
+
+      // Configuration options go here
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Courses Work Submission Report'
+        },
+        legend:{
+          position: 'left'
+        },
+        animation: {
+  					animateScale: true,
+  					animateRotate: true
+  			},
+        circumference: Math.PI,
+        rotation: -Math.PI
+      }
+  });
+
   //student-teacher count
-  coursesStudentTeacherCount = [1,1];
   coursesStudentTeacherCountCtx = document.getElementById('coursesStudentTeacherCountCanvas').getContext('2d');
   cstcchart = new Chart(coursesStudentTeacherCountCtx, {
 		type: 'bar',
