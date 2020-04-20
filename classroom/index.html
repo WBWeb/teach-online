@@ -1003,28 +1003,28 @@ function setCoursesWorkStatusCharts() {
   cwschart.data.datasets[0].data=courseWorkStateDataset;
   cwschart.update();
   cwwtchart.data.datasets[0].data=courseWorkWorktypeDataset;
-  cwwthart.update();
+  cwwtchart.update();
 }
 
 //coursework worktype chart
-function setCoursesWorkStatusCharts() {
-  var courseWorkWorktypeDataset = [0,0,0,0];
-  console.log("setCoursesWorkTypeCharts called");
-  coursescourseWorkArray.forEach(function (item){
-    if(item.workType == "ASSIGNMENT"){
-      courseWorkWorktypeDataset[0]++;
-    } else if(item.workType == "SHORT_ANSWER_QUESTION"){
-      courseWorkWorktypeDataset[1]++;
-    } else if(item.workType == "MULTIPLE_CHOICE_QUESTION"){
-      courseWorkWorktypeDataset[2]++;
-    }else{
-      courseWorkWorktypeDataset[3]++;
-    }
-  });
-  console.log(courseWorkWorktypeDataset);
-  cwwtchart.data.datasets[0].data=courseWorkWorktypeDataset;
-  cwwtchart.update();
-}
+// function setCoursesWorkStatusCharts() {
+//   var courseWorkWorktypeDataset = [0,0,0,0];
+//   console.log("setCoursesWorkTypeCharts called");
+//   coursescourseWorkArray.forEach(function (item){
+//     if(item.workType == "ASSIGNMENT"){
+//       courseWorkWorktypeDataset[0]++;
+//     } else if(item.workType == "SHORT_ANSWER_QUESTION"){
+//       courseWorkWorktypeDataset[1]++;
+//     } else if(item.workType == "MULTIPLE_CHOICE_QUESTION"){
+//       courseWorkWorktypeDataset[2]++;
+//     }else{
+//       courseWorkWorktypeDataset[3]++;
+//     }
+//   });
+//   console.log(courseWorkWorktypeDataset);
+//   cwwtchart.data.datasets[0].data=courseWorkWorktypeDataset;
+//   cwwtchart.update();
+// }
 
 //student-teacher count chart
 function setCoursesStudentTeacherCountCharts() {
