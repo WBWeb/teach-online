@@ -1028,13 +1028,35 @@ function setCoursesWorkStatusCharts() {
 
 //student-teacher count chart
 function setCoursesStudentTeacherCountCharts() {
-  var courseStudentTeacherCountDataset = [0,0];
-  console.log("CoursesStudentTeacherCountCharts called");
-  courseStudentTeacherCountDataset[0] = coursesStudentsArray.length;
-  courseStudentTeacherCountDataset[1] = coursesTeachersArray.length;
-  console.log(setCoursesStudentTeacherCountCharts);
-  // cstcchart.data.datasets[0].data=setCoursesStudentTeacherCountCharts;
-  // cstcchart.update();
+  courseDataset={
+    "name": [],
+    "teachers": [],
+    "students": []
+  };
+
+  coursesArray.forEach(function (item){
+    courseDataset.name.push(item.name);
+    teachers=students=0;
+    for (var i = 0; i < coursesStudentsArray.length; i++) {
+      if (coursesStudentsArray.coursesId==coursesArray.id) {
+        students++;
+      }
+    }
+    for (var i = 0; i < coursesTeachersArray.length; i++) {
+      if (coursesTeachersArray.coursesId==coursesArray.id) {
+        teachers++;
+      }
+    }
+    courseDataset.students.push(students);
+    courseDataset.teachers.push(teachers);
+  });
+
+  console.log("Courses Student-Teacher Count Charts called");
+  console.log(courseDataset);
+  cstcchart.data.labels=courseDataset.name;
+  cstcchart.data.datasets[0].data=courseDataset.students;
+  cstcchart.data.datasets[1].data=courseDataset.teachers;
+  cstcchart.update();
 }
 
 function getStudentInfo(id,key) {
