@@ -1015,6 +1015,11 @@ function setCoursesCourseWorkSubmissionCharts() {
     ccwsrchart.data.datasets.push({
       "label": item.name,
       "data": [item.assigned,item.turnedin,item.graded],
+      "backgroundColor": [
+        chartColors.red,
+        chartColors.orange,
+        chartColors.green
+      ]
     });
   });
   ccwsrchart.update();
@@ -1317,15 +1322,7 @@ function initCharts(){
         'Turned In',
         'Graded'
       ],
-      backgroundColor: [
-        chartColors.red,
-        chartColors.orange,
-        chartColors.green
-      ],
-  		datasets: [{
-  			label: 'Course Work Name',
-        data: [1,1,1]
-      }]
+  		datasets: []
     },
 		options: {
 			responsive: true,
