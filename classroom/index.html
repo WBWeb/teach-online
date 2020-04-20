@@ -647,7 +647,8 @@
                     console.log('#graded-'+coursescourseWorkArray[j].id+"-----"+courseWorkGraded);
 
                     courseWorkCounter.push({
-                      "courseId" : coursescourseWorkArray[j].id,
+                      "id" : coursescourseWorkArray[j].id,
+                      "name" : coursescourseWorkArray[j].title,
                       "assigned" : courseWorkAssigned,
                       "turnedin" : courseWorkTurnedin,
                       "graded" : courseWorkGraded
@@ -948,9 +949,9 @@ function  setDesigCourse(){
 
 function setCourseWorkCounter() {
   for (var i = 0; i < courseWorkCounter.length; i++) {
-    $('#assigned-'+courseWorkCounter[i].courseId).empty().html(courseWorkCounter[i].assigned);
-    $('#turnedin-'+courseWorkCounter[i].courseId).empty().html(courseWorkCounter[i].turnedin);
-    $('#graded-'+courseWorkCounter[i].courseId).empty().html(courseWorkCounter[i].graded);
+    $('#assigned-'+courseWorkCounter[i].id).empty().html(courseWorkCounter[i].assigned);
+    $('#turnedin-'+courseWorkCounter[i].id).empty().html(courseWorkCounter[i].turnedin);
+    $('#graded-'+courseWorkCounter[i].id).empty().html(courseWorkCounter[i].graded);
     console.log("courseWorkCounter called");
     console.log(courseWorkCounter);
   }
@@ -1141,7 +1142,6 @@ function chartsDOM() {
 function initCharts(){
 
   //courses
-  coursesStatus = [1,1,1,1];
   coursesStatusCtx = document.getElementById('coursesStatusCanvas').getContext('2d');
   cschart = new Chart(coursesStatusCtx, {
   type: 'doughnut',
@@ -1161,7 +1161,7 @@ function initCharts(){
                   			chartColors.red,
                   			chartColors.grey
               				],
-                      data: coursesStatus
+                      data: [1,1,1,1]
                     }
                   ]
       },
@@ -1186,7 +1186,6 @@ function initCharts(){
   });
 
   //coursesWork
-  coursesWorkStatus = [1,1,1];
   coursesWorkStatusCtx = document.getElementById('coursesWorkStatusCanvas').getContext('2d');
   cwschart = new Chart(coursesWorkStatusCtx, {
   type: 'doughnut',
@@ -1204,7 +1203,7 @@ function initCharts(){
                 				chartColors.orange,
                   			chartColors.grey
               				],
-                      data: coursesWorkStatus
+                      data: [1,1,1]
                     }
                   ]
       },
@@ -1229,7 +1228,6 @@ function initCharts(){
   });
 
   //courseswork worktype chart
-  coursesWorkWorktype = [1,1,1,1];
   coursesWorkWorktypeCtx = document.getElementById('coursesWorkWorktypeCanvas').getContext('2d');
   cwwtchart = new Chart(coursesWorkWorktypeCtx, {
   type: 'doughnut',
@@ -1249,7 +1247,7 @@ function initCharts(){
                   			chartColors.red,
                   			chartColors.grey
               				],
-                      data: coursesWorkWorktype
+                      data: [1,1,1,1]
                     }
                   ]
       },
@@ -1260,6 +1258,48 @@ function initCharts(){
         title: {
           display: true,
           text: 'Courses Work Type Report'
+        },
+        legend:{
+          position: 'left'
+        },
+        animation: {
+  					animateScale: true,
+  					animateRotate: true
+  			},
+        circumference: Math.PI,
+        rotation: -Math.PI
+      }
+  });
+
+  //courseswork worktype chart
+  coursesWorkGradingCtx = document.getElementById('coursesWorkGradingCanvas').getContext('2d');
+  cwwtchart = new Chart(coursesWorkGradingCtx, {
+  type: 'doughnut',
+      data: {
+        labels: [
+          'Assigned',
+          'Turned In',
+          'Graded'
+        ],
+        datasets: [
+                    {
+                      label: 'CourseWork Name',
+              				backgroundColor: [
+              					chartColors.green,
+                				chartColors.orange,
+                  			chartColors.red
+              				],
+                      data: [1,1,1]
+                    }
+                  ]
+      },
+
+      // Configuration options go here
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Courses Work Submission Report'
         },
         legend:{
           position: 'left'
@@ -1289,7 +1329,7 @@ function initCharts(){
   		}, {
   			type: 'bar',
   			label: 'Teachers',
-  			borderColor: chartColors.red,
+  			backgroundColor: chartColors.red,
         backgroundColor: chartColors.red,
   			borderWidth: 2,
   			data: [1,2,3]
