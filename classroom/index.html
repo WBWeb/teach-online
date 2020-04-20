@@ -1013,7 +1013,7 @@ function setCoursesCourseWorkSubmissionCharts() {
   ccwsrchart.data.dataset.pop();
   courseWorkCounter.forEach(function(item){
     ccwsrchart.data.datasets.push({
-      "label": ,
+      "label": item.name,
       "data": [item.assigned,item.turnedin,item.graded],
     });
   });
