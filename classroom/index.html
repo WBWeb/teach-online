@@ -907,6 +907,7 @@ function initAfterDataLoad() {
   setTimeout(setCourseWorkCounter,2000);
   setTimeout(setCoursesStatusCharts,2000);
   setTimeout(setCoursesWorkStatusCharts,2000);
+  setTimeout(setCoursesWorkStatusCharts,2000);
   setTimeout(setCoursesStudentTeacherCountCharts,2000);
   
 }
@@ -1001,6 +1002,26 @@ function setCoursesWorkStatusCharts() {
   console.log(courseWorkWorktypeDataset);
   cwschart.data.datasets[0].data=courseWorkStateDataset;
   cwschart.update();
+  cwwtchart.data.datasets[0].data=courseWorkWorktypeDataset;
+  cwwthart.update();
+}
+
+//coursework worktype chart
+function setCoursesWorkStatusCharts() {
+  var courseWorkWorktypeDataset = [0,0,0,0];
+  console.log("setCoursesWorkTypeCharts called");
+  coursescourseWorkArray.forEach(function (item){
+    if(item.workType == "ASSIGNMENT"){
+      courseWorkWorktypeDataset[0]++;
+    } else if(item.workType == "SHORT_ANSWER_QUESTION"){
+      courseWorkWorktypeDataset[1]++;
+    } else if(item.workType == "MULTIPLE_CHOICE_QUESTION"){
+      courseWorkWorktypeDataset[2]++;
+    }else{
+      courseWorkWorktypeDataset[3]++;
+    }
+  });
+  console.log(courseWorkWorktypeDataset);
   cwwtchart.data.datasets[0].data=courseWorkWorktypeDataset;
   cwwthart.update();
 }
@@ -1184,7 +1205,7 @@ function initCharts(){
       data: {
         labels: [
           'Assignment',
-          'Short Answere Questions',
+          'SAQ',
           'MCQ',
           'Others'
         ],
