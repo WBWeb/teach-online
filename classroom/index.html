@@ -995,7 +995,7 @@ function setCoursesWorkStatusCharts() {
 //student-teacher count chart
 function setCoursesStudentTeacherCountCharts() {
   var courseStudentTeacherCountDataset = [0,0];
-  console.log("etCoursesStudentTeacherCountCharts called");
+  console.log("CoursesStudentTeacherCountCharts called");
   courseStudentTeacherCountDataset[0] = coursesStudentsArray.length;
   courseStudentTeacherCountDataset[1] = coursesTeachersArray.length;
   console.log(setCoursesStudentTeacherCountCharts);
@@ -1179,11 +1179,7 @@ function initCharts(){
 
       // Configuration options go here
       options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Student-Teacher Count'
-        },
+        responsive: true
       }
   });
 }
