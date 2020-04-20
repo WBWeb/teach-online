@@ -1383,7 +1383,13 @@ function initCharts(){
 			tooltips: {
 				mode: 'index',
 				intersect: true
-			}
+      },
+      animation: {
+  					animateScale: true,
+  					animateRotate: true
+      },
+      circumference: Math.PI,
+      rotation: -Math.PI
 		}
 	});
 
