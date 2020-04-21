@@ -319,6 +319,7 @@
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/glide.min.js"></script>
     <script src="auth.js"></script>
     <script src="../config.js"></script>
     <script src="../main.js"></script>
@@ -1098,7 +1099,11 @@ function ucFirst(string) {
 function chartsDOM() {
   print='';
   console.log('Charts dom call success');
-        print+='<div class="col-12 col-sm-6 col-md-3">'
+        print+='<div class="glide" id="intro">'
+            +'<div class="glide__track" data-glide-el="track">'
+              +'<ul class="glide__slides">'
+              +'<li class="glide__slide">'
+              +'<div class="col-12 col-sm-6 col-md-3">'
                 +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin: 6px 0 6px 0px;">'
                   +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
                     +'<canvas id="coursesStatusCanvas"></canvas>'
@@ -1106,6 +1111,8 @@ function chartsDOM() {
                   //+'<div class="card-footer"></div>'
                 +'</div>'
               +'</div>'
+              +'</li>'
+              +'<li class="glide__slide">'
               +'<div class="col-12 col-sm-6 col-md-3">'
                 +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin: 6px 0 6px 0px;">'
                     +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
@@ -1114,6 +1121,8 @@ function chartsDOM() {
                     //+'<div class="card-footer"></div>'
                   +'</div>'
                 +'</div>'
+                +'</li>'
+              +'<li class="glide__slide">'
               +'<div class="col-12 col-sm-6 col-md-3">'
                 +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin: 6px 0 6px 0px;">'
                     +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
@@ -1122,6 +1131,8 @@ function chartsDOM() {
                     //+'<div class="card-footer"></div>'
                 +'</div>'
               +'</div>'
+              +'</li>'
+              +'<li class="glide__slide">'
               +'<div class="col-12 col-sm-6 col-md-3">'
                 +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin: 6px 0 6px 0px;">'
                     +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
@@ -1130,6 +1141,8 @@ function chartsDOM() {
                     //+'<div class="card-footer"></div>'
                   +'</div>'
               +'</div>'
+              +'</li>'
+              +'<li class="glide__slide">'
               +'<div class="col-12 col-sm-6 col-md-3">'
                 +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin: 6px 0 6px 0px;">'
                     +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
@@ -1138,7 +1151,8 @@ function chartsDOM() {
                     //+'<div class="card-footer"></div>'
                 +'</div>'
               +'</div>'
-
+              +'</li>'
+              +'<li class="glide__slide">'
               +'<div class="col-12 col-sm-6 col-md-3">'
                 +'<div class="card bg-white" style="width: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin: 6px 0 6px 0px;">'
                     +'<div id="card-body-chart-coursesStatus" class="card-body p-0">'
@@ -1146,7 +1160,11 @@ function chartsDOM() {
                     +'</div>'
                     //+'<div class="card-footer"></div>'
                 +'</div>'
-              +'</div>';
+              +'</div>'
+              +'</li>'
+              +'</ul>'
+            +'</div>'
+        +'</div>';
   return print;
 }
 
@@ -1384,6 +1402,24 @@ function initCharts(){
 }
 </script>
 
+<script>
+  var glide = new Glide('#intro', {
+  type: 'carousel',
+  perView: 4,
+  focusAt: 'center',
+  breakpoints: {
+    800: {
+      perView: 2
+    },
+    480: {
+      perView: 1
+    }
+  }
+})
+
+glide.mount()
+</script>
+
 
 
 
@@ -1443,3 +1479,10 @@ for(var i=0; i<coursescourseWorkArray.length; i++){
   else
   coursesAnnouncementStateDraft+=1
 } -->
+
+
+
+      0
+      <li class="glide__slide">1</li>
+      <li class="glide__slide">2</li>
+  
