@@ -27,7 +27,6 @@ function initClient() {
 
     // Handle initial sign-in state. (Determine if user is already signed in.)
     var user = GoogleAuth.currentUser.get();
-    Var basicpPofile = GoogleAuth.currentUser.get().getBasicProfile();
     setSigninStatus();
 
     // Call handleAuthClick function when user clicks on
