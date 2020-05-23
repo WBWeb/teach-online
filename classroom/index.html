@@ -419,18 +419,18 @@
 
 
     function initNavDOM() {
-      var current = gapi.auth2.getAuthInstance().currentUser.get();
-      mid=current.Pt.MU;
-      mPhotoUrl=current.Pt.QK;
+      var current = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+      mid=current.getId();
+      mPhotoUrl=current.getImageUrl();
       print ='<nav class="navbar sticky-top navbar-light">'
               +'<div class="card text-right navcard">'
                 +'<div class="row m-0" style="padding: 10px;">'
                   +'<div class="col text-left">'
-                  +'<h5 class="h5-responsive" style="font-weight: 600;">Hi '+current.Pt.pW+'</h5>'
+                  +'<h5 class="h5-responsive" style="font-weight: 600;">Hi '+current.getGivenName()+'</h5>'
                   +'</div>'
                   +'<div class="text-right" style="width:70px">'
                     +'<div class="dropleft">'
-                      +'<a data-toggle="dropdown" title="menu" aria-haspopup="true" aria-expanded="false"><img src="'+current.Pt.QK+'" width="50px" class="img-card" style="pointer:cursor;"></button>'
+                      +'<a data-toggle="dropdown" title="menu" aria-haspopup="true" aria-expanded="false"><img src="'+current.getImageUrl()+'" width="50px" class="img-card" style="pointer:cursor;"></button>'
                       +'<div class="dropdown-menu">'
                         +'<a class="for-student" class="dropdown-item" href="javascript:void(0)" onclick="popTo-do" style="display:none">To Do</a>'
                         +'<a class="dropdown-item" href="javascript:void(0)" onclick="Toast.fire({title:'+"'Feature Coming Soon',icon:'success'"+'})">My Calendar</a>'
@@ -701,7 +701,7 @@
     }
 
     function initModalYoutubeAdd(courseId) {
-      var current = gapi.auth2.getAuthInstance().currentUser.get();
+      var current = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
       console.log('Modal Form init Submitted');
       title= $("#ytBroadcastTitle").val();
       date = new Date($("#ytBroadcastScheduledStartTime").val());
@@ -710,7 +710,7 @@
       date = new Date($("#ytBroadcastScheduledEndTime").val());
       isoString = date.toISOString();
       scheduledEndTime= date;
-      description = 'beg-courseId='+courseId+'&ownerId='+current.Pt.MU+'-end';
+      description = 'beg-courseId='+courseId+'&ownerId='+current.getId()+'-end';
       youtubeLiveBroadcastsInsert(title,scheduledStartTime,scheduledEndTime,description);
     }
 

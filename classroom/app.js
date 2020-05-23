@@ -434,10 +434,10 @@ function modalAddCourse() {
 
 function classroomCoursesFormToDataObject() {
   console.log('Modal Form Data to object success');
-  var current = gapi.auth2.getAuthInstance().currentUser.get();
+  var current = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
   data = {
     name: $("#courseName").val(),
-    ownerId: current.Pt.MU,
+    ownerId: current.getId(),
     section: $("#courseSection").val(),
     room: $("#courseRoom").val(),
     courseState: $("#courseState").val(),
@@ -575,7 +575,7 @@ function getCourseStudentListAsOption(courseId,selectedId){
 
 function classroomAnnouncementFormToDataObject(courseId) {
   console.log('Modal Form Data to object success');
-  // var current = gapi.auth2.getAuthInstance().currentUser.get();
+  // var current = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
   data = {
     assigneeMode: $("#announcement-assigneeMode").val(),
     state: $("#announcement-state").val(),
