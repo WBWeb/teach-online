@@ -61,6 +61,8 @@
     <script>
     $body = $("body");
     $('#app').html(preLoginDOM());
+    handleClientLoad();
+
       // check and manipulate dom in case of login or logout
       function setSigninStatus(isSignedIn) {
         var user = GoogleAuth.currentUser.get();
